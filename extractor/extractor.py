@@ -1,3 +1,5 @@
+#!/bin/python3
+
 # User Settings
 # To update user agent run the following in the chrome developer console
 # console.log(navigator.userAgent);

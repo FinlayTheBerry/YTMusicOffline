@@ -1,9 +1,8 @@
 # Hidden folders
 .*/
 
-# Database dirs too large for git
-database/songs
-database/thumbnails
+# Database
+database/
 
 # Secrets
 extractor/client_secrets.json

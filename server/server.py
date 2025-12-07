@@ -1,20 +1,17 @@
-# User Settings
-host = "127.0.0.1"
-port = 8080
-custom_root = None
-open_in_browser = True
+#!/bin/python3
 
 # Import builtins (part of python)
 import sys
 import webbrowser
 import hashlib
 import os
-import time
 import subprocess
 import importlib
+
+# Import flask
 def PromptPipInstall(importName, pipName):
     pipCommand = f"python -m pip install -U {pipName}"
-    print(f"ERROR: Dependency {pipName} not found. Would you like to install it now? (y/n)")
+    print(f"ERROR: Dependency {pipName} not found. Would you like to install it now with pip? (y/n)")
     choice = input().lower()
     if choice in [ "y", "yes" ]:
         print()
@@ -33,15 +30,14 @@ try:
 except ImportError:
     PromptPipInstall("flask", "flask")
 
-# Init flask
+# 127.0.0.1 is several orders of magnitude faster than localhost on Windows due to hostname resolution being absolutely ass.
+host = "127.0.0.1"
+port = 7974 # This port was chosen because 0x7974 is "yt" in ASCII.
 url = f"http://{host}:{port}/"
-if custom_root != None:
-    root = custom_root
-else:
-    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+root = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 app = flask.Flask("YTMusicOffline")
 
-# Define flask methods and endpoints
+# Flask methods and endpoints
 def compute_etag(filepath):
     hash_bytes = hashlib.sha256(filepath.encode("utf-8")).digest()
     hash_int = int.from_bytes(hash_bytes) % 1000000000
@@ -81,11 +77,10 @@ def serve_file(file_path):
 # Run server and catch errors
 try:
     print(f"Hosting {root} at {url}...")
-    if open_in_browser:
-        if not webbrowser.open(url):
-            if (os.system(f"start {url}") != 0):
-                if (os.system(f"xdg-open {url}") != 0):
-                    print(f"Failed to launch {url} please open manually.")
+    if not webbrowser.open(url):
+        if (os.system(f"start {url}") != 0):
+            if (os.system(f"xdg-open {url}") != 0):
+                print(f"Failed to launch {url} please open manually.")
     app.run(host=host, port=port)
 except KeyboardInterrupt:
     sys.exit(0)
