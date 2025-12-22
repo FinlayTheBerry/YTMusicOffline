@@ -1,6 +1,6 @@
 #!/bin/python3
 
-# Import builtins (part of python)
+# Import builtins
 import sys
 import webbrowser
 import hashlib
@@ -19,11 +19,11 @@ def PromptPipInstall(importName, pipName):
         errorCode = subprocess.run(pipCommand, shell=True, env=os.environ.copy()).returncode
         print()
         if errorCode != 0:
-           print(f"ERROR: {pipCommand} failed with error code {errorCode}.")
+           print(f"ERROR: \"{pipCommand}\" failed with error code {errorCode}.")
            sys.exit(1)
         globals()[importName] = importlib.import_module(importName)
     else:
-        print(f"Execution cannot continue without required dependency {pipName}.")
+        print(f"Execution cannot continue without {pipName}.")
         sys.exit(1)
 try:
     import flask
@@ -38,11 +38,6 @@ root = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 app = flask.Flask("YTMusicOffline")
 
 # Flask methods and endpoints
-def compute_etag(filepath):
-    hash_bytes = hashlib.sha256(filepath.encode("utf-8")).digest()
-    hash_int = int.from_bytes(hash_bytes) % 1000000000
-    return f"{hash_int}"
-
 @app.route("/api/save_database", methods=["POST"])
 def update_database():
     database_path = os.path.join(root, "database", "database.json")
@@ -71,7 +66,6 @@ def serve_file(file_path):
     response.headers.pop("Content-Disposition", None)
     response.headers.pop("Date", None)
     response.headers["Accept-Ranges"] = "bytes"
-    response.headers["Etag"] = compute_etag(file_path)
     return response
 
 # Run server and catch errors

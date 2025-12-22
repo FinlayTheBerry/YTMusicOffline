@@ -5,8 +5,9 @@
     const Player = {};
 
     Player.Database = [];
-    Player.Playlist = [];
+    Player.RuntimeData = [];
     Player.NowPlaying = null;
+    Player.Selected = null;
 
     let AudioElement = null;
     let ElementRefrencesNull = true;
@@ -15,18 +16,84 @@
         fetch("/database/database.json").then((result) => {
             result.json().then((result) => {
                 Player.Database = Object.values(result);
-                Player.Playlist = Player.Database;
 
-                VSLib.SetDataset(Player.Playlist);
-                ThumbLib.SetDataset(Player.Playlist.map(song => song.thumbnail));
+                VSLib.SetDataset(Player.Database);
+                ThumbLib.SetDataset(Player.Database.map(song => song.thumbnail));
 
-                Gui.ComputeSongExtraData();
+                const highlightStart = "<span class=\"element_highlight\">";
+                const highlightEnd = "</span>";
+
+                Player.RuntimeData = Player.Database.map(song => {
+                    let text = song.title;
+                    let textHtml = highlightStart + song.title + highlightEnd;
+                    if (song.album != undefined && song.album != null && song.album != "") {
+                        text += " from " + song.album;
+                        textHtml += " from " + highlightStart + song.album + highlightEnd;
+                    }
+                    switch (song.artists.length) {
+                        case 0:
+                            text += " by unknown artist";
+                            textHtml += " by unknown artist";
+                            break;
+                        case 1:
+                            text += " by " + song.artists[0];
+                            textHtml += " by " + highlightStart + song.artists[0] + highlightEnd;
+                            break;
+                        case 2:
+                            text += " by " + song.artists[0];
+                            text += ", and " + song.artists[1];
+                            textHtml += " by " + highlightStart + song.artists[0] + highlightEnd;
+                            textHtml += ", and " + highlightStart + song.artists[1] + highlightEnd;
+                            break;
+                        case 3:
+                            text += " by " + song.artists[0];
+                            text += ", " + song.artists[1];
+                            text += ", and " + song.artists[2];
+                            textHtml += " by " + highlightStart + song.artists[0] + highlightEnd;
+                            textHtml += ", " + highlightStart + song.artists[1] + highlightEnd;
+                            textHtml += ", and " + highlightStart + song.artists[2] + highlightEnd;
+                            break;
+                        default:
+                            text += " by " + song.artists[0];
+                            text += ", " + song.artists[1];
+                            text += ", " + song.artists[2];
+                            text += ", and others";
+                            textHtml += " by " + highlightStart + song.artists[0] + highlightEnd;
+                            textHtml += ", " + highlightStart + song.artists[1] + highlightEnd;
+                            textHtml += ", " + highlightStart + song.artists[2] + highlightEnd;
+                            textHtml += ", and others";
+                            break;
+                    }
+                    const releaseDateObj = new Date(song.releaseDate * 1000);
+                    const releaseDay = ("0" + releaseDateObj.getUTCDate().toString()).slice(-2);
+                    const releaseMonth = ("0" + (releaseDateObj.getUTCMonth() + 1).toString()).slice(-2);
+                    const releaseYear = ("000" + releaseDateObj.getUTCFullYear().toString()).slice(-4);
+                    const releaseDateStr = releaseMonth + "/" + releaseDay + "/" + releaseYear;
+                    text += " released on " + releaseDateStr;
+                    textHtml += " released on " + highlightStart + releaseDateStr + highlightEnd;
+                    return { text: text, textHtml: textHtml };
+                });
 
                 console.timeEnd("PageLoad");
             });
         });
     };
     LoadDatabase();
+
+    const SaveDatabase = () => {
+        const jsonStr = JSON.stringify(Player.Database, null, 2);
+        fetch("/api/save_database", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: jsonStr
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(`ERROR: Http status code ${response.status} on post to /api/save_database.`);
+            }
+        }).catch(error => {
+            throw new Error('Error saving database:', error);
+        });
+    };
 
     const SetElementRefrences = () => {
         AudioElement = document.querySelector(".player_audio");
@@ -38,46 +105,43 @@
         SetElementRefrences();
     }
 
-    Player.PlaySong = (song) => {
+    Player.PlaySong = (index) => {
         AudioElement.pause();
         AudioElement.currentTime = 0;
-        if (song == null) {
+        if (index == null) {
             AudioElement.src = "";
         } else {
-            AudioElement.src = song.src;
+            AudioElement.src = Player.Database[index].src;
             AudioElement.play();
         }
 
-        Player.NowPlaying = song;
+        Player.NowPlaying = index;
         Gui.RefreshPlayer();
     };
 
     Player.Search = (query) => {
         query = query.toLowerCase();
 
-        const newPlaylist = [];
-        for (let i = 0; i < Player.Database.length; i++) {
-            const song = Player.Database[i];
-            if (song.text.toLowerCase().includes(query)) {
-                newPlaylist.push(song);
+        let searchStartIndex = 0;
+        if (Player.SelectedSongIndex != null) {
+            searchStartIndex = Player.SelectedSongIndex + 1;
+        }
+        for (let i = searchStartIndex; i < Player.Database.length; i++) {
+            if (Player.RuntimeData[i].text.toLowerCase().includes(query)) {
+                Player.SelectedSongIndex = i;
+                VSLib.ScrollToElementByIndex(i);
+                break;
             }
         }
-
-        Player.Playlist = newPlaylist;
-        VSLib.SetDataset(Player.Playlist);
-        ThumbLib.SetDataset(Player.Playlist.map(song => song.thumbnail));
     };
+    Player.ClearSearch = () => {
+        Player.SelectedSongIndex = null;
+    }
 
     Player.Loop = false;
     Player.ToggleLoop = () => {
         Player.Loop = !Player.Loop;
         AudioElement.loop = Player.Loop;
-        Gui.RefreshPlayer();
-    };
-
-    Player.Shuffle = false;
-    Player.ToggleShuffle = () => {
-        Player.Shuffle = !Player.Shuffle;
         Gui.RefreshPlayer();
     };
 

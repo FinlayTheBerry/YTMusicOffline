@@ -11,6 +11,7 @@
     let UserElementHeight = 10;
     let OverscrollHeightUnits = "Elements"; // Enum: Pixels Percent Elements
     let UserOverscrollHeight = 9;
+    let TargetScrollIndex = null;
     let RebindCallback = null; // (element, index, value, userdata) => userdata
     let UpdateCallback = null; // (elements, startIndex, dataset) => void
     let ElementRefrencesNull = true;
@@ -20,13 +21,13 @@
     let VirtualElements = [];
 
     VSLib.SetRebindCallback = (value) => {
-        if (typeof value != "function" && value !== null) {
+        if (typeof value != "function") {
             throw new Error("RebindCallback must be a valid function or null.");
         }
         RebindCallback = value;
     };
     VSLib.SetUpdateCallback = (value) => {
-        if (typeof value != "function" && value !== null) {
+        if (typeof value != "function") {
             throw new Error("UpdateCallback must be a valid function.");
         }
         UpdateCallback = value;
@@ -42,24 +43,24 @@
     };
 
     VSLib.SetElementHeightInPixels = (value) => {
-        if (!Number.isFinite(value)) {
-            throw new Error("ElementHeight must be a finite real number.");
+        if (!Number.isFinite(value) || value <= 0) {
+            throw new Error("ElementHeight must be a finite real number > 0.");
         }
         ElementHeightUnits = "Pixels";
         UserElementHeight = value;
         QueueUpdate();
     };
     VSLib.SetElementHeightInPercent = (value) => {
-        if (!Number.isFinite(value)) {
-            throw new Error("ElementHeight must be a finite real number.");
+        if (!Number.isFinite(value) || value <= 0) {
+            throw new Error("ElementHeight must be a finite real number > 0.");
         }
         ElementHeightUnits = "Percent";
         UserElementHeight = value;
         QueueUpdate();
     };
     VSLib.SetElementsPerScreen = (value) => {
-        if (!Number.isFinite(value)) {
-            throw new Error("ElementHeight must be a finite real number.");
+        if (!Number.isFinite(value) || value <= 0) {
+            throw new Error("ElementHeight must be a finite real number > 0.");
         }
         ElementHeightUnits = "ElementsPerScreen";
         UserElementHeight = value;
@@ -67,27 +68,38 @@
     };
 
     VSLib.SetOverscrollHeightInPixels = (value) => {
-        if (!Number.isFinite(value)) {
-            throw new Error("OverscrollHeight must be a finite real number.");
+        if (!Number.isFinite(value) || value <= 0) {
+            throw new Error("OverscrollHeight must be a finite real number > 0.");
         }
         OverscrollHeightUnits = "Pixels";
         UserOverscrollHeight = value;
         QueueUpdate();
     };
     VSLib.SetOverscrollHeightInPercent = (value) => {
-        if (!Number.isFinite(value)) {
-            throw new Error("OverscrollHeight must be a finite real number.");
+        if (!Number.isFinite(value) || value <= 0) {
+            throw new Error("OverscrollHeight must be a finite real number > 0.");
         }
         OverscrollHeightUnits = "Percent";
         UserOverscrollHeight = value;
         QueueUpdate();
     };
     VSLib.SetOverscrollHeightInElements = (value) => {
-        if (!Number.isFinite(value)) {
-            throw new Error("OverscrollHeight must be a finite real number.");
+        if (!Number.isFinite(value) || value <= 0) {
+            throw new Error("OverscrollHeight must be a finite real number > 0.");
         }
         OverscrollHeightUnits = "Elements";
         UserOverscrollHeight = value;
+        QueueUpdate();
+    };
+
+    VSLib.ScrollToElementByIndex = (index) => {
+        if (!Number.isInteger(index) || index < 0) {
+            throw new Error("index must be an integer >= 0.");
+        }
+        if (index >= Dataset.length) {
+            throw new Error("index must be within the bounds of the dataset.");
+        }
+        TargetScrollIndex = index;
         QueueUpdate();
     };
 
@@ -124,7 +136,7 @@
         // Mark update as no longer queued
         UpdateQueued = false;
 
-        // If the page hasn't loaded yet queue and update for next frame and return
+        // If the page hasn't loaded yet so queue an update for next frame and return
         if (document.readyState == "loading") {
             QueueUpdate();
             return;
@@ -234,6 +246,13 @@
             } catch (error) {
                 console.error(error);
             }
+        }
+
+        // Scroll if requested
+        if (TargetScrollIndex != null) {
+            const targetScroll = Math.max((TargetScrollIndex * elementHeight) - ((containerHeight - elementHeight) / 2), 0);
+            ContainerElement.scrollTo({ top: targetScroll, left: 0, behavior: "smooth" });
+            TargetScrollIndex = null;
         }
     };
     QueueUpdate();

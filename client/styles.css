@@ -111,6 +111,7 @@ body {
     width: auto;
     aspect-ratio: 1 / 1;
     object-fit: cover;
+    user-select: none;
 }
 
 .element_text_container {
@@ -126,6 +127,7 @@ body {
 
 .element_text {
     width: 100%;
+    user-select: none;
 }
 
 .element_highlight {
@@ -148,6 +150,7 @@ body {
     width: auto;
     aspect-ratio: 1 / 1;
     object-fit: cover;
+    user-select: none;
 }
 
 .player_flex_container {
@@ -182,6 +185,7 @@ body {
 .player_link {
     color: var(--text-color);
     cursor: pointer;
+    user-select: none;
 }
 
 .player_link:hover {

@@ -1,25 +1,27 @@
 #!/bin/python3
 
-# User Settings
-# To update user agent run the following in the chrome developer console
-# console.log(navigator.userAgent);
-UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
-TraceMinDelay = 0
-TraceMaxDelay = 1
-ThumbnailDownloadMinDelay = 0
-ThumbnailDownloadMaxDelay = 1
-AudioStreamDownloadMinDelay = 0
-AudioStreamDownloadMaxDelay = 5
-SongDownloadRateLimit = 1_000_000
-SegmentDownloadMinDelay = 0
-SegmentDownloadMaxDelay = 5
-
 
 
 # NOTE ON API COST:
 # Total API cost is at maximum the following assuming only the Liked Music playlist is larger than 100 videos:
 # ciel(NumOfPlaylists / 50) + ciel(NumOfVideos / 50) + (NumOfPlaylists * 2) + ciel(NumOfVideos / 50)
 # That's about 322 querries for 79 playlists and 4005 videos.
+
+
+
+# User Settings
+# To get the latest user agent from your browser run the following in the developer console:
+# console.log(navigator.userAgent);
+UserAgent = "Mozilla/5.0 (X11; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0"
+TraceMinDelay = 0.0
+TraceMaxDelay = 1.0
+ThumbnailDownloadMinDelay = 0.0
+ThumbnailDownloadMaxDelay = 1.0
+AudioStreamDownloadMinDelay = 0.0
+AudioStreamDownloadMaxDelay = 5.0
+SongDownloadRateLimit = 1_000_000
+SegmentDownloadMinDelay = 0.0
+SegmentDownloadMaxDelay = 5.0
 
 
 
@@ -76,6 +78,18 @@ from google.auth.transport.requests import Request
 
 
 # Helper functions
+def WriteFile(filePath, contents, binary=False):
+    filePath = os.path.realpath(os.path.expanduser(filePath))
+    os.makedirs(os.path.dirname(filePath), exist_ok=True)
+    with open(filePath, "wb" if binary else "w", encoding=(None if binary else "UTF-8")) as file:
+        file.write(contents)
+def ReadFile(filePath, defaultContents=None, binary=False):
+    filePath = os.path.realpath(os.path.expanduser(filePath))
+    if not os.path.exists(filePath):
+        if defaultContents != None:
+            return defaultContents
+    with open(filePath, "rb" if binary else "r", encoding=(None if binary else "UTF-8")) as file:
+        return file.read()
 def DictionaryHas(dictionary, path):
     if dictionary == None:
         return False
@@ -92,55 +106,48 @@ def RandomSleep(minSeconds, maxSeconds):
         minSeconds, maxSeconds = maxSeconds, minSeconds
     duration = random.uniform(minSeconds, maxSeconds)
     time.sleep(duration)
-def ChangeDir():
-    extractorDir = os.path.dirname(os.path.abspath(sys.argv[0]))
-    ytMusicOfflineDir = os.path.dirname(extractorDir)
-    os.chdir(ytMusicOfflineDir)
 def PathToClientUrl(filePath):
-    ChangeDir()
-    filePath = os.path.abspath(filePath)
-    databaseDir = os.path.abspath("database")
-    clientDir = os.path.abspath("client")
+    filePath = os.path.realpath(filePath)
+    databaseDir = os.path.realpath("database")
+    clientDir = os.path.realpath("client")
     if not "..\\" in os.path.relpath(filePath, databaseDir):
         return "/database/" + os.path.relpath(filePath, databaseDir).replace("\\", "/")
     if not "..\\" in os.path.relpath(filePath, clientDir):
         return "/" + os.path.relpath(filePath, clientDir).replace("\\", "/")
     raise Exception(f"{filePath} is not within the client or database folders and therefore is innaccesable to the client.")
 def LoadSongDatabase():
-    ChangeDir()
-    databaseDir = os.path.abspath("database")
+    databaseDir = os.path.realpath("database")
     os.makedirs(databaseDir, exist_ok=True)
-    databasePath = os.path.abspath("database/database.json")
-    databaseBackupPath = os.path.join(databaseDir, "database_backup.json")
-    if os.path.exists(databaseBackupPath):
-        raise Exception("A previous failed save exists of the database. Bailing out for manual audit.")
+    databasePath = os.path.join(databaseDir, "database.json")
+    if not os.path.exists(databasePath):
+        return []
+    else:
+        return json.loads(ReadFile(databasePath))
+def SaveSongDatabase(songDatabase):
+    databaseDir = os.path.realpath("database")
+    os.makedirs(databaseDir, exist_ok=True)
+    databasePath = os.path.join(databaseDir, "database.json")
+    WriteFile(databasePath, json.dumps(songDatabase, indent=4, ensure_ascii=True))
+os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+
+def LoadVideoDatabase():
+    databaseDir = os.path.realpath("database")
+    os.makedirs(databaseDir, exist_ok=True)
+    databasePath = os.path.join(databaseDir, "videos.json")
     if not os.path.exists(databasePath):
         return {}
-    with open(databasePath, "r", encoding="utf-8") as databaseFile:
-        return json.load(databaseFile)
-def SaveSongDatabase(songDatabase):
-    ChangeDir()
-    databaseDir = os.path.abspath("database")
+    else:
+        return json.loads(ReadFile(databasePath))
+def SaveVideoDatabase(videoDatabase):
+    databaseDir = os.path.realpath("database")
     os.makedirs(databaseDir, exist_ok=True)
-    databasePath = os.path.abspath("database/database.json")
-    databaseBackupPath = os.path.join(databaseDir, "database_backup.json")
-    if os.path.exists(databaseBackupPath):
-        raise Exception("A previous failed save exists of the database. Bailing out for manual audit.")
-    if os.path.exists(databasePath):
-        os.rename(databasePath, databaseBackupPath)
-    with open(databasePath, "w", encoding="utf-8") as databaseFile:
-        json.dump(songDatabase, databaseFile, indent=4, ensure_ascii=True)
-    if os.path.exists(databaseBackupPath):
-        os.remove(databaseBackupPath)
-
-
+    databasePath = os.path.join(databaseDir, "videos.json")
+    WriteFile(databasePath, json.dumps(videoDatabase, indent=4, ensure_ascii=True))
 
 # Module 1 - Add New Songs To The Database - APPROVED
-# This module is complex and documentation will come later.
 def AuthApi():
-    ChangeDir()
-    userSecretsPath = os.path.abspath("extractor/user_secrets.json")
-    clientSecretsPath = os.path.abspath("extractor/client_secrets.json")
+    userSecretsPath = os.path.realpath("extractor/user_secrets.json")
+    clientSecretsPath = os.path.realpath("extractor/client_secrets.json")
     credentials = None
 
     if os.path.exists(userSecretsPath):
@@ -155,7 +162,7 @@ def AuthApi():
         flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(clientSecretsPath, [ "https://www.googleapis.com/auth/youtube.readonly" ])
         credentials = flow.run_local_server(port=0)
 
-    with open(userSecretsPath, "w") as userSecretsFile: userSecretsFile.write(credentials.to_json())
+    WriteFile(userSecretsPath, credentials.to_json())
 
     return googleapiclient.discovery.build("youtube", "v3", credentials=credentials)
 def EnumMyPlaylists(youtubeApi, includeLikes=False, includeLikedMusic=False):
@@ -340,6 +347,7 @@ def ConvertVideoToSong(videoId, videoInfo):
     album = None
     artists = None
     releaseDate = None
+    ytVideoIds = [ videoId ]
 
     description = videoInfo["snippet"]["description"]
     descriptionLines = [line.strip() for line in description.replace("\r\n", "\n").split("\n") if len(line) > 0]
@@ -370,14 +378,14 @@ def ConvertVideoToSong(videoId, videoInfo):
         rawReleaseDate = videoInfo["snippet"]["publishedAt"]
         releaseDate = int(datetime.strptime(rawReleaseDate, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc).timestamp())
 
-    return { "srcUrl": srcUrl, "src": src, "thumbnailUrl": thumbnailUrl, "thumbnail": thumbnail, "title": title, "album": album, "artists": artists, "releaseDate": releaseDate }
+    return { "srcUrl": srcUrl, "src": src, "thumbnailUrl": thumbnailUrl, "thumbnail": thumbnail, "title": title, "album": album, "artists": artists, "releaseDate": releaseDate, "ytVideoIds": ytVideoIds }
 def AddNewVideosToSongDatabase(videoInfoDatabase, songDatabase):
-    for songId in songDatabase:
-        if not songId in videoInfoDatabase:
-            print(f"Warning: Song exists in song database with Id {songId} but that song isn't in your likes or any playlist.")
+    for song in songDatabase:
+        if not any([ songId in videoInfoDatabase for songId in song.ytVideoIds ]):
+            print(f"Warning: Song exists in song database with Id {song.ytVideoIds[0]} but that song isn't in your likes or any playlist.")
     
     # New songs must be added in reverse order so that when the database is reversed it goes back to normal.
-    for videoId in reversed(list(videoInfoDatabase.keys())):
+    for videoId in videoInfoDatabase:
         if not videoId in songDatabase:
             songDatabase[videoId] = ConvertVideoToSong(videoId, videoInfoDatabase[videoId])
 def Module1():
@@ -395,15 +403,16 @@ def Module1():
         print("Tracing unavailable videos to see if they were redirected...")
         infoNeededVideoIds = TraceAndRemoveUnavailableVideos(videoInfoDatabase)
 
+    SaveVideoDatabase(videoInfoDatabase)
+    sys.exit(0)
+
     print("Loading database...")
     songDatabase = LoadSongDatabase()
 
     # Database must be reversed before calls to AddNewVideosToSongDatabase.
     # This makes insertions to the end go to the beginning of the database.
     print("Extracting song info from video info...")
-    songDatabase = dict(reversed(list(songDatabase.items())))
     AddNewVideosToSongDatabase(videoInfoDatabase, songDatabase)
-    songDatabase = dict(reversed(list(songDatabase.items())))
 
     print("Saving database...")
     SaveSongDatabase(songDatabase)
@@ -428,8 +437,7 @@ def Module2():
     songDatabase = LoadSongDatabase()
 
     print("Downloading thumbnails for songs without a thumbnail...")
-    ChangeDir()
-    thumbnailsDir = os.path.abspath("database/thumbnails")
+    thumbnailsDir = os.path.realpath("database/thumbnails")
     os.makedirs(thumbnailsDir, exist_ok=True)
 
     existingFiles = {}
@@ -495,7 +503,7 @@ def DownloadAudioStream(songId, song, audioStreamsDir):
         with yt_dlp.YoutubeDL(ytdlpOptions) as ytdlp:
             ytdlp.download(targetUrls)
     for fileName in os.listdir(audioStreamsDir):
-        filePath = os.path.abspath(os.path.join(audioStreamsDir, fileName))
+        filePath = os.path.realpath(os.path.join(audioStreamsDir, fileName))
         fileNameNoExt = os.path.splitext(fileName)[0]
         if fileNameNoExt == songId:
             song["src"] = PathToClientUrl(filePath)
@@ -506,8 +514,7 @@ def Module3():
     songDatabase = LoadSongDatabase()
     
     print("Downloading audio stream for songs without an audio stream...")
-    ChangeDir()
-    audioStreamsDir = os.path.abspath("database/songs")
+    audioStreamsDir = os.path.realpath("database/songs")
     os.makedirs(audioStreamsDir, exist_ok=True)
 
     existingFiles = {}

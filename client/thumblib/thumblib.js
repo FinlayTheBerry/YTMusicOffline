@@ -31,7 +31,7 @@
     let PreloadLimit = 10; // 0 = unlimitted
     ThumbLib.SetPreloadLimit = (value) => {
         if (!Number.isInteger(value) || value < 0) {
-            throw new Error("PreloadLimit must a positive integer or 0.");
+            throw new Error("PreloadLimit must be a positive integer great than 0 or -1.");
         }
         PreloadLimit = value;
         if (!InTransaction) {
@@ -143,7 +143,7 @@
             HelperFetch(url);
         }
 
-        for (let i = 0; i < PreloadLimit || PreloadLimit == 0; i++) {
+        for (let i = 0; i < PreloadLimit || PreloadLimit == -1; i++) {
             const urlBelow = Dataset[StartIndex + Elements.length + i];
             HelperFetch(urlBelow);
 

@@ -4,71 +4,13 @@
 (() => {
     const Gui = {};
 
-    const EpochToString = (timestamp) => {
-        const date = new Date(timestamp * 1000);
-        const day = ("0" + date.getUTCDate().toString()).slice(-2);
-        const month = ("0" + (date.getUTCMonth() + 1).toString()).slice(-2);
-        const year = ("000" + date.getUTCFullYear().toString()).slice(-4);
-        return month + "/" + day + "/" + year;
-    };
-
-    Gui.ComputeSongExtraData = () => {
-        const highlightStart = "<span class=\"element_highlight\">";
-        const highlightEnd = "</span>";
-        for (let i = 0; i < Player.Database.length; i++) {
-            const song = Player.Database[i];
-            song.textHtml = highlightStart + song.title + highlightEnd;
-            song.text = song.title;
-            if (song.album != undefined && song.album != null && song.album != "") {
-                song.textHtml += " from " + highlightStart + song.album + highlightEnd;
-                song.text += " from " + song.album;
-            }
-            switch (song.artists.length) {
-                case 0:
-                    song.textHtml += " by unknown artist";
-                    song.text += " by unknown artist";
-                    break;
-                case 1:
-                    song.textHtml += " by " + highlightStart + song.artists[0] + highlightEnd;
-                    song.text += " by " + song.artists[0];
-                    break;
-                case 2:
-                    song.textHtml += " by " + highlightStart + song.artists[0] + highlightEnd;
-                    song.textHtml += ", and " + highlightStart + song.artists[1] + highlightEnd;
-                    song.text += " by " + song.artists[0];
-                    song.text += ", and " + song.artists[1];
-                    break;
-                case 3:
-                    song.textHtml += " by " + highlightStart + song.artists[0] + highlightEnd;
-                    song.textHtml += ", " + highlightStart + song.artists[1] + highlightEnd;
-                    song.textHtml += ", and " + highlightStart + song.artists[2] + highlightEnd;
-                    song.text += " by " + song.artists[0];
-                    song.text += ", " + song.artists[1];
-                    song.text += ", and " + song.artists[2];
-                    break;
-                default:
-                    song.textHtml += " by " + highlightStart + song.artists[0] + highlightEnd;
-                    song.textHtml += ", " + highlightStart + song.artists[1] + highlightEnd;
-                    song.textHtml += ", " + highlightStart + song.artists[2] + highlightEnd;
-                    song.textHtml += ", and others";
-                    song.text += " by " + song.artists[0];
-                    song.text += ", " + song.artists[1];
-                    song.text += ", " + song.artists[2];
-                    song.text += ", and others";
-                    break;
-            }
-            song.textHtml += " released on " + highlightStart + EpochToString(song.releaseDate) + highlightEnd;
-            song.text += " released on " + EpochToString(song.releaseDate);
-        }
-    };
-
     VSLib.SetElementsPerScreen(10);
 
     let Userdata = new Map();
-    VSLib.SetRebindCallback((element, binding, value, userdata) => {
+    VSLib.SetRebindCallback((element, index, value, userdata) => {
         if (userdata == null) {
             userdata = {
-                binding: -1,
+                index: -1,
                 value: null,
                 containerElement: element.querySelector(".element_container"),
                 thumbnailElement: element.querySelector(".element_thumbnail"),
@@ -76,13 +18,13 @@
             };
             Userdata.set(element, userdata);
         }
-        userdata.binding = binding;
+        userdata.index = index;
         userdata.value = value;
         if (value == null) {
             userdata.containerElement.style.visibility = "hidden";
         } else {
             userdata.containerElement.style.visibility = "visible";
-            userdata.textElement.innerHTML = value.textHtml;
+            userdata.textElement.innerHTML = Player.RuntimeData[index].textHtml;
         }
 
         return userdata;
@@ -100,7 +42,7 @@
     });
 
     Gui.OnElementClicked = (element) => {
-        Player.PlaySong(Userdata.get(element.parentElement).value);
+        Player.PlaySong(Userdata.get(element.parentElement).index);
     };
 
     let PortraitMode = undefined;
@@ -131,8 +73,8 @@
             PlayerTextElement.innerHTML = "Nothing is playing...";
             PlayerThumbnailElement.style.visibility = "hidden";
         } else {
-            PlayerTextElement.innerHTML = Player.NowPlaying.textHtml;
-            PlayerThumbnailElement.src = Player.NowPlaying.thumbnail;
+            PlayerTextElement.innerHTML = Player.RuntimeData[Player.NowPlaying].textHtml;
+            PlayerThumbnailElement.src = Player.Database[Player.NowPlaying].thumbnail;
             PlayerThumbnailElement.style.visibility = "visible";
         }
 
@@ -141,18 +83,19 @@
         } else {
             PlayerLoopElement.textContent = "Loop❌";
         }
-        if (Player.Shuffle) {
-            PlayerShuffleElement.textContent = "Shuffle✅";
-        } else {
-            PlayerShuffleElement.textContent = "Shuffle❌";
-        }
     };
+
+    document.addEventListener("keydown", (event) => {
+        if ((event.key == "f" || event.key == "F") && (event.ctrlKey || event.metaKey)) {
+            event.preventDefault(); 
+            SearchBarElement.focus();
+        }
+    });
 
     let PlayerThumbnailElement = null;
     let PlayerTextElement = null;
     let PlayerWatchOriginalElement = null;
     let PlayerLoopElement = null;
-    let PlayerShuffleElement = null;
     let SearchBarElement = null;
     let ElementRefrencesNull = true;
     const SetElementRefrences = () => {
@@ -162,11 +105,10 @@
         PlayerWatchOriginalElement.addEventListener("click", (event) => {
             event.preventDefault();
             if (Player.NowPlaying != null) {
-                window.open(Player.NowPlaying.srcUrl, "_blank");
+                window.open(Player.Database[Player.NowPlaying].srcUrl, "_blank");
             }
         });
         PlayerLoopElement = document.querySelector(".player_loop");
-        PlayerShuffleElement = document.querySelector(".player_shuffle");
         SearchBarElement = document.querySelector(".search_bar");
         SearchBarElement.addEventListener("keydown", (event) => {
             if (event.key == "Enter") {
@@ -175,6 +117,9 @@
             } else if (event.key == "Escape") {
                 SearchBarElement.blur();
             }
+        });
+        SearchBarElement.addEventListener("focus", () => {
+            SearchBarElement.select();
         });
         ElementRefrencesNull = false;
 
