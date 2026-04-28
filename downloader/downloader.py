@@ -12,7 +12,7 @@
 # User Settings
 # To get the latest user agent from your browser run the following in the developer console:
 # console.log(navigator.userAgent);
-UserAgent = "Mozilla/5.0 (X11; Linux x86_64; rv:145.0) Gecko/20100101 Firefox/145.0"
+UserAgent = "Mozilla/5.0 (X11; Linux x86_64; rv:150.0) Gecko/20100101 Firefox/150.0"
 TraceMinDelay = 0.0
 TraceMaxDelay = 1.0
 ThumbnailDownloadMinDelay = 0.0
@@ -29,49 +29,18 @@ SegmentDownloadMaxDelay = 5.0
 import json
 import sys
 import os
-import subprocess
 import urllib.request
 import urllib.parse
 import time
 from datetime import datetime, timezone
 import random
-import importlib
 # Import pip dependencies
-def PromptPipInstall(importName, pipName):
-    pipCommand = f"python -m pip install -U {pipName}"
-    print(f"ERROR: Dependency {pipName} not found. Would you like to install it now? (y/n)")
-    choice = input().lower()
-    if choice in [ "y", "yes" ]:
-        print()
-        print(f"> {pipCommand}")
-        errorCode = subprocess.run(pipCommand, shell=True, env=os.environ.copy()).returncode
-        print()
-        if errorCode != 0:
-           print(f"ERROR: {pipCommand} failed with error code {errorCode}.")
-           sys.exit(1)
-        globals()[importName] = importlib.import_module(importName)
-    else:
-        print(f"Execution cannot continue without required dependency {pipName}.")
-        sys.exit(1)
-try:
-    import googleapiclient
-except ImportError:
-    PromptPipInstall("googleapiclient", "google-api-python-client")
-try:
-    import google_auth_oauthlib
-except ImportError:
-    PromptPipInstall("google_auth_oauthlib", "google-auth-oauthlib")
-try:
-    import google_auth_httplib2
-except ImportError:
-    PromptPipInstall("google_auth_httplib2", "google-auth-httplib2")
-try:
-    import yt_dlp
-except ImportError:
-    PromptPipInstall("yt_dlp", "yt-dlp")
-# Import submodules of pip packages not previously imported
-import google_auth_oauthlib.flow
+import googleapiclient
 import googleapiclient.discovery
+import google_auth_oauthlib
+import google_auth_oauthlib.flow
+import yt_dlp
+# Import submodules of pip packages not previously imported
 from google.oauth2.credentials import Credentials
 from google.auth.transport.requests import Request
 
@@ -392,19 +361,18 @@ def Module1():
     print("Authenticating with YouTube Api...")
     youtubeApi = AuthApi()
 
-    print("Fetching playlists including music likes...")
-    infoNeededVideoIds = EnumMyVideos(youtubeApi)
+    # print("Fetching playlists including music likes...")
+    # infoNeededVideoIds = EnumMyVideos(youtubeApi)
+    # 
+    # videoInfoDatabase = {}
+    # while len(infoNeededVideoIds) > 0:
+    #     print("Fetching video info for all videos currently without info...")
+    #     videoInfoDatabase.update(GetVideoInfo(youtubeApi, infoNeededVideoIds))
+    # 
+    #     print("Tracing unavailable videos to see if they were redirected...")
+    #     infoNeededVideoIds = TraceAndRemoveUnavailableVideos(videoInfoDatabase)
 
-    videoInfoDatabase = {}
-    while len(infoNeededVideoIds) > 0:
-        print("Fetching video info for all videos currently without info...")
-        videoInfoDatabase.update(GetVideoInfo(youtubeApi, infoNeededVideoIds))
-
-        print("Tracing unavailable videos to see if they were redirected...")
-        infoNeededVideoIds = TraceAndRemoveUnavailableVideos(videoInfoDatabase)
-
-    SaveVideoDatabase(videoInfoDatabase)
-    sys.exit(0)
+    videoInfoDatabase = LoadVideoDatabase()
 
     print("Loading database...")
     songDatabase = LoadSongDatabase()

@@ -1,9 +1,0 @@
-# Hidden folders
-.*/
-
-# Database
-database/
-
-# Secrets
-extractor/client_secrets.json
-extractor/user_secrets.json

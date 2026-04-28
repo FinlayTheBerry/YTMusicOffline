@@ -3,32 +3,8 @@
 # Import builtins
 import sys
 import webbrowser
-import hashlib
 import os
-import subprocess
-import importlib
-
-# Import flask
-def PromptPipInstall(importName, pipName):
-    pipCommand = f"python -m pip install -U {pipName}"
-    print(f"ERROR: Dependency {pipName} not found. Would you like to install it now with pip? (y/n)")
-    choice = input().lower()
-    if choice in [ "y", "yes" ]:
-        print()
-        print(f"> {pipCommand}")
-        errorCode = subprocess.run(pipCommand, shell=True, env=os.environ.copy()).returncode
-        print()
-        if errorCode != 0:
-           print(f"ERROR: \"{pipCommand}\" failed with error code {errorCode}.")
-           sys.exit(1)
-        globals()[importName] = importlib.import_module(importName)
-    else:
-        print(f"Execution cannot continue without {pipName}.")
-        sys.exit(1)
-try:
-    import flask
-except ImportError:
-    PromptPipInstall("flask", "flask")
+import flask
 
 # 127.0.0.1 is several orders of magnitude faster than localhost on Windows due to hostname resolution being absolutely ass.
 host = "127.0.0.1"

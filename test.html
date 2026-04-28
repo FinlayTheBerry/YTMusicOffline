@@ -46,9 +46,13 @@
       text-align: center;
       font-size: 28px;
       font-weight: 900;
-      color: #ffffff;
       line-height: 40px;
       z-index: 2;
+
+      background-image: linear-gradient(to right, #2b2626 var(--charge-percentage), #55eb63 var(--charge-percentage));
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
     }
   </style>
   <script>
@@ -84,6 +88,11 @@
       
       button.style.setProperty("--charge-percentage", `${chargePercentage}%`);
       button.dataset.chargePercentage = chargePercentage;
+
+      if (chargePercentage == 100.0) {
+        alert("Click");
+        stopCharging();
+      }
 
       timeLastFrame = time;
       requestAnimationFrame(Update);
