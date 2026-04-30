@@ -7,7 +7,7 @@ Expand the hamburger menu and press APIs & Services then select OAuth consent sc
 Select external and fill out the other info. Don't forget to add yourself as a test user when prompted.
 Next on the left press Credentials and then Create Credentials then OAuth Client ID.
 When creating your credentials make sure to set the application type to desktop app.
-Next download the credentials and save them to extractor/client_secrets.json
+Next download the credentials and save them to downloader/client_secrets.json
 
 # Testing APIs From Your Browser
 Learn more about the YouTube API you can read the documentation at https://developers.google.com/youtube/v3/docs

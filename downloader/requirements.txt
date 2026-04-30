@@ -1,4 +1,5 @@
 google-api-python-client
 google_auth_oauthlib
 google_auth_httplib2
+requests
 yt_dlp

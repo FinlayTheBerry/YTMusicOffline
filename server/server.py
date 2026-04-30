@@ -4,6 +4,9 @@
 import sys
 import webbrowser
 import os
+import subprocess
+import threading
+import time
 import flask
 
 # 127.0.0.1 is several orders of magnitude faster than localhost on Windows due to hostname resolution being absolutely ass.
@@ -44,13 +47,21 @@ def serve_file(file_path):
     response.headers["Accept-Ranges"] = "bytes"
     return response
 
+def open_in_browser():
+    # Wait 1 second for flask to initialize
+    time.sleep(1.0)
+
+    # Launch url in default browser using a variety of methods
+    if not webbrowser.open(url):
+        if subprocess.run(["start", url], shell=True).returncode != 0:
+            if subprocess.run(["xdg-open", url]).returncode != 0:
+                print(f"Failed to launch {url}, please open manually.")
+
 # Run server and catch errors
 try:
     print(f"Hosting {root} at {url}...")
-    if not webbrowser.open(url):
-        if (os.system(f"start {url}") != 0):
-            if (os.system(f"xdg-open {url}") != 0):
-                print(f"Failed to launch {url} please open manually.")
+    thread = threading.Thread(target=open_in_browser, daemon=True)
+    thread.start()
     app.run(host=host, port=port)
 except KeyboardInterrupt:
     sys.exit(0)
