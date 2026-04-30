@@ -1,4 +1,3 @@
-// Approved 03/20/2025
 "use strict";
 
 (() => {
@@ -106,8 +105,16 @@
             headers: { Priority: "normal" }
         }).then((response) => {
             response.blob().then((image) => {
-                ImageCache.set(url, URL.createObjectURL(image));
-                HelperOnFetchComplete(url);
+                const blobUrl = URL.createObjectURL(image);
+                const decoderImage = new Image();
+                decoderImage.src = blobUrl;
+                decoderImage.decode().then(() => {
+                    ImageCache.set(url, blobUrl);
+                    HelperOnFetchComplete(url);
+                }).catch((error) => {
+                    console.error(error);
+                    HelperOnFetchComplete(url);
+                });
             }).catch((error) => {
                 console.error(error);
                 HelperOnFetchComplete(url);

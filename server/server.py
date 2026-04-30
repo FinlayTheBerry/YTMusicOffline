@@ -17,6 +17,14 @@ root = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 app = flask.Flask("YTMusicOffline")
 
 # Flask methods and endpoints
+def serve_file(file_path):
+    time.sleep(1)
+    response = flask.send_from_directory(os.path.dirname(file_path), os.path.basename(file_path))
+    response.headers.pop("Content-Disposition", None)
+    response.headers.pop("Date", None)
+    response.headers["Accept-Ranges"] = "bytes"
+    return response
+
 @app.route("/api/save_database", methods=["POST"])
 def update_database():
     database_path = os.path.join(root, "database", "database.json")
@@ -39,13 +47,6 @@ def serve_slash_filename(file_name):
 def serve_slash_database_slash_filename(file_name):
     file_path = os.path.join(root, "database", file_name)
     return serve_file(file_path)
-
-def serve_file(file_path):
-    response = flask.send_from_directory(os.path.dirname(file_path), os.path.basename(file_path))
-    response.headers.pop("Content-Disposition", None)
-    response.headers.pop("Date", None)
-    response.headers["Accept-Ranges"] = "bytes"
-    return response
 
 def open_in_browser():
     # Wait 1 second for flask to initialize
