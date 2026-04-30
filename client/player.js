@@ -80,7 +80,7 @@
     LoadDatabase();
 
     const SaveDatabase = () => {
-        const jsonStr = JSON.stringify(Player.Database, null, 2);
+        const jsonStr = JSON.stringify(Player.Database, null, 4);
         fetch("/api/save_database", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -142,6 +142,31 @@
         Player.Loop = !Player.Loop;
         AudioElement.loop = Player.Loop;
         Gui.RefreshPlayer();
+    };
+
+    Player.PlayPause = () => {
+        if (AudioElement.paused) {
+            AudioElement.play();
+        } else {
+            AudioElement.pause();
+        }
+    };
+
+    Player.Favorite = () => {
+        if (Player.NowPlaying == null) {
+            return;
+        }
+
+        const song = Player.Database.splice(Player.NowPlaying, 1)[0];
+        Player.Database.unshift(song);
+        const runtimeData = Player.RuntimeData.splice(Player.NowPlaying, 1)[0];
+        Player.RuntimeData.unshift(runtimeData);
+        Player.NowPlaying = 0;
+
+        VSLib.SetDataset(Player.Database);
+        ThumbLib.SetDataset(Player.Database.map(song => song.thumbnail));
+
+        SaveDatabase();
     };
 
     globalThis.Player = Player;

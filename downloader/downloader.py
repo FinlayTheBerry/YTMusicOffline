@@ -101,7 +101,7 @@ def SaveSongDatabase(songDatabase):
     databaseDir = os.path.realpath("database")
     os.makedirs(databaseDir, exist_ok=True)
     databasePath = os.path.join(databaseDir, "database.json")
-    WriteFile(databasePath, json.dumps(songDatabase, indent=4, ensure_ascii=True))
+    WriteFile(databasePath, json.dumps(songDatabase, indent=4, ensure_ascii=False))
 os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
 

@@ -18,7 +18,6 @@ app = flask.Flask("YTMusicOffline")
 
 # Flask methods and endpoints
 def serve_file(file_path):
-    time.sleep(1)
     response = flask.send_from_directory(os.path.dirname(file_path), os.path.basename(file_path))
     response.headers.pop("Content-Disposition", None)
     response.headers.pop("Date", None)

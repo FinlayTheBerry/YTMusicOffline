@@ -37,7 +37,7 @@
             <div class="vslib_scroll vslib_global">
                 <div class="vslib_element_template vslib_global">
                     <div class="element_container" onclick="Gui.OnElementClicked(this)">
-                        <img class="element_thumbnail">
+                        <img class="element_thumbnail" draggable="false">
                         <div class="element_text_container">
                             <p class="element_text"></p>
                         </div>
@@ -48,7 +48,7 @@
     </div>
 
     <div class="player_container">
-        <img class="player_thumbnail">
+        <img onclick="Player.PlayPause()" class="player_thumbnail" draggable="false">
         <div class="player_flex_container">
             <div class="player_layer_top player_flex_layer">
                 <p class="player_text">Nothing is playing...</p>
@@ -59,6 +59,7 @@
                 <p class="player_watch_original player_link">Watch Original</p>
                 <p class="player_previous player_link" onclick="Player.Previous()">Previous</p>
                 <p class="player_next player_link" onclick="Player.Next()">Next</p>
+                <div class="player_favorite player_link"><div class="player_favorite_text">Favorite</div></div>
             </div>
             <div class="player_layer_bottom player_flex_layer">
                 <audio class="player_audio" fetchpriority="high" controls></audio>

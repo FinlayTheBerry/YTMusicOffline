@@ -1,5 +1,33 @@
 [
     {
+        "srcUrl": "https://www.youtube.com/watch?v=velVNHzMhkY",
+        "src": "/database/songs/velVNHzMhkY.webm",
+        "thumbnailUrl": "https://i.ytimg.com/vi/velVNHzMhkY/maxresdefault.jpg",
+        "thumbnail": "/database/thumbnails/velVNHzMhkY.jpg",
+        "title": "Crazy",
+        "album": "Only Hits",
+        "artists": [
+            "Gnarls Barkley",
+            "CeeLo Green",
+            "Danger Mouse"
+        ],
+        "releaseDate": 1486617064,
+        "ytVideoId": "velVNHzMhkY"
+    },
+    {
+        "srcUrl": "",
+        "src": "/database/songs/GRANNY_DOLL.wav",
+        "thumbnailUrl": "",
+        "thumbnail": "/database/thumbnails/GRANNY_DOLL.jpg",
+        "title": "I Can't Move On Granny Doll",
+        "album": "",
+        "artists": [
+            "Granny"
+        ],
+        "releaseDate": 1777533760,
+        "ytVideoId": null
+    },
+    {
         "srcUrl": "https://www.youtube.com/watch?v=aLL2GsFLJlQ",
         "src": "/database/songs/aLL2GsFLJlQ.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/aLL2GsFLJlQ/maxresdefault.jpg",
@@ -81,21 +109,6 @@
         ],
         "releaseDate": 1463443200,
         "ytVideoId": "NIH54-7lUEQ"
-    },
-    {
-        "srcUrl": "https://www.youtube.com/watch?v=velVNHzMhkY",
-        "src": "/database/songs/velVNHzMhkY.webm",
-        "thumbnailUrl": "https://i.ytimg.com/vi/velVNHzMhkY/maxresdefault.jpg",
-        "thumbnail": "/database/thumbnails/velVNHzMhkY.jpg",
-        "title": "Crazy",
-        "album": "Only Hits",
-        "artists": [
-            "Gnarls Barkley",
-            "CeeLo Green",
-            "Danger Mouse"
-        ],
-        "releaseDate": 1486617064,
-        "ytVideoId": "velVNHzMhkY"
     },
     {
         "srcUrl": "https://www.youtube.com/watch?v=M0gC7IfbtPA",
@@ -197,7 +210,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/XNuzBj_NAEI/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/XNuzBj_NAEI.jpg",
         "title": "Comics",
-        "album": "\u1438I\u00b0_\u00b0I\u1433",
+        "album": "ᐸI°_°Iᐳ",
         "artists": [
             "Caravan Palace"
         ],
@@ -373,7 +386,7 @@
         "album": "On & On",
         "artists": [
             "Cartoon",
-            "J\u00e9ja",
+            "Jéja",
             "Daniel Levi"
         ],
         "releaseDate": 1436400000,
@@ -507,7 +520,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/07xkAINJS44/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/07xkAINJS44.jpg",
         "title": "Lone Digger",
-        "album": "\u1438I\u00b0_\u00b0I\u1433",
+        "album": "ᐸI°_°Iᐳ",
         "artists": [
             "Caravan Palace"
         ],
@@ -725,7 +738,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/3p5oovUw4ZE/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/3p5oovUw4ZE.jpg",
         "title": "Aftermath",
-        "album": "\u1438I\u00b0_\u00b0I\u1433",
+        "album": "ᐸI°_°Iᐳ",
         "artists": [
             "Caravan Palace"
         ],
@@ -741,7 +754,7 @@
         "album": "NCS: The Best of 2015",
         "artists": [
             "Cartoon",
-            "J\u00e9ja",
+            "Jéja",
             "Daniel Levi"
         ],
         "releaseDate": 1450828800,
@@ -1326,7 +1339,7 @@
         "album": "NCS: Colors",
         "artists": [
             "Cartoon",
-            "J\u00e9ja",
+            "Jéja",
             "Koit Toome"
         ],
         "releaseDate": 1505433600,
@@ -1509,7 +1522,7 @@
         "src": "/database/songs/jgCVkQhlScc.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/jgCVkQhlScc/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/jgCVkQhlScc.jpg",
-        "title": "Cupid (OT4/Twin Ver.)   - LIVE IN STUDIO  |  FIFTY FIFTY (\ud53c\ud504\ud2f0\ud53c\ud504\ud2f0)",
+        "title": "Cupid (OT4/Twin Ver.)   - LIVE IN STUDIO  |  FIFTY FIFTY (피프티피프티)",
         "album": "",
         "artists": [
             "FIFTY FIFTY Official"
@@ -1731,7 +1744,7 @@
         "src": "/database/songs/oftolPu9qp4.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/oftolPu9qp4/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/oftolPu9qp4.jpg",
-        "title": "PinkPantheress, Ice Spice - Boy\u2019s a liar Pt. 2 (Official Video)",
+        "title": "PinkPantheress, Ice Spice - Boy’s a liar Pt. 2 (Official Video)",
         "album": "",
         "artists": [
             "Pinkpantheress"
@@ -1816,7 +1829,7 @@
         "title": "Everyday Normal Guy 2",
         "album": "",
         "artists": [
-            "Jon Lajoie / Wolfie\u2019s Just Fine"
+            "Jon Lajoie / Wolfie’s Just Fine"
         ],
         "releaseDate": 1200516170,
         "ytVideoId": "GmG4X9PGOXs"
@@ -1893,7 +1906,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/IGLVMBTIAPE/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/IGLVMBTIAPE.jpg",
         "title": "Free Bird",
-        "album": "Pronounced 'Leh-'N\u00e9rd 'Skin-'N\u00e9rd",
+        "album": "Pronounced 'Leh-'Nérd 'Skin-'Nérd",
         "artists": [
             "Lynyrd Skynyrd"
         ],
@@ -2010,7 +2023,7 @@
         "src": "/database/songs/MeOoJOt1P0Y.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/MeOoJOt1P0Y/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/MeOoJOt1P0Y.jpg",
-        "title": "NO BATID\u00c3O (SLOWED) - ZXKAI",
+        "title": "NO BATIDÃO (SLOWED) - ZXKAI",
         "album": "",
         "artists": [
             "Rubix Records"
@@ -2063,8 +2076,8 @@
         "src": "/database/songs/zeKCzmAKKP4.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/zeKCzmAKKP4/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/zeKCzmAKKP4.jpg",
-        "title": "NO BATID\u00c3O (Slowed)",
-        "album": "NO BATID\u00c3O",
+        "title": "NO BATIDÃO (Slowed)",
+        "album": "NO BATIDÃO",
         "artists": [
             "ZXKAI",
             "slxughter"
@@ -2519,7 +2532,7 @@
         "title": "Mario Kart - DK Summit (CupcakKe Remix - Ranvision Reupload)",
         "album": "",
         "artists": [
-            "Greatest Remoans \u676f\u7cd5\u59d0\u662f\u795e"
+            "Greatest Remoans 杯糕姐是神"
         ],
         "releaseDate": 1738603121,
         "ytVideoId": "wEpbbkY0XlY"
@@ -2616,7 +2629,7 @@
         "title": "Butter",
         "album": "Butter / Permission to Dance",
         "artists": [
-            "BTS (\ubc29\ud0c4\uc18c\ub144\ub2e8)"
+            "BTS (방탄소년단)"
         ],
         "releaseDate": 1625788800,
         "ytVideoId": "NNCBq0JHXsU"
@@ -2665,7 +2678,7 @@
         "title": "Permission to Dance",
         "album": "Butter / Permission to Dance",
         "artists": [
-            "BTS (\ubc29\ud0c4\uc18c\ub144\ub2e8)"
+            "BTS (방탄소년단)"
         ],
         "releaseDate": 1625788800,
         "ytVideoId": "LCpjdohpuEE"
@@ -2676,7 +2689,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/IfemyZEhfpY/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/IfemyZEhfpY.jpg",
         "title": "DNA",
-        "album": "LOVE YOURSELF \uc2b9 'Her'",
+        "album": "LOVE YOURSELF 승 'Her'",
         "artists": [
             "BTS"
         ],
@@ -2688,7 +2701,7 @@
         "src": "/database/songs/RFMi3v0TXP8.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/RFMi3v0TXP8/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/RFMi3v0TXP8.jpg",
-        "title": "BLACKPINK - \u2018Pink Venom\u2019 DANCE PRACTICE VIDEO",
+        "title": "BLACKPINK - ‘Pink Venom’ DANCE PRACTICE VIDEO",
         "album": "",
         "artists": [
             "BLACKPINK"
@@ -2858,7 +2871,7 @@
             "keisuke Ogihara",
             "Ryo-z",
             "Verbal",
-            "Wise \u201cThe Gold Pen\u201d"
+            "Wise “The Gold Pen”"
         ],
         "releaseDate": 1756425600,
         "ytVideoId": "igmXoh2dHhc"
@@ -2991,7 +3004,7 @@
         "src": "/database/songs/p8_ugAjWI5I.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/p8_ugAjWI5I/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/p8_ugAjWI5I.jpg",
-        "title": "S\u00e3o Paulo",
+        "title": "São Paulo",
         "album": "Hurry Up Tomorrow",
         "artists": [
             "The Weeknd",
@@ -3109,7 +3122,7 @@
         "src": "/database/songs/adgUBHH2qTI.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/adgUBHH2qTI/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/adgUBHH2qTI.jpg",
-        "title": "after dark \u2014 mr.kitty (lyrics)",
+        "title": "after dark — mr.kitty (lyrics)",
         "album": "",
         "artists": [
             "iburntapizzaonce"
@@ -3162,7 +3175,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/XSCr-y3Y6JY/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/XSCr-y3Y6JY.jpg",
         "title": "Lone Digger",
-        "album": "\u1438I\u00b0_\u00b0I\u1433 - 10th Anniversary Edition",
+        "album": "ᐸI°_°Iᐳ - 10th Anniversary Edition",
         "artists": [
             "Caravan Palace"
         ],
@@ -3673,10 +3686,10 @@
         "src": "/database/songs/ohCMvpYmuRE.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/ohCMvpYmuRE/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/ohCMvpYmuRE.jpg",
-        "title": "\u559c\u6b22\u6478\u9c7c",
-        "album": "\u559c\u6b22\u6478\u9c7c",
+        "title": "喜欢摸鱼",
+        "album": "喜欢摸鱼",
         "artists": [
-            "\u795e\u5154\u5c0fP"
+            "神兔小P"
         ],
         "releaseDate": 1746576000,
         "ytVideoId": "ohCMvpYmuRE"
@@ -3888,7 +3901,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/ORrFJ63nlcA/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/ORrFJ63nlcA.jpg",
         "title": "Perfect",
-        "album": "\u00f7",
+        "album": "÷",
         "artists": [
             "Ed Sheeran"
         ],
@@ -4169,7 +4182,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/hH9M-m3WD0g/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/hH9M-m3WD0g.jpg",
         "title": "Song for Denise (Maxi Version)",
-        "album": "Best of Collector: Piano Fantasia (Le meilleur des ann\u00e9es 80)",
+        "album": "Best of Collector: Piano Fantasia (Le meilleur des années 80)",
         "artists": [
             "Piano Fantasia"
         ],
@@ -4220,10 +4233,10 @@
         "src": "/database/songs/eA0lHNZ1KCA.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/eA0lHNZ1KCA/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/eA0lHNZ1KCA.jpg",
-        "title": "ROSE\u0301 - toxic till the end (OFFICIAL MUSIC VIDEO)",
+        "title": "ROSÉ - toxic till the end (OFFICIAL MUSIC VIDEO)",
         "album": "",
         "artists": [
-            "ROS\u00c9"
+            "ROSÉ"
         ],
         "releaseDate": 1733461206,
         "ytVideoId": "eA0lHNZ1KCA"
@@ -4233,10 +4246,10 @@
         "src": "/database/songs/pZ1NdE69VTs.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/pZ1NdE69VTs/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/pZ1NdE69VTs.jpg",
-        "title": "ROSE\u0301 - number one girl (official music video)",
+        "title": "ROSÉ - number one girl (official music video)",
         "album": "",
         "artists": [
-            "ROS\u00c9"
+            "ROSÉ"
         ],
         "releaseDate": 1732251606,
         "ytVideoId": "pZ1NdE69VTs"
@@ -4404,10 +4417,10 @@
         "src": "/database/songs/CAelmiXt_50.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/CAelmiXt_50/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/CAelmiXt_50.jpg",
-        "title": "\ud835\udc13\ud835\udc22\ud835\udc26\ud835\udc1e\ud835\udc25\ud835\udc1e\ud835\udc2c\ud835\udc2c \ud835\udc06\ud835\udc2e\ud835\udc22\ud835\udc2d\ud835\udc1a\ud835\udc2b \ud835\udc11\ud835\udc1e\ud835\udc26\ud835\udc22\ud835\udc31 (\ud835\udc13\ud835\udc22\ud835\udc24\ud835\udc2d\ud835\udc28\ud835\udc24 \ud835\udc2f\ud835\udc1e\ud835\udc2b\ud835\udc2c\ud835\udc22\ud835\udc28\ud835\udc27)",
+        "title": "𝐓𝐢𝐦𝐞𝐥𝐞𝐬𝐬 𝐆𝐮𝐢𝐭𝐚𝐫 𝐑𝐞𝐦𝐢𝐱 (𝐓𝐢𝐤𝐭𝐨𝐤 𝐯𝐞𝐫𝐬𝐢𝐨𝐧)",
         "album": "",
         "artists": [
-            "L\u03c5ci\u0455\u0455\ud83e\udebd"
+            "Lυciѕѕ🪽"
         ],
         "releaseDate": 1736366715,
         "ytVideoId": "CAelmiXt_50"
@@ -4456,7 +4469,7 @@
         "src": "/database/songs/n6B5gQXlB-0.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/n6B5gQXlB-0/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/n6B5gQXlB-0.jpg",
-        "title": "LE SSERAFIM (\ub974\uc138\ub77c\ud54c) 'CRAZY' OFFICIAL MV",
+        "title": "LE SSERAFIM (르세라핌) 'CRAZY' OFFICIAL MV",
         "album": "",
         "artists": [
             "HYBE LABELS"
@@ -4560,7 +4573,7 @@
         "src": "/database/songs/VLpUsmBafMQ.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/VLpUsmBafMQ/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/VLpUsmBafMQ.jpg",
-        "title": "BLACKPINK - \u2018Pretty Savage\u2019 Live at Coachella 2023",
+        "title": "BLACKPINK - ‘Pretty Savage’ Live at Coachella 2023",
         "album": "",
         "artists": [
             "BLACKPINK"
@@ -4832,8 +4845,8 @@
         "src": "/database/songs/zs6aDvOTlMo.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/zs6aDvOTlMo/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/zs6aDvOTlMo.jpg",
-        "title": "El Perd\u00f3n (with Enrique Iglesias)",
-        "album": "F\u00e9nix",
+        "title": "El Perdón (with Enrique Iglesias)",
+        "album": "Fénix",
         "artists": [
             "Nicky Jam",
             "Enrique Iglesias"
@@ -4846,7 +4859,7 @@
         "src": "/database/songs/g-Gg8OVNQ7c.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/g-Gg8OVNQ7c/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/g-Gg8OVNQ7c.jpg",
-        "title": "\u201cAs It Was\u201d (Slowed + Reverb)",
+        "title": "“As It Was” (Slowed + Reverb)",
         "album": "",
         "artists": [
             "Leon_Animations"
@@ -5006,8 +5019,8 @@
         "src": "/database/songs/1xroOMwhXfo.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/1xroOMwhXfo/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/1xroOMwhXfo.jpg",
-        "title": "El Perd\u00f3n",
-        "album": "El Perd\u00f3n",
+        "title": "El Perdón",
+        "album": "El Perdón",
         "artists": [
             "Nicky Jam",
             "Enrique Iglesias"
@@ -5033,8 +5046,8 @@
         "src": "/database/songs/oHb8VUjaj-U.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/oHb8VUjaj-U/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/oHb8VUjaj-U.jpg",
-        "title": "Cupid \u2013 Twin Ver. (feat. Sabrina Carpenter)",
-        "album": "Cupid \u2013 Twin Ver. (feat. Sabrina Carpenter)",
+        "title": "Cupid – Twin Ver. (feat. Sabrina Carpenter)",
+        "album": "Cupid – Twin Ver. (feat. Sabrina Carpenter)",
         "artists": [
             "FIFTY FIFTY",
             "Sabrina Carpenter"
@@ -5405,7 +5418,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/Fs3jxJtfKQ8/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/Fs3jxJtfKQ8.jpg",
         "title": "Lone Digger",
-        "album": "\u1438I\u00b0_\u00b0I\u1433 - 10th Anniversary Edition",
+        "album": "ᐸI°_°Iᐳ - 10th Anniversary Edition",
         "artists": [
             "Caravan Palace"
         ],
@@ -5420,7 +5433,7 @@
         "title": "Tokyo",
         "album": "Tokyo",
         "artists": [
-            "Leat\u2019eq"
+            "Leat’eq"
         ],
         "releaseDate": 1711324800,
         "ytVideoId": "z-87ToY9XlA"
@@ -5691,7 +5704,7 @@
         "src": "/database/songs/aRsOBFhNjVM.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/aRsOBFhNjVM/sddefault.jpg",
         "thumbnail": "/database/thumbnails/aRsOBFhNjVM.jpg",
-        "title": "Steamed Hams Inc. \u266a",
+        "title": "Steamed Hams Inc. ♪",
         "album": "",
         "artists": [
             "NPCarlsson"
@@ -5848,7 +5861,7 @@
         "src": "/database/songs/HXcTe7odijI.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/HXcTe7odijI/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/HXcTe7odijI.jpg",
-        "title": "\uff44\uff59\uff49\uff4e\uff47 \uff41\uff4c\uff4f\uff4e\uff45",
+        "title": "ｄｙｉｎｇ ａｌｏｎｅ",
         "album": "",
         "artists": [
             "MsNightingale"
@@ -5967,8 +5980,8 @@
         "src": "/database/songs/3hgabcFcp4A.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/3hgabcFcp4A/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/3hgabcFcp4A.jpg",
-        "title": "Feel It (From \u201cInvincible\u201d)",
-        "album": "Feel It (From \u201cInvincible\u201d)",
+        "title": "Feel It (From “Invincible”)",
+        "album": "Feel It (From “Invincible”)",
         "artists": [
             "d4vd"
         ],
@@ -6020,7 +6033,7 @@
         "src": "/database/songs/g1-De11rlj0.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/g1-De11rlj0/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/g1-De11rlj0.jpg",
-        "title": "FEEF \ud83d\udd25 FEEF \ud83d\udd25 FEEF \ud83d\udd25 FEEF \ud83d\udd25 FEEF \ud83d\udd25",
+        "title": "FEEF 🔥 FEEF 🔥 FEEF 🔥 FEEF 🔥 FEEF 🔥",
         "album": "",
         "artists": [
             "JomJom412"
@@ -6260,7 +6273,7 @@
         "title": "Memory Reboot",
         "album": "Memory Reboot",
         "artists": [
-            "V\u00d8J",
+            "VØJ",
             "Narvent"
         ],
         "releaseDate": 1673568000,
@@ -6786,7 +6799,7 @@
         "title": "Bayside (Radio Edit)",
         "album": "Bayside",
         "artists": [
-            "Obsk\u00fcr"
+            "Obskür"
         ],
         "releaseDate": 1604880115,
         "ytVideoId": "120qslVb4sA"
@@ -7119,7 +7132,7 @@
         "src": "/database/songs/UhIte8t6BEg.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/UhIte8t6BEg/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/UhIte8t6BEg.jpg",
-        "title": "DECADE OF POP \u2022 100 Song Mashup | DJ Earworm (aka \"Celebrate the Good Times\" )",
+        "title": "DECADE OF POP • 100 Song Mashup | DJ Earworm (aka \"Celebrate the Good Times\" )",
         "album": "",
         "artists": [
             "Dj Earworm"
@@ -7501,8 +7514,8 @@
         "src": "/database/songs/DCEVC_sr5Go.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/DCEVC_sr5Go/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/DCEVC_sr5Go.jpg",
-        "title": "telepat\u00eda",
-        "album": "Sin Miedo (del Amor y Otros Demonios) \u221e",
+        "title": "telepatía",
+        "album": "Sin Miedo (del Amor y Otros Demonios) ∞",
         "artists": [
             "Kali Uchis"
         ],
@@ -7805,7 +7818,7 @@
         "src": "/database/songs/pDdTELRI96E.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/pDdTELRI96E/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/pDdTELRI96E.jpg",
-        "title": "66ezi - midnight \ud83d\udd5b",
+        "title": "66ezi - midnight 🕛",
         "album": "",
         "artists": [
             "Labha 444yt"
@@ -8013,7 +8026,7 @@
         "src": "/database/songs/UZcr7mPAsiQ.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/UZcr7mPAsiQ/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/UZcr7mPAsiQ.jpg",
-        "title": "\uff2b\uff32\uff21\uff22\uff2f\uff2e\uff21\uff2e\uff23\uff25 (Vaporwave Remix)",
+        "title": "ＫＲＡＢＯＮＡＮＣＥ (Vaporwave Remix)",
         "album": "",
         "artists": [
             "Chris Kogos"
@@ -8026,7 +8039,7 @@
         "src": "/database/songs/Cna9OLn20Ac.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/Cna9OLn20Ac/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/Cna9OLn20Ac.jpg",
-        "title": "\ud835\udd4b\ud835\udd40\ud835\udd3b\ud835\udd3c\ud835\udd4a",
+        "title": "𝕋𝕀𝔻𝔼𝕊",
         "album": "",
         "artists": [
             "Chris Kogos"
@@ -8570,7 +8583,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/UrCcDPTyWms/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/UrCcDPTyWms.jpg",
         "title": "Fuel",
-        "album": "The Death of Slim Shady (Coup De Gr\u00e2ce)",
+        "album": "The Death of Slim Shady (Coup De Grâce)",
         "artists": [
             "Eminem",
             "JID"
@@ -8838,7 +8851,7 @@
         "src": "/database/songs/Da7m2Jwsuhs.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/Da7m2Jwsuhs/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/Da7m2Jwsuhs.jpg",
-        "title": "Los del r\u00edo - Macarena CupcakKe y Jiafei Remix (ft. blackpink - whistle)",
+        "title": "Los del río - Macarena CupcakKe y Jiafei Remix (ft. blackpink - whistle)",
         "album": "",
         "artists": [
             "Reposter of cupcakke, jiafei remix etc."
@@ -8854,7 +8867,7 @@
         "title": "Los Del Rio - Macarena (CupcakKe Remix - Ranvision Reupload)",
         "album": "",
         "artists": [
-            "Greatest Remoans \u676f\u7cd5\u59d0\u662f\u795e"
+            "Greatest Remoans 杯糕姐是神"
         ],
         "releaseDate": 1734237989,
         "ytVideoId": "wS2x7ut77HM"
@@ -8864,7 +8877,7 @@
         "src": "/database/songs/HRbbwY4myfg.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/HRbbwY4myfg/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/HRbbwY4myfg.jpg",
-        "title": "MOST Recognizable Melodies Of All Time From Rap\ud83d\udc40",
+        "title": "MOST Recognizable Melodies Of All Time From Rap👀",
         "album": "",
         "artists": [
             "Kartier"
@@ -9879,7 +9892,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/jqOHx3EflQk/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/jqOHx3EflQk.jpg",
         "title": "Aftermath",
-        "album": "\u1438I\u00b0_\u00b0I\u1433",
+        "album": "ᐸI°_°Iᐳ",
         "artists": [
             "Caravan Palace"
         ],
@@ -10012,10 +10025,10 @@
         "src": "/database/songs/KMf2nhcrALU.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/KMf2nhcrALU/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/KMf2nhcrALU.jpg",
-        "title": "Me alegro que est\u00e9s bien - Psicofon\u00eda",
+        "title": "Me alegro que estés bien - Psicofonía",
         "album": "",
         "artists": [
-            "Psicofon\u00eda"
+            "Psicofonía"
         ],
         "releaseDate": 1619823616,
         "ytVideoId": "KMf2nhcrALU"
@@ -10146,7 +10159,7 @@
         "title": "APT.",
         "album": "rosie",
         "artists": [
-            "ROS\u00c9",
+            "ROSÉ",
             "Bruno Mars"
         ],
         "releaseDate": 1733392937,
@@ -10300,7 +10313,7 @@
         "src": "/database/songs/D_h_QwPSQb4.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/D_h_QwPSQb4/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/D_h_QwPSQb4.jpg",
-        "title": "central cee \u201cdoja\u201d but it\u2019s among us",
+        "title": "central cee “doja” but it’s among us",
         "album": "",
         "artists": [
             "Leonz Memes"
@@ -10353,7 +10366,7 @@
         "src": "/database/songs/0btEM1PF2a8.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/0btEM1PF2a8/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/0btEM1PF2a8.jpg",
-        "title": "1nonly \u00b7 Pretty Girl",
+        "title": "1nonly · Pretty Girl",
         "album": "",
         "artists": [
             "Jovan Cortes"
@@ -10512,7 +10525,7 @@
         "src": "/database/songs/nssaqrrQtWA.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/nssaqrrQtWA/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/nssaqrrQtWA.jpg",
-        "title": "\u300cNightcore\u300d Espresso - Sabrina Carpenter \u2661 (Lyrics)",
+        "title": "「Nightcore」 Espresso - Sabrina Carpenter ♡ (Lyrics)",
         "album": "",
         "artists": [
             "Nightcore Venyx"
@@ -10538,7 +10551,7 @@
         "src": "/database/songs/kZRQosq3PjM.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/kZRQosq3PjM/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/kZRQosq3PjM.jpg",
-        "title": "CHIPTUNE \u266b 20XX",
+        "title": "CHIPTUNE ♫ 20XX",
         "album": "",
         "artists": [
             "Context Sensitive"
@@ -10677,7 +10690,7 @@
         "title": "Song of Soller Gambit",
         "album": "",
         "artists": [
-            "\uccb4\uc2a4\ub9c9\ud0c0"
+            "체스막타"
         ],
         "releaseDate": 1721631922,
         "ytVideoId": "sTNXoZhTmLg"
@@ -10687,10 +10700,10 @@
         "src": "/database/songs/ekr2nIex040.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/ekr2nIex040/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/ekr2nIex040.jpg",
-        "title": "ROSE\u0301 & Bruno Mars - APT. (Official Music Video)",
+        "title": "ROSÉ & Bruno Mars - APT. (Official Music Video)",
         "album": "",
         "artists": [
-            "ROS\u00c9"
+            "ROSÉ"
         ],
         "releaseDate": 1729224007,
         "ytVideoId": "ekr2nIex040"
@@ -11315,7 +11328,7 @@
         "src": "/database/songs/ylX9cq4fukg.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/ylX9cq4fukg/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/ylX9cq4fukg.jpg",
-        "title": "Zelda: A Link to the Past - Mini Game \ud83c\udfaf Acapella",
+        "title": "Zelda: A Link to the Past - Mini Game 🎯 Acapella",
         "album": "",
         "artists": [
             "Smooth McGroove"
@@ -11446,7 +11459,7 @@
         "src": "/database/songs/rVeMiVU77wo.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/rVeMiVU77wo/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/rVeMiVU77wo.jpg",
-        "title": "alt-J (\u2206) Breezeblocks",
+        "title": "alt-J (∆) Breezeblocks",
         "album": "",
         "artists": [
             "alt-J"
@@ -11910,7 +11923,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/xIQpLlYC8xA/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/xIQpLlYC8xA.jpg",
         "title": "Houdini",
-        "album": "The Death of Slim Shady (Coup De Gr\u00e2ce)",
+        "album": "The Death of Slim Shady (Coup De Grâce)",
         "artists": [
             "Eminem"
         ],
@@ -12941,7 +12954,7 @@
         "src": "/database/songs/_7WfAlU8jbA.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/_7WfAlU8jbA/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/_7WfAlU8jbA.jpg",
-        "title": "Seek Bromance (Avicii\u2019s Vocal Edit)",
+        "title": "Seek Bromance (Avicii’s Vocal Edit)",
         "album": "Seek Bromance",
         "artists": [
             "Tim Berg"
@@ -13318,7 +13331,7 @@
         "title": "Suffer With Me",
         "album": "Suffer With Me",
         "artists": [
-            "l\u00edue"
+            "líue"
         ],
         "releaseDate": 1547424000,
         "ytVideoId": "OgmMJGEhwxw"
@@ -13623,7 +13636,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/vy2el0kqwLQ/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/vy2el0kqwLQ.jpg",
         "title": "Lone Digger",
-        "album": "\u1438I\u00b0_\u00b0I\u1433",
+        "album": "ᐸI°_°Iᐳ",
         "artists": [
             "Caravan Palace"
         ],
@@ -13859,7 +13872,7 @@
         "src": "/database/songs/_rWRh3SrSPA.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/_rWRh3SrSPA/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/_rWRh3SrSPA.jpg",
-        "title": "Steve\u2019s Going to London",
+        "title": "Steve’s Going to London",
         "album": "The Maybe Man",
         "artists": [
             "AJR"
@@ -14107,7 +14120,7 @@
         "src": "/database/songs/hyj4JFSErrw.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/hyj4JFSErrw/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/hyj4JFSErrw.jpg",
-        "title": "Studio Killers - Jenny (I Wanna Ruin Our Friendship) OFFICIAL\u00a0MUSIC\u00a0VIDEO",
+        "title": "Studio Killers - Jenny (I Wanna Ruin Our Friendship) OFFICIAL MUSIC VIDEO",
         "album": "",
         "artists": [
             "Studio Killers"
@@ -14347,7 +14360,7 @@
         "album": "The Fame Monster",
         "artists": [
             "Lady Gaga",
-            "Beyonc\u00e9"
+            "Beyoncé"
         ],
         "releaseDate": 1257379200,
         "ytVideoId": "XkGIneCJRlc"
@@ -14412,7 +14425,7 @@
         "title": "Ballin' (Calculator Cover)",
         "album": "",
         "artists": [
-            "\ud0c0\ud0c0\ud0c0\ud0c0 TATATATA"
+            "타타타타 TATATATA"
         ],
         "releaseDate": 1719227962,
         "ytVideoId": "e5eP2SZ-R1g"
@@ -15032,7 +15045,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/006ln18vDjo/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/006ln18vDjo.jpg",
         "title": "Comics",
-        "album": "\u1438I\u00b0_\u00b0I\u1433",
+        "album": "ᐸI°_°Iᐳ",
         "artists": [
             "Caravan Palace"
         ],
@@ -15398,7 +15411,7 @@
         "src": "/database/songs/ouoFkoLyFIY.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/ouoFkoLyFIY/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/ouoFkoLyFIY.jpg",
-        "title": "\u266a \"Level Up\" - A Minecraft Original Music Video / Song \u266a",
+        "title": "♪ \"Level Up\" - A Minecraft Original Music Video / Song ♪",
         "album": "",
         "artists": [
             "AntVenom"
@@ -15860,7 +15873,7 @@
         "src": "/database/songs/qetW6R9Jxs4.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/qetW6R9Jxs4/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/qetW6R9Jxs4.jpg",
-        "title": "Eric Prydz \u2013 Call On Me (Official 4K Video) [2004] | MINISTRY VAULTS",
+        "title": "Eric Prydz – Call On Me (Official 4K Video) [2004] | MINISTRY VAULTS",
         "album": "",
         "artists": [
             "Ministry of Sound"
@@ -17051,7 +17064,7 @@
         "src": "/database/songs/Qc7_zRjH808.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/Qc7_zRjH808/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/Qc7_zRjH808.jpg",
-        "title": "FIFTY FIFTY (\ud53c\ud504\ud2f0\ud53c\ud504\ud2f0) - 'Cupid'  Official MV",
+        "title": "FIFTY FIFTY (피프티피프티) - 'Cupid'  Official MV",
         "album": "",
         "artists": [
             "FIFTY FIFTY Official"
@@ -17517,7 +17530,7 @@
         "title": "Leat'eq - Tokyo Lyrics | Nyan Ichi - ni - san",
         "album": "",
         "artists": [
-            "JM\u039b Lyrics"
+            "JMΛ Lyrics"
         ],
         "releaseDate": 1613410459,
         "ytVideoId": "t_7pUK9riyE"
@@ -17527,8 +17540,8 @@
         "src": "/database/songs/w1GBTgxIvcY.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/w1GBTgxIvcY/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/w1GBTgxIvcY.jpg",
-        "title": "Mon\u00eby so big",
-        "album": "Up 2 M\u00eb",
+        "title": "Monëy so big",
+        "album": "Up 2 Më",
         "artists": [
             "Yeat"
         ],
@@ -18022,7 +18035,7 @@
         "src": "/database/songs/Y7RMppGSS_Q.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/Y7RMppGSS_Q/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/Y7RMppGSS_Q.jpg",
-        "title": "Ballin\u2019",
+        "title": "Ballin’",
         "album": "Perfect Ten",
         "artists": [
             "Mustard",
@@ -18079,7 +18092,7 @@
         "album": "NCS: The Best of 2015",
         "artists": [
             "Cartoon",
-            "J\u00e9ja",
+            "Jéja",
             "Daniel Levi"
         ],
         "releaseDate": 1450828800,
@@ -19026,7 +19039,7 @@
         "artists": [
             "Major Lazer",
             "Justin Bieber",
-            "M\u00d8"
+            "MØ"
         ],
         "releaseDate": 1469145600,
         "ytVideoId": "jEBKFudxGTs"
@@ -19041,7 +19054,7 @@
         "artists": [
             "Major Lazer",
             "DJ Snake",
-            "M\u00d8"
+            "MØ"
         ],
         "releaseDate": 1433116800,
         "ytVideoId": "5vOid-7uBdQ"
@@ -19548,7 +19561,7 @@
         "src": "/database/songs/AhnZEmnuzgM.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/AhnZEmnuzgM/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/AhnZEmnuzgM.jpg",
-        "title": "Saturday Night\u2019s Alright (For Fighting)",
+        "title": "Saturday Night’s Alright (For Fighting)",
         "album": "Goodbye Yellow Brick Road",
         "artists": [
             "Elton John"
@@ -19656,7 +19669,7 @@
         "title": "Calma (Remix)",
         "album": "Gangalee",
         "artists": [
-            "Pedro Cap\u00f3",
+            "Pedro Capó",
             "Farruko"
         ],
         "releaseDate": 1556236800,
@@ -19667,7 +19680,7 @@
         "src": "/database/songs/gNVziLdKt4g.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/gNVziLdKt4g/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/gNVziLdKt4g.jpg",
-        "title": "El Ne\u00f3n - Flash Mob",
+        "title": "El Neón - Flash Mob",
         "album": "",
         "artists": [
             "Epidemic Electronic"
@@ -19776,7 +19789,7 @@
         "src": "/database/songs/fHthUEiNfxA.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/fHthUEiNfxA/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/fHthUEiNfxA.jpg",
-        "title": "\u2018WITH YOU\u2019 MUSIC VIDEO IS OUT NOW! THIS IS THE LAST MUSIC VIDEO I WILL EVER MAKE SO ENJOY IT!",
+        "title": "‘WITH YOU’ MUSIC VIDEO IS OUT NOW! THIS IS THE LAST MUSIC VIDEO I WILL EVER MAKE SO ENJOY IT!",
         "album": "",
         "artists": [
             "Oliver Tree"
@@ -19789,7 +19802,7 @@
         "src": "/database/songs/1_zgKRBrT0Y.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/1_zgKRBrT0Y/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/1_zgKRBrT0Y.jpg",
-        "title": "Pedro Cap\u00f3, Farruko - Calma (Remix - Official Video)",
+        "title": "Pedro Capó, Farruko - Calma (Remix - Official Video)",
         "album": "",
         "artists": [
             "capoVEVO"
@@ -19802,7 +19815,7 @@
         "src": "/database/songs/bxWxXncl53U.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/bxWxXncl53U/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/bxWxXncl53U.jpg",
-        "title": "Bomba Est\u00e9reo - Soy Yo (Official Video)",
+        "title": "Bomba Estéreo - Soy Yo (Official Video)",
         "album": "",
         "artists": [
             "BombaEstereoVEVO"
@@ -20077,7 +20090,7 @@
         "src": "/database/songs/GqpCQMK7Mao.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/GqpCQMK7Mao/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/GqpCQMK7Mao.jpg",
-        "title": "They Don\u2019t Love It.",
+        "title": "They Don’t Love It.",
         "album": "",
         "artists": [
             "Jack Harlow"
@@ -20288,10 +20301,10 @@
         "src": "/database/songs/b3GH5NUPG2Q.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/b3GH5NUPG2Q/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/b3GH5NUPG2Q.jpg",
-        "title": "\uff29\u3000\uff28\uff21\uff36\uff25\u3000\uff2e\uff2f\uff34\uff28\uff29\uff2e\uff27\u3000\uff2c\uff25\uff26\uff34",
+        "title": "Ｉ　ＨＡＶＥ　ＮＯＴＨＩＮＧ　ＬＥＦＴ",
         "album": "",
         "artists": [
-            "\uff29\uff24\uff25\uff2e\uff34\uff29\uff34\uff39"
+            "ＩＤＥＮＴＩＴＹ"
         ],
         "releaseDate": 1510614782,
         "ytVideoId": "b3GH5NUPG2Q"
@@ -22199,7 +22212,7 @@
         "title": "Crazy In Love",
         "album": "Dangerously In Love",
         "artists": [
-            "Beyonc\u00e9",
+            "Beyoncé",
             "JAY-Z"
         ],
         "releaseDate": 1056412800,
@@ -22449,7 +22462,7 @@
         "title": "The Motto",
         "album": "The Motto",
         "artists": [
-            "Ti\u00ebsto",
+            "Tiësto",
             "Ava Max"
         ],
         "releaseDate": 1636041925,
@@ -23175,7 +23188,7 @@
         "title": "MIDDLE OF THE NIGHT",
         "album": "MIDDLE OF THE NIGHT",
         "artists": [
-            "Elley Duh\u00e9"
+            "Elley Duhé"
         ],
         "releaseDate": 1578614400,
         "ytVideoId": "4zsVKROnQfY"
@@ -23579,7 +23592,7 @@
         "src": "/database/songs/e6ztG5kjUZo.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/e6ztG5kjUZo/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/e6ztG5kjUZo.jpg",
-        "title": "Just Can\u2019t Get Enough",
+        "title": "Just Can’t Get Enough",
         "album": "The Beginning",
         "artists": [
             "The Black Eyed Peas"
@@ -24216,7 +24229,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/NF7oYY7Lhq4/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/NF7oYY7Lhq4.jpg",
         "title": "I Ain't Worried",
-        "album": "I Ain\u2019t Worried",
+        "album": "I Ain’t Worried",
         "artists": [
             "OneRepublic"
         ],
@@ -24311,7 +24324,7 @@
         "artists": [
             "Pitbull",
             "Armando Christian Perez",
-            "Manuel Antonio Corao Gonz\u00e1lez",
+            "Manuel Antonio Corao González",
             "Urales Vargas",
             "Gregor Salto",
             "Tzvetin Todorov",
@@ -24551,7 +24564,7 @@
         "src": "/database/songs/TBD2nKx7gI4.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/TBD2nKx7gI4/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/TBD2nKx7gI4.jpg",
-        "title": "SYNTHWAVE THAT SLAPS \u266b Biceps",
+        "title": "SYNTHWAVE THAT SLAPS ♫ Biceps",
         "album": "",
         "artists": [
             "Context Sensitive"
@@ -24616,7 +24629,7 @@
         "src": "/database/songs/jiV5_C5RWP4.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/jiV5_C5RWP4/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/jiV5_C5RWP4.jpg",
-        "title": "LIL MABU URINATES IN NEW FREESTYLE\ud83e\udd2f\ud83d\udd25 **SHOCKING**",
+        "title": "LIL MABU URINATES IN NEW FREESTYLE🤯🔥 **SHOCKING**",
         "album": "",
         "artists": [
             "Lil Mabu"
@@ -24642,7 +24655,7 @@
         "src": "/database/songs/YS0h2-hy9rw.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/YS0h2-hy9rw/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/YS0h2-hy9rw.jpg",
-        "title": "Mustard - Ballin\u2019 ft. Roddy Ricch",
+        "title": "Mustard - Ballin’ ft. Roddy Ricch",
         "album": "",
         "artists": [
             "MustardVEVO"
@@ -24945,7 +24958,7 @@
         "src": "/database/songs/4AgDYTuZWOw.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/4AgDYTuZWOw/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/4AgDYTuZWOw.jpg",
-        "title": "\uac15\ub0a8\uc2a4\ud0c0\uc77c (Gangnam Style)",
+        "title": "강남스타일 (Gangnam Style)",
         "album": "PSY SIX RULES Pt.1",
         "artists": [
             "PSY"
@@ -25625,7 +25638,7 @@
         "src": "/database/songs/BlbogKKEo8Y.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/BlbogKKEo8Y/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/BlbogKKEo8Y.jpg",
-        "title": "C\u2019est La Vie",
+        "title": "C’est La Vie",
         "album": "Marvelous",
         "artists": [
             "Yung Gravy",
@@ -26594,7 +26607,7 @@
         "title": "Soy Yo",
         "album": "Amanecer",
         "artists": [
-            "Bomba Est\u00e9reo"
+            "Bomba Estéreo"
         ],
         "releaseDate": 1433203200,
         "ytVideoId": "RmqDvnw-N2o"
@@ -26855,7 +26868,7 @@
         "src": "/database/songs/YDswuo2dIvY.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/YDswuo2dIvY/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/YDswuo2dIvY.jpg",
-        "title": "\u00c9chame La Culpa",
+        "title": "Échame La Culpa",
         "album": "VIDA",
         "artists": [
             "Luis Fonsi",
@@ -26884,7 +26897,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/VUwUFrGu51M/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/VUwUFrGu51M.jpg",
         "title": "Victoria's Secret",
-        "album": "Victoria\u2019s Secret",
+        "album": "Victoria’s Secret",
         "artists": [
             "Jax"
         ],
@@ -27474,7 +27487,7 @@
         "src": "/database/songs/2ziqtyseR3M.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/2ziqtyseR3M/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/2ziqtyseR3M.jpg",
-        "title": "Nightcore  - Everytime We Touch (Remix) \u2715",
+        "title": "Nightcore  - Everytime We Touch (Remix) ✕",
         "album": "",
         "artists": [
             "NightcoreLounge"
@@ -27516,7 +27529,7 @@
         "title": "RAVE",
         "album": "RAVE",
         "artists": [
-            "Dxrk \u30c0\u30fc\u30af"
+            "Dxrk ダーク"
         ],
         "releaseDate": 1647561600,
         "ytVideoId": "AqHlQL3PoD8"
@@ -27805,7 +27818,7 @@
         "src": "/database/songs/w9PvPEQ1u0s.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/w9PvPEQ1u0s/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/w9PvPEQ1u0s.jpg",
-        "title": "I don\u2019t ever wanna see you and I never want to meet you again",
+        "title": "I don’t ever wanna see you and I never want to meet you again",
         "album": "",
         "artists": [
             "Oliver Tree"
@@ -27897,7 +27910,7 @@
         "src": "/database/songs/wcCqAwfz5eI.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/wcCqAwfz5eI/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/wcCqAwfz5eI.jpg",
-        "title": "this song is called \u201cgolden hour\u201d & it\u2019s out everywhere.",
+        "title": "this song is called “golden hour” & it’s out everywhere.",
         "album": "",
         "artists": [
             "JVKE"
@@ -28171,7 +28184,7 @@
         "src": "/database/songs/7DcqKgiB4_Q.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/7DcqKgiB4_Q/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/7DcqKgiB4_Q.jpg",
-        "title": "Literally our biggest first weekend we\u2019ve ever had. Keep streaming The DJ Is Crying For Help \ud83c\udfbb\ud83c\udfbb\ud83c\udfbb",
+        "title": "Literally our biggest first weekend we’ve ever had. Keep streaming The DJ Is Crying For Help 🎻🎻🎻",
         "album": "",
         "artists": [
             "AJR"
@@ -28384,7 +28397,7 @@
         "title": "Stay Alive",
         "album": "Stay Alive",
         "artists": [
-            "Jos\u00e9 Gonz\u00e1lez"
+            "José González"
         ],
         "releaseDate": 1356998400,
         "ytVideoId": "iuXtcFS7Xsc"
@@ -28407,7 +28420,7 @@
         "src": "/database/songs/bvjNyJ8TBNk.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/bvjNyJ8TBNk/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/bvjNyJ8TBNk.jpg",
-        "title": "Jos\u00e9 Gonz\u00e1lez - Stay Alive",
+        "title": "José González - Stay Alive",
         "album": "",
         "artists": [
             "xxveggyxx"
@@ -28420,7 +28433,7 @@
         "src": "/database/songs/NucJk8TxyRg.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/NucJk8TxyRg/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/NucJk8TxyRg.jpg",
-        "title": "Jos\u00e9 Gonz\u00e1lez - Stay Alive",
+        "title": "José González - Stay Alive",
         "album": "",
         "artists": [
             "JoseGonzalezVEVO"
@@ -28472,7 +28485,7 @@
         "src": "/database/songs/lHMzHNxkcfE.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/lHMzHNxkcfE/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/lHMzHNxkcfE.jpg",
-        "title": "C\u2019est La Vie",
+        "title": "C’est La Vie",
         "album": "Marvelous",
         "artists": [
             "Yung Gravy",
@@ -28526,10 +28539,10 @@
         "src": "/database/songs/s01vp0A6c3s.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/s01vp0A6c3s/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/s01vp0A6c3s.jpg",
-        "title": "R\u00d8NIN - ALL GIRLS ARE THE SAME (Official Music Video)",
+        "title": "RØNIN - ALL GIRLS ARE THE SAME (Official Music Video)",
         "album": "",
         "artists": [
-            "R\u00d8NIN"
+            "RØNIN"
         ],
         "releaseDate": 1624377612,
         "ytVideoId": "s01vp0A6c3s"
@@ -29203,7 +29216,7 @@
         "src": "/database/songs/HCIw_EoO7U4.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/HCIw_EoO7U4/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/HCIw_EoO7U4.jpg",
-        "title": "Central Cee \u201cDoja\u201d Radio Version vs the real song! #shorts #fyp #centralcee",
+        "title": "Central Cee “Doja” Radio Version vs the real song! #shorts #fyp #centralcee",
         "album": "",
         "artists": [
             "C4YD3N "
@@ -29307,7 +29320,7 @@
         "src": "/database/songs/c6LgB722FdQ.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/c6LgB722FdQ/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/c6LgB722FdQ.jpg",
-        "title": "I Don\u2019t Think That I Like Her",
+        "title": "I Don’t Think That I Like Her",
         "album": "CHARLIE",
         "artists": [
             "Charlie Puth"
@@ -29320,7 +29333,7 @@
         "src": "/database/songs/Z1CQa8eAwLE.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/Z1CQa8eAwLE/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/Z1CQa8eAwLE.jpg",
-        "title": "When You\u2019re Sad I\u2019m Sad",
+        "title": "When You’re Sad I’m Sad",
         "album": "CHARLIE",
         "artists": [
             "Charlie Puth"
@@ -29374,7 +29387,7 @@
         "src": "/database/songs/miR3GrO6tiI.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/miR3GrO6tiI/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/miR3GrO6tiI.jpg",
-        "title": "There\u2019s A First Time For Everything",
+        "title": "There’s A First Time For Everything",
         "album": "CHARLIE",
         "artists": [
             "Charlie Puth"
@@ -29426,7 +29439,7 @@
         "src": "/database/songs/R12op-QMC0E.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/R12op-QMC0E/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/R12op-QMC0E.jpg",
-        "title": "I Don\u2019t Think That I Like Her",
+        "title": "I Don’t Think That I Like Her",
         "album": "CHARLIE",
         "artists": [
             "Charlie Puth"
@@ -29439,7 +29452,7 @@
         "src": "/database/songs/uzzlMtPNBD0.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/uzzlMtPNBD0/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/uzzlMtPNBD0.jpg",
-        "title": "When You\u2019re Sad I\u2019m Sad",
+        "title": "When You’re Sad I’m Sad",
         "album": "CHARLIE",
         "artists": [
             "Charlie Puth"
@@ -29491,7 +29504,7 @@
         "src": "/database/songs/gOYGj9kMwAs.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/gOYGj9kMwAs/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/gOYGj9kMwAs.jpg",
-        "title": "There\u2019s A First Time For Everything",
+        "title": "There’s A First Time For Everything",
         "album": "CHARLIE",
         "artists": [
             "Charlie Puth"
@@ -30068,8 +30081,8 @@
         "src": "/database/songs/TkTyLG_Yufg.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/TkTyLG_Yufg/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/TkTyLG_Yufg.jpg",
-        "title": "I Don\u2019t Think That I Like Her",
-        "album": "I Don\u2019t Think That I Like Her",
+        "title": "I Don’t Think That I Like Her",
+        "album": "I Don’t Think That I Like Her",
         "artists": [
             "Charlie Puth"
         ],
@@ -30258,7 +30271,7 @@
         "src": "/database/songs/sVu0u_py2-8.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/sVu0u_py2-8/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/sVu0u_py2-8.jpg",
-        "title": "C\u2019est La Vie",
+        "title": "C’est La Vie",
         "album": "C'est La Vie",
         "artists": [
             "Yung Gravy",
@@ -30611,7 +30624,7 @@
         "src": "/database/songs/1cQvY0AkxGk.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/1cQvY0AkxGk/sddefault.jpg",
         "thumbnail": "/database/thumbnails/1cQvY0AkxGk.jpg",
-        "title": "Playaphonk 999/Joe Bartalozie\u2019s outro song 1 hour",
+        "title": "Playaphonk 999/Joe Bartalozie’s outro song 1 hour",
         "album": "",
         "artists": [
             "St Jimmy"
@@ -31382,7 +31395,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/rZmHYMQkLyA/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/rZmHYMQkLyA.jpg",
         "title": "Uptown Funk",
-        "album": "I Love Parais\u00f3polis - Vol. 2",
+        "album": "I Love Paraisópolis - Vol. 2",
         "artists": [
             "Mark Ronson",
             "Bruno Mars"
@@ -31710,7 +31723,7 @@
         "src": "/database/songs/gQlMMD8auMs.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/gQlMMD8auMs/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/gQlMMD8auMs.jpg",
-        "title": "BLACKPINK - \u2018Pink Venom\u2019 M/V",
+        "title": "BLACKPINK - ‘Pink Venom’ M/V",
         "album": "",
         "artists": [
             "BLACKPINK"
@@ -31971,7 +31984,7 @@
         "src": "/database/songs/I47cB9WHqsI.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/I47cB9WHqsI/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/I47cB9WHqsI.jpg",
-        "title": "\u266a \"Starless Night\" - A Minecraft Original Music Video / Song \u266a",
+        "title": "♪ \"Starless Night\" - A Minecraft Original Music Video / Song ♪",
         "album": "",
         "artists": [
             "AntVenom"
@@ -33369,7 +33382,7 @@
         "title": "The Powerpuff Girls Theme Song Extended",
         "album": "",
         "artists": [
-            "Albertas \u017dolnerovi\u010d"
+            "Albertas Žolnerovič"
         ],
         "releaseDate": 1590657165,
         "ytVideoId": "GZqi2Nv2M04"
@@ -33780,8 +33793,8 @@
         "src": "/database/songs/9MbXeqCbS4Q.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/9MbXeqCbS4Q/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/9MbXeqCbS4Q.jpg",
-        "title": "\ub9c8\uc9c0\ub9c9\ucc98\ub7fc (As If It's Your Last)",
-        "album": "\ub9c8\uc9c0\ub9c9\ucc98\ub7fc (AS IF IT'S YOUR LAST)",
+        "title": "마지막처럼 (As If It's Your Last)",
+        "album": "마지막처럼 (AS IF IT'S YOUR LAST)",
         "artists": [
             "BLACKPINK"
         ],
@@ -33809,7 +33822,7 @@
         "title": "Beggin'",
         "album": "Chosen",
         "artists": [
-            "M\u00e5neskin"
+            "Måneskin"
         ],
         "releaseDate": 1512691200,
         "ytVideoId": "ZWKpPDI1M-o"
@@ -34172,7 +34185,7 @@
         "src": "/database/songs/ZJFxx9M5Cww.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/ZJFxx9M5Cww/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/ZJFxx9M5Cww.jpg",
-        "title": "Piper Rockelle - Bby i... (Official Music Video) **FIRST KISS ON CAMERA**\ud83d\udc8b",
+        "title": "Piper Rockelle - Bby i... (Official Music Video) **FIRST KISS ON CAMERA**💋",
         "album": "",
         "artists": [
             "Piper Rockelle"
@@ -34396,8 +34409,8 @@
         "src": "/database/songs/VKC_hzJ3jzg.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/VKC_hzJ3jzg/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/VKC_hzJ3jzg.jpg",
-        "title": "Se\u00f1orita",
-        "album": "Se\u00f1orita",
+        "title": "Señorita",
+        "album": "Señorita",
         "artists": [
             "Shawn Mendes",
             "Camila Cabello"
@@ -34801,7 +34814,7 @@
         "src": "/database/songs/POW41ZVQ29M.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/POW41ZVQ29M/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/POW41ZVQ29M.jpg",
-        "title": "Cowboys Don\u2019t Cry",
+        "title": "Cowboys Don’t Cry",
         "album": "Cowboy Tears",
         "artists": [
             "Oliver Tree"
@@ -34814,7 +34827,7 @@
         "src": "/database/songs/SDEiYWCcWlg.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/SDEiYWCcWlg/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/SDEiYWCcWlg.jpg",
-        "title": "Piper Rockelle - Treat Myself (Official Music Video) **FIRST KISS** \ud83d\udc8b",
+        "title": "Piper Rockelle - Treat Myself (Official Music Video) **FIRST KISS** 💋",
         "album": "",
         "artists": [
             "Piper Rockelle"
@@ -34880,7 +34893,7 @@
         "src": "/database/songs/XoLouT7TqZY.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/XoLouT7TqZY/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/XoLouT7TqZY.jpg",
-        "title": "\u266a MDK - Press Start [FREE DOWNLOAD] \u266a",
+        "title": "♪ MDK - Press Start [FREE DOWNLOAD] ♪",
         "album": "",
         "artists": [
             "MDK"
@@ -35302,7 +35315,7 @@
         "title": "Light Switch - Charlie Puth (xooos cover)",
         "album": "",
         "artists": [
-            "xooos \uc218\uc2a4"
+            "xooos 수스"
         ],
         "releaseDate": 1644140892,
         "ytVideoId": "9EDZixuODrw"
@@ -35378,7 +35391,7 @@
         "src": "/database/songs/fEi7m30JhfE.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/fEi7m30JhfE/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/fEi7m30JhfE.jpg",
-        "title": "Charlie Puth \u2013 Light Switch + Medley with John Legend (Live from The 2022 iHeartRadio Music Awards)",
+        "title": "Charlie Puth – Light Switch + Medley with John Legend (Live from The 2022 iHeartRadio Music Awards)",
         "album": "",
         "artists": [
             "Charlie Puth"
@@ -35391,7 +35404,7 @@
         "src": "/database/songs/EVJKxsRtX3Y.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/EVJKxsRtX3Y/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/EVJKxsRtX3Y.jpg",
-        "title": "Charlie Puth - Loser [New Snippet]\ud83e\udd29\ud83e\udd70\ud83d\ude0d",
+        "title": "Charlie Puth - Loser [New Snippet]🤩🥰😍",
         "album": "",
         "artists": [
             "Charlie Puth Fan Page"
@@ -35590,7 +35603,7 @@
         "src": "/database/songs/Qu8HMUp9fgc.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/Qu8HMUp9fgc/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/Qu8HMUp9fgc.jpg",
-        "title": "Devil Doesn\u2019t Bargain",
+        "title": "Devil Doesn’t Bargain",
         "album": "(Un)Commentary",
         "artists": [
             "Alec Benjamin"
@@ -35828,7 +35841,7 @@
         "src": "/database/songs/9bZkp7q19f0.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/9bZkp7q19f0/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/9bZkp7q19f0.jpg",
-        "title": "PSY - GANGNAM STYLE(\uac15\ub0a8\uc2a4\ud0c0\uc77c) M/V",
+        "title": "PSY - GANGNAM STYLE(강남스타일) M/V",
         "album": "",
         "artists": [
             "officialpsy"
@@ -36028,7 +36041,7 @@
         "src": "/database/songs/pClR9Cuy2T0.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/pClR9Cuy2T0/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/pClR9Cuy2T0.jpg",
-        "title": "You\u2019re gonna go far kid by the offspring (piano cover) \ud83c\udfb9\ud83c\udfb9\ud83c\udfb9",
+        "title": "You’re gonna go far kid by the offspring (piano cover) 🎹🎹🎹",
         "album": "",
         "artists": [
             "KATO"
@@ -36318,7 +36331,7 @@
         "src": "/database/songs/oQ0wldvLzc0.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/oQ0wldvLzc0/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/oQ0wldvLzc0.jpg",
-        "title": "Rauf & Faik   \u044d\u0442\u043e \u043b\u0438 \u0441\u0447\u0430\u0441\u0442\u044c\u0435? (Official Audio)",
+        "title": "Rauf & Faik   это ли счастье? (Official Audio)",
         "album": "",
         "artists": [
             "Rauf & Faik"
@@ -36436,7 +36449,7 @@
         "src": "/database/songs/W9P_qUnMaFg.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/W9P_qUnMaFg/sddefault.jpg",
         "thumbnail": "/database/thumbnails/W9P_qUnMaFg.jpg",
-        "title": "Dynoro & Gigi D\u2019Agostino - In My Mind",
+        "title": "Dynoro & Gigi D’Agostino - In My Mind",
         "album": "",
         "artists": [
             "Chill Nation"
@@ -36948,10 +36961,10 @@
         "src": "/database/songs/nntGTK2Fhb0.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/nntGTK2Fhb0/sddefault.jpg",
         "thumbnail": "/database/thumbnails/nntGTK2Fhb0.jpg",
-        "title": "Skrillex and Diplo - \"Where Are \u00dc Now\" with Justin Bieber (Official Video)",
+        "title": "Skrillex and Diplo - \"Where Are Ü Now\" with Justin Bieber (Official Video)",
         "album": "",
         "artists": [
-            "Jack \u00dc"
+            "Jack Ü"
         ],
         "releaseDate": 1435582462,
         "ytVideoId": "nntGTK2Fhb0"
@@ -36974,7 +36987,7 @@
         "src": "/database/songs/FZAslftsZMw.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/FZAslftsZMw/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/FZAslftsZMw.jpg",
-        "title": "I\u2019M PUSHIN \ud83c\udd7f\ufe0fEE",
+        "title": "I’M PUSHIN 🅿️EE",
         "album": "",
         "artists": [
             "MuchDank"
@@ -37107,7 +37120,7 @@
         "src": "/database/songs/e9u0HmXLPmA.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/e9u0HmXLPmA/sddefault.jpg",
         "thumbnail": "/database/thumbnails/e9u0HmXLPmA.jpg",
-        "title": "Trippie Redd \u2013 Miss The Rage ft. Playboi Carti (Official Visualizer)",
+        "title": "Trippie Redd – Miss The Rage ft. Playboi Carti (Official Visualizer)",
         "album": "",
         "artists": [
             "Trippie Redd"
@@ -37226,7 +37239,7 @@
         "src": "/database/songs/9PACaJ8lQBw.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/9PACaJ8lQBw/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/9PACaJ8lQBw.jpg",
-        "title": "Bon App\u00e9tit",
+        "title": "Bon Appétit",
         "album": "Witness",
         "artists": [
             "Katy Perry",
@@ -37253,7 +37266,7 @@
         "src": "/database/songs/dPI-mRFEIH0.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/dPI-mRFEIH0/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/dPI-mRFEIH0.jpg",
-        "title": "Katy Perry - Bon App\u00e9tit (Official) ft. Migos",
+        "title": "Katy Perry - Bon Appétit (Official) ft. Migos",
         "album": "",
         "artists": [
             "KatyPerryVEVO"
@@ -37370,7 +37383,7 @@
         "src": "/database/songs/xhl_rQDGzzo.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/xhl_rQDGzzo/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/xhl_rQDGzzo.jpg",
-        "title": "Bruno Mars - \"That\u2019s What I Like\" PARODY",
+        "title": "Bruno Mars - \"That’s What I Like\" PARODY",
         "album": "",
         "artists": [
             "Bart Baker"
@@ -37461,7 +37474,7 @@
         "src": "/database/songs/7H6BDV9g3kg.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/7H6BDV9g3kg/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/7H6BDV9g3kg.jpg",
-        "title": "BEST Producer Tags in Hip-Hop! (2022) \ud83d\udd25",
+        "title": "BEST Producer Tags in Hip-Hop! (2022) 🔥",
         "album": "",
         "artists": [
             "inteNsifyCharts"
@@ -37487,7 +37500,7 @@
         "src": "/database/songs/vjW8wmF5VWc.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/vjW8wmF5VWc/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/vjW8wmF5VWc.jpg",
-        "title": "Silent\u00f3 - Watch Me (Whip/Nae Nae) (Official)",
+        "title": "Silentó - Watch Me (Whip/Nae Nae) (Official)",
         "album": "",
         "artists": [
             "SilentoVEVO"
@@ -37904,7 +37917,7 @@
         "src": "/database/songs/PMivT7MJ41M.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/PMivT7MJ41M/sddefault.jpg",
         "thumbnail": "/database/thumbnails/PMivT7MJ41M.jpg",
-        "title": "Bruno Mars - That\u2019s What I Like [Official Music Video]",
+        "title": "Bruno Mars - That’s What I Like [Official Music Video]",
         "album": "",
         "artists": [
             "Bruno Mars"
@@ -38761,8 +38774,8 @@
         "src": "/database/songs/wywgjrzRQ5Y.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/wywgjrzRQ5Y/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/wywgjrzRQ5Y.jpg",
-        "title": "Cowboys Don\u2019t Cry",
-        "album": "Cowboys Don\u2019t Cry",
+        "title": "Cowboys Don’t Cry",
+        "album": "Cowboys Don’t Cry",
         "artists": [
             "Oliver Tree"
         ],
@@ -39063,7 +39076,7 @@
         "title": "j^p^n - bloom. []",
         "album": "",
         "artists": [
-            "Touch\u00e9"
+            "Touché"
         ],
         "releaseDate": 1485423046,
         "ytVideoId": "dOL8JfauRHo"
@@ -39112,7 +39125,7 @@
         "src": "/database/songs/SgsySQQ0eBI.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/SgsySQQ0eBI/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/SgsySQQ0eBI.jpg",
-        "title": "Alfred\u2019s Theme",
+        "title": "Alfred’s Theme",
         "album": "Music To Be Murdered By - Side B",
         "artists": [
             "Eminem"
@@ -39190,7 +39203,7 @@
         "src": "/database/songs/0DzHUGq33po.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/0DzHUGq33po/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/0DzHUGq33po.jpg",
-        "title": "Super Mario Galaxy - Gusty Garden Galaxy Acapella \u2b50",
+        "title": "Super Mario Galaxy - Gusty Garden Galaxy Acapella ⭐",
         "album": "",
         "artists": [
             "Smooth McGroove"
@@ -39714,10 +39727,10 @@
         "src": "/database/songs/RYr96YYEaZY.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/RYr96YYEaZY/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/RYr96YYEaZY.jpg",
-        "title": "B\u00d8RNS - Electric Love",
+        "title": "BØRNS - Electric Love",
         "album": "",
         "artists": [
-            "B\u00d8RNSmusicVEVO"
+            "BØRNSmusicVEVO"
         ],
         "releaseDate": 1430917204,
         "ytVideoId": "RYr96YYEaZY"
@@ -39910,7 +39923,7 @@
         "src": "/database/songs/XsX3ATc3FbA.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/XsX3ATc3FbA/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/XsX3ATc3FbA.jpg",
-        "title": "BTS (\ubc29\ud0c4\uc18c\ub144\ub2e8) '\uc791\uc740 \uac83\ub4e4\uc744 \uc704\ud55c \uc2dc (Boy With Luv) (feat. Halsey)' Official MV",
+        "title": "BTS (방탄소년단) '작은 것들을 위한 시 (Boy With Luv) (feat. Halsey)' Official MV",
         "album": "",
         "artists": [
             "HYBE LABELS"
@@ -40031,8 +40044,8 @@
         "src": "/database/songs/SBc8h_dfEw0.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/SBc8h_dfEw0/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/SBc8h_dfEw0.jpg",
-        "title": "\u4f60\u7684\u76ee\u5149 (The Way You Felt)",
-        "album": "\u4f60\u7684\u76ee\u5149 (The Way You Felt)",
+        "title": "你的目光 (The Way You Felt)",
+        "album": "你的目光 (The Way You Felt)",
         "artists": [
             "Alec Benjamin"
         ],
@@ -40044,8 +40057,8 @@
         "src": "/database/songs/GsSYjzmFCIk.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/GsSYjzmFCIk/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/GsSYjzmFCIk.jpg",
-        "title": "\u6210\u957f (Older)",
-        "album": "\u6210\u957f (Older)",
+        "title": "成长 (Older)",
+        "album": "成长 (Older)",
         "artists": [
             "Alec Benjamin"
         ],
@@ -40097,7 +40110,7 @@
         "src": "/database/songs/zqan54VUSq0.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/zqan54VUSq0/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/zqan54VUSq0.jpg",
-        "title": "[Black MIDI] Synthesia \u2013 \"Nyan Trololol\" | Rainbow Tylenol & Nyan Cat Remix ~ BusiedGem",
+        "title": "[Black MIDI] Synthesia – \"Nyan Trololol\" | Rainbow Tylenol & Nyan Cat Remix ~ BusiedGem",
         "album": "",
         "artists": [
             "Gingeas"
@@ -40562,7 +40575,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/l9EhLOvxUSI/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/l9EhLOvxUSI.jpg",
         "title": "It's Time",
-        "album": "It\u2019s Time EP",
+        "album": "It’s Time EP",
         "artists": [
             "Imagine Dragons"
         ],
@@ -40758,10 +40771,10 @@
         "src": "/database/songs/uJsQcP_zwX0.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/uJsQcP_zwX0/sddefault.jpg",
         "thumbnail": "/database/thumbnails/uJsQcP_zwX0.jpg",
-        "title": "Bloodwitch - Fly (Lyric video) \u2022 I Am Not Okay With This | S1 Soundtrack",
+        "title": "Bloodwitch - Fly (Lyric video) • I Am Not Okay With This | S1 Soundtrack",
         "album": "",
         "artists": [
-            "shades of lyrics \u203a"
+            "shades of lyrics ›"
         ],
         "releaseDate": 1582988420,
         "ytVideoId": "uJsQcP_zwX0"
@@ -41252,7 +41265,7 @@
         "src": "/database/songs/Xs7oMbBYRYc.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/Xs7oMbBYRYc/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/Xs7oMbBYRYc.jpg",
-        "title": "Se\u00f1orita",
+        "title": "Señorita",
         "album": "Shawn Mendes",
         "artists": [
             "Shawn Mendes",
@@ -41784,7 +41797,7 @@
         "src": "/database/songs/xwvKhA-L5bs.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/xwvKhA-L5bs/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/xwvKhA-L5bs.jpg",
-        "title": "LIL NAS X PRESENTS \u201cMONTERO\u201d THE ALBUM TRACKLIST",
+        "title": "LIL NAS X PRESENTS “MONTERO” THE ALBUM TRACKLIST",
         "album": "",
         "artists": [
             "Lil Nas X"
@@ -41980,7 +41993,7 @@
         "src": "/database/songs/8uVhpW1c544.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/8uVhpW1c544/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/8uVhpW1c544.jpg",
-        "title": "LIL NAS X PRESENTS \u201cMONTERO\u201d THE ALBUM",
+        "title": "LIL NAS X PRESENTS “MONTERO” THE ALBUM",
         "album": "",
         "artists": [
             "Lil Nas X"
@@ -42111,10 +42124,10 @@
         "src": "/database/songs/Z_rtsJWv21I.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/Z_rtsJWv21I/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/Z_rtsJWv21I.jpg",
-        "title": "Jisoo again hid her pain \ud83d\ude2d\ud83e\udd27",
+        "title": "Jisoo again hid her pain 😭🤧",
         "album": "",
         "artists": [
-            "BLINK\u00c8 EDITS"
+            "BLINKÈ EDITS"
         ],
         "releaseDate": 1625154410,
         "ytVideoId": "Z_rtsJWv21I"
@@ -42124,7 +42137,7 @@
         "src": "/database/songs/dISNgvVpWlo.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/dISNgvVpWlo/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/dISNgvVpWlo.jpg",
-        "title": "BLACKPINK - '\ud718\ud30c\ub78c (WHISTLE)' M/V",
+        "title": "BLACKPINK - '휘파람 (WHISTLE)' M/V",
         "album": "",
         "artists": [
             "BLACKPINK"
@@ -42137,7 +42150,7 @@
         "src": "/database/songs/9pdj4iJD08s.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/9pdj4iJD08s/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/9pdj4iJD08s.jpg",
-        "title": "BLACKPINK - '\ubd88\uc7a5\ub09c (PLAYING WITH FIRE)' M/V",
+        "title": "BLACKPINK - '불장난 (PLAYING WITH FIRE)' M/V",
         "album": "",
         "artists": [
             "BLACKPINK"
@@ -42163,7 +42176,7 @@
         "src": "/database/songs/ei0k_1Uro-U.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/ei0k_1Uro-U/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/ei0k_1Uro-U.jpg",
-        "title": "\ubd88\uc7a5\ub09c (Playing With Fire)",
+        "title": "불장난 (Playing With Fire)",
         "album": "Square Two",
         "artists": [
             "BLACKPINK"
@@ -42189,7 +42202,7 @@
         "src": "/database/songs/rw2-h5JNLqM.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/rw2-h5JNLqM/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/rw2-h5JNLqM.jpg",
-        "title": "BLACKPINK - LISA '\ub69c\ub450\ub69c\ub450 (DDU-DU DDU-DU)' FOCUSED CAMERA",
+        "title": "BLACKPINK - LISA '뚜두뚜두 (DDU-DU DDU-DU)' FOCUSED CAMERA",
         "album": "",
         "artists": [
             "BLACKPINK"
@@ -42228,7 +42241,7 @@
         "src": "/database/songs/NvWfJTbrTBY.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/NvWfJTbrTBY/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/NvWfJTbrTBY.jpg",
-        "title": "BLACKPINK - \u2018\ubd88\uc7a5\ub09c(PLAYING WITH FIRE)\u2019 DANCE PRACTICE VIDEO",
+        "title": "BLACKPINK - ‘불장난(PLAYING WITH FIRE)’ DANCE PRACTICE VIDEO",
         "album": "",
         "artists": [
             "BLACKPINK"
@@ -42267,7 +42280,7 @@
         "src": "/database/songs/x0-q6-PBpPU.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/x0-q6-PBpPU/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/x0-q6-PBpPU.jpg",
-        "title": "\ud718\ud30c\ub78c (Whistle)",
+        "title": "휘파람 (Whistle)",
         "album": "SQUARE ONE",
         "artists": [
             "BLACKPINK"
@@ -42293,7 +42306,7 @@
         "src": "/database/songs/gU2HqP4NxUs.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/gU2HqP4NxUs/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/gU2HqP4NxUs.jpg",
-        "title": "BLACKPINK - \u2018Pretty Savage\u2019 1011 SBS Inkigayo",
+        "title": "BLACKPINK - ‘Pretty Savage’ 1011 SBS Inkigayo",
         "album": "",
         "artists": [
             "BLACKPINK"
@@ -42306,7 +42319,7 @@
         "src": "/database/songs/MBdVXkSdhwU.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/MBdVXkSdhwU/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/MBdVXkSdhwU.jpg",
-        "title": "BTS (\ubc29\ud0c4\uc18c\ub144\ub2e8) 'DNA' Official MV",
+        "title": "BTS (방탄소년단) 'DNA' Official MV",
         "album": "",
         "artists": [
             "HYBE LABELS"
@@ -42319,7 +42332,7 @@
         "src": "/database/songs/DjL9di-UIYc.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/DjL9di-UIYc/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/DjL9di-UIYc.jpg",
-        "title": "BLACKPINK - \u300cHow you like that -JP Ver.-\u300d MV",
+        "title": "BLACKPINK - 「How you like that -JP Ver.-」 MV",
         "album": "",
         "artists": [
             "BLACKPINK"
@@ -42345,7 +42358,7 @@
         "src": "/database/songs/Amq-qlqbjYA.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/Amq-qlqbjYA/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/Amq-qlqbjYA.jpg",
-        "title": "BLACKPINK - '\ub9c8\uc9c0\ub9c9\ucc98\ub7fc (AS IF IT'S YOUR LAST)' M/V",
+        "title": "BLACKPINK - '마지막처럼 (AS IF IT'S YOUR LAST)' M/V",
         "album": "",
         "artists": [
             "BLACKPINK"
@@ -42358,7 +42371,7 @@
         "src": "/database/songs/18nDrsoii5M.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/18nDrsoii5M/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/18nDrsoii5M.jpg",
-        "title": "\ubd90\ubc14\uc57c (Boombayah)",
+        "title": "붐바야 (Boombayah)",
         "album": "SQUARE ONE",
         "artists": [
             "BLACKPINK"
@@ -42384,7 +42397,7 @@
         "src": "/database/songs/IPzouyj7FLA.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/IPzouyj7FLA/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/IPzouyj7FLA.jpg",
-        "title": "\ub69c\ub450\ub69c\ub450 (DDU-DU DDU-DU)",
+        "title": "뚜두뚜두 (DDU-DU DDU-DU)",
         "album": "Square Up",
         "artists": [
             "BLACKPINK"
@@ -42397,7 +42410,7 @@
         "src": "/database/songs/ivoS3HUJB3Q.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/ivoS3HUJB3Q/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/ivoS3HUJB3Q.jpg",
-        "title": "BLACKPINK - '\ubd90\ubc14\uc57c(BOOMBAYAH)' DANCE PRACTICE VIDEO",
+        "title": "BLACKPINK - '붐바야(BOOMBAYAH)' DANCE PRACTICE VIDEO",
         "album": "",
         "artists": [
             "BLACKPINK"
@@ -42410,7 +42423,7 @@
         "src": "/database/songs/jOJbXvjZ-cQ.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/jOJbXvjZ-cQ/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/jOJbXvjZ-cQ.jpg",
-        "title": "BLACKPINK - '\ub69c\ub450\ub69c\ub450 (DDU-DU DDU-DU)' DANCE PRACTICE VIDEO (MOVING VER.)",
+        "title": "BLACKPINK - '뚜두뚜두 (DDU-DU DDU-DU)' DANCE PRACTICE VIDEO (MOVING VER.)",
         "album": "",
         "artists": [
             "BLACKPINK"
@@ -42423,7 +42436,7 @@
         "src": "/database/songs/bwmSjveL3Lc.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/bwmSjveL3Lc/sddefault.jpg",
         "thumbnail": "/database/thumbnails/bwmSjveL3Lc.jpg",
-        "title": "BLACKPINK - '\ubd90\ubc14\uc57c (BOOMBAYAH)' M/V",
+        "title": "BLACKPINK - '붐바야 (BOOMBAYAH)' M/V",
         "album": "",
         "artists": [
             "BLACKPINK"
@@ -42449,7 +42462,7 @@
         "src": "/database/songs/IHNzOHi8sJs.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/IHNzOHi8sJs/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/IHNzOHi8sJs.jpg",
-        "title": "BLACKPINK - \u2018\ub69c\ub450\ub69c\ub450 (DDU-DU DDU-DU)\u2019 M/V",
+        "title": "BLACKPINK - ‘뚜두뚜두 (DDU-DU DDU-DU)’ M/V",
         "album": "",
         "artists": [
             "BLACKPINK"
@@ -42882,7 +42895,7 @@
         "src": "/database/songs/V1bFr2SWP1I.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/V1bFr2SWP1I/hqdefault.jpg",
         "thumbnail": "/database/thumbnails/V1bFr2SWP1I.jpg",
-        "title": "OFFICIAL Somewhere over the Rainbow - Israel \"IZ\" Kamakawiwo\u02bbole",
+        "title": "OFFICIAL Somewhere over the Rainbow - Israel \"IZ\" Kamakawiwoʻole",
         "album": "",
         "artists": [
             "Mountain Apple Company Inc"
@@ -42947,7 +42960,7 @@
         "src": "/database/songs/kXYiU_JCYtU.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/kXYiU_JCYtU/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/kXYiU_JCYtU.jpg",
-        "title": "Numb (Official Music Video) [4K UPGRADE] \u2013 Linkin Park",
+        "title": "Numb (Official Music Video) [4K UPGRADE] – Linkin Park",
         "album": "",
         "artists": [
             "Linkin Park"
@@ -43184,7 +43197,7 @@
         "album": "On & On",
         "artists": [
             "Cartoon",
-            "J\u00e9ja",
+            "Jéja",
             "Daniel Levi"
         ],
         "releaseDate": 1436400000,
@@ -43325,7 +43338,7 @@
         "src": "/database/songs/XsZZQPKLChY.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/XsZZQPKLChY/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/XsZZQPKLChY.jpg",
-        "title": "Cartoon, J\u00e9ja - On & On (Lyrics) feat. Daniel Levi",
+        "title": "Cartoon, Jéja - On & On (Lyrics) feat. Daniel Levi",
         "album": "",
         "artists": [
             "7clouds"
@@ -43848,7 +43861,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/rFtrb2NzjAk/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/rFtrb2NzjAk.jpg",
         "title": "Lonely Together",
-        "album": "AV\u012aCI",
+        "album": "AVĪCI",
         "artists": [
             "Avicii",
             "Rita Ora"
@@ -43929,7 +43942,7 @@
         "title": "Dynamite",
         "album": "BE",
         "artists": [
-            "BTS (\ubc29\ud0c4\uc18c\ub144\ub2e8)"
+            "BTS (방탄소년단)"
         ],
         "releaseDate": 1605830400,
         "ytVideoId": "HaEYUJ2aRHs"
@@ -44033,7 +44046,7 @@
         "title": "The Lumineers - Ophelia Lyrics",
         "album": "",
         "artists": [
-            "Womans \u201cwomanwriterslyrics\u201d Writers Lyrics"
+            "Womans “womanwriterslyrics” Writers Lyrics"
         ],
         "releaseDate": 1503869516,
         "ytVideoId": "WVcy0YdEz0M"
@@ -44187,7 +44200,7 @@
         "src": "/database/songs/LIgC1EwZczk.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/LIgC1EwZczk/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/LIgC1EwZczk.jpg",
-        "title": "CHROMANCE \u2013 Wrap Me In Plastic (Official Video) - Marcus Layton Mix",
+        "title": "CHROMANCE – Wrap Me In Plastic (Official Video) - Marcus Layton Mix",
         "album": "",
         "artists": [
             "Marvellous"
@@ -44369,7 +44382,7 @@
         "src": "/database/songs/uKxyLmbOc0Q.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/uKxyLmbOc0Q/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/uKxyLmbOc0Q.jpg",
-        "title": "Renai Circulation\u300c\u604b\u611b\u30b5\u30fc\u30ad\u30e5\u30ec\u30fc\u30b7\u30e7\u30f3\u300d\u6b4c\u3063\u3066\u307f\u305f\u3010\uff0a\u306a\u307f\u308a\u3093\u3011",
+        "title": "Renai Circulation「恋愛サーキュレーション」歌ってみた【＊なみりん】",
         "album": "",
         "artists": [
             "*namirin"
@@ -44733,7 +44746,7 @@
         "src": "/database/songs/jPhuHmjJrzk.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/jPhuHmjJrzk/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/jPhuHmjJrzk.jpg",
-        "title": "Uwa!! So HEATS!!\u266b",
+        "title": "Uwa!! So HEATS!!♫",
         "album": "UNDERTALE Soundtrack",
         "artists": [
             "Toby Fox"
@@ -45006,7 +45019,7 @@
         "src": "/database/songs/KBn_BHAXF98.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/KBn_BHAXF98/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/KBn_BHAXF98.jpg",
-        "title": "Bergentr\u00fcckung",
+        "title": "Bergentrückung",
         "album": "UNDERTALE Soundtrack",
         "artists": [
             "Toby Fox"
@@ -45409,7 +45422,7 @@
         "src": "/database/songs/XjM_w5cjIaY.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/XjM_w5cjIaY/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/XjM_w5cjIaY.jpg",
-        "title": "Uwa!! So Holiday\u266b",
+        "title": "Uwa!! So Holiday♫",
         "album": "UNDERTALE Soundtrack",
         "artists": [
             "Toby Fox"
@@ -45565,7 +45578,7 @@
         "src": "/database/songs/HCrJNiMmH88.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/HCrJNiMmH88/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/HCrJNiMmH88.jpg",
-        "title": "Uwa!! So Temperate\u266b",
+        "title": "Uwa!! So Temperate♫",
         "album": "UNDERTALE Soundtrack",
         "artists": [
             "Toby Fox"
@@ -45760,7 +45773,7 @@
         "src": "/database/songs/FtutLA63Cp8.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/FtutLA63Cp8/hqdefault.jpg",
         "thumbnail": "/database/thumbnails/FtutLA63Cp8.jpg",
-        "title": "\u3010\u6771\u65b9\u3011Bad Apple!! \uff30\uff36\u3010\u5f71\u7d75\u3011",
+        "title": "【東方】Bad Apple!! ＰＶ【影絵】",
         "album": "",
         "artists": [
             "kasidid2"
@@ -47362,7 +47375,7 @@
         "title": "The Core (Say Goodbye Mix)",
         "album": "Celeste B-Sides (Original Game Soundtrack)",
         "artists": [
-            "Matthew\u305b\u3044\u3058"
+            "Matthewせいじ"
         ],
         "releaseDate": 1516838400,
         "ytVideoId": "YyNVl_2n_O4"
@@ -47507,7 +47520,7 @@
         "src": "/database/songs/eQlsmfirpbA.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/eQlsmfirpbA/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/eQlsmfirpbA.jpg",
-        "title": "\u266a \"Through The Night\" - A Minecraft Original Music Video / Song \u266a",
+        "title": "♪ \"Through The Night\" - A Minecraft Original Music Video / Song ♪",
         "album": "",
         "artists": [
             "AntVenom"
@@ -48209,7 +48222,7 @@
         "src": "/database/songs/aF2gr3O0XqM.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/aF2gr3O0XqM/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/aF2gr3O0XqM.jpg",
-        "title": "You Gon\u2019 Learn",
+        "title": "You Gon’ Learn",
         "album": "Music To Be Murdered By - Side B",
         "artists": [
             "Eminem",
@@ -48570,7 +48583,7 @@
         "src": "/database/songs/TfMOEWpZXnw.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/TfMOEWpZXnw/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/TfMOEWpZXnw.jpg",
-        "title": "You Gon\u2019 Learn",
+        "title": "You Gon’ Learn",
         "album": "Music To Be Murdered By",
         "artists": [
             "Eminem",
@@ -49402,7 +49415,7 @@
         "src": "/database/songs/MAid4rHwEzg.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/MAid4rHwEzg/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/MAid4rHwEzg.jpg",
-        "title": "\u3010Mashup\u3011you reposted in everyone's neighborhood 4",
+        "title": "【Mashup】you reposted in everyone's neighborhood 4",
         "album": "",
         "artists": [
             "Galactic Hole"
@@ -49415,7 +49428,7 @@
         "src": "/database/songs/j8dkVpvGpCQ.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/j8dkVpvGpCQ/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/j8dkVpvGpCQ.jpg",
-        "title": "\u3010Mashup\u3011 you reposted in everyone's neighborhood 3",
+        "title": "【Mashup】 you reposted in everyone's neighborhood 3",
         "album": "",
         "artists": [
             "Galactic Hole"
@@ -49428,7 +49441,7 @@
         "src": "/database/songs/eRE6YXiol5g.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/eRE6YXiol5g/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/eRE6YXiol5g.jpg",
-        "title": "\u3010Mashup\u3011 you reposted in everyone's neighborhood\uff12(Full)",
+        "title": "【Mashup】 you reposted in everyone's neighborhood２(Full)",
         "album": "",
         "artists": [
             "Galactic Hole"
@@ -49441,7 +49454,7 @@
         "src": "/database/songs/_em9EIBpMzE.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/_em9EIBpMzE/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/_em9EIBpMzE.jpg",
-        "title": "\u3010Mashup\u3011 you reposted in everyone's neighborhood",
+        "title": "【Mashup】 you reposted in everyone's neighborhood",
         "album": "",
         "artists": [
             "Galactic Hole"
@@ -49691,11 +49704,11 @@
         "src": "/database/songs/f_K_0SNaRk0.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/f_K_0SNaRk0/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/f_K_0SNaRk0.jpg",
-        "title": "We Are Young (feat. Janelle Mon\u00e1e)",
+        "title": "We Are Young (feat. Janelle Monáe)",
         "album": "Some Nights",
         "artists": [
             "Fun.",
-            "Janelle Mon\u00e1e"
+            "Janelle Monáe"
         ],
         "releaseDate": 1500775356,
         "ytVideoId": "f_K_0SNaRk0"
@@ -49772,7 +49785,7 @@
         "src": "/database/songs/UUIFOufCRBc.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/UUIFOufCRBc/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/UUIFOufCRBc.jpg",
-        "title": "B\u00d8RNS - Electric Love (Lyrics) | baby you're like lightning in a bottle",
+        "title": "BØRNS - Electric Love (Lyrics) | baby you're like lightning in a bottle",
         "album": "",
         "artists": [
             "TikTokTunes"
@@ -50859,7 +50872,7 @@
         "album": "Get You The Moon",
         "artists": [
             "Kina",
-            "Sn\u00f8w"
+            "Snøw"
         ],
         "releaseDate": 1538956800,
         "ytVideoId": "JtN3eRbSHEM"
@@ -50869,10 +50882,10 @@
         "src": "/database/songs/vkX6yFVFRYY.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/vkX6yFVFRYY/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/vkX6yFVFRYY.jpg",
-        "title": "Where Are \u00dc Now (with Justin Bieber)",
-        "album": "Skrillex and Diplo present Jack \u00dc",
+        "title": "Where Are Ü Now (with Justin Bieber)",
+        "album": "Skrillex and Diplo present Jack Ü",
         "artists": [
-            "Jack \u00dc",
+            "Jack Ü",
             "Skrillex",
             "Diplo",
             "Justin Bieber"
@@ -51613,7 +51626,7 @@
         "title": "Robot Love",
         "album": "The Future",
         "artists": [
-            "GR\u00c9TA",
+            "GRÉTA",
             "Klaypex"
         ],
         "releaseDate": 1430179200,
@@ -51745,7 +51758,7 @@
         "src": "/database/songs/uJbooOYyBCA.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/uJbooOYyBCA/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/uJbooOYyBCA.jpg",
-        "title": "salem ilese \u2013 mad at disney (official music video)",
+        "title": "salem ilese – mad at disney (official music video)",
         "album": "",
         "artists": [
             "salem ilese"
@@ -52537,7 +52550,7 @@
         "src": "/database/songs/gdZLi9oWNZg.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/gdZLi9oWNZg/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/gdZLi9oWNZg.jpg",
-        "title": "BTS (\ubc29\ud0c4\uc18c\ub144\ub2e8) 'Dynamite' Official MV",
+        "title": "BTS (방탄소년단) 'Dynamite' Official MV",
         "album": "",
         "artists": [
             "HYBE LABELS"
@@ -52616,7 +52629,7 @@
         "src": "/database/songs/Sv6dMFF_yts.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/Sv6dMFF_yts/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/Sv6dMFF_yts.jpg",
-        "title": "Fun.: We Are Young ft. Janelle Mon\u00e1e [OFFICIAL VIDEO]",
+        "title": "Fun.: We Are Young ft. Janelle Monáe [OFFICIAL VIDEO]",
         "album": "",
         "artists": [
             "Fueled By Ramen"
@@ -52632,7 +52645,7 @@
         "title": "Dynamite",
         "album": "Dynamite (DayTime Version)",
         "artists": [
-            "BTS (\ubc29\ud0c4\uc18c\ub144\ub2e8)"
+            "BTS (방탄소년단)"
         ],
         "releaseDate": 1597968000,
         "ytVideoId": "NvK9APEhcdk"
@@ -52655,7 +52668,7 @@
         "src": "/database/songs/r2LpOUwca94.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/r2LpOUwca94/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/r2LpOUwca94.jpg",
-        "title": "Major Lazer \u2013 Light it Up (feat. Nyla & Fuse ODG) (Remix) [Official 4K Music Video]",
+        "title": "Major Lazer – Light it Up (feat. Nyla & Fuse ODG) (Remix) [Official 4K Music Video]",
         "album": "",
         "artists": [
             "Major Lazer Official"
@@ -52759,10 +52772,10 @@
         "src": "/database/songs/CG8ucav19Ew.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/CG8ucav19Ew/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/CG8ucav19Ew.jpg",
-        "title": "R\u00d8NIN - ALL GIRLS ARE THE SAME",
+        "title": "RØNIN - ALL GIRLS ARE THE SAME",
         "album": "",
         "artists": [
-            "\uff34\uff32\uff21\uff33\uff28 \u65b0 \u30c9\u30e9\u30b4\u30f3"
+            "ＴＲＡＳＨ 新 ドラゴン"
         ],
         "releaseDate": 1588530515,
         "ytVideoId": "CG8ucav19Ew"
@@ -52839,7 +52852,7 @@
         "src": "/database/songs/2Y6Nne8RvaA.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/2Y6Nne8RvaA/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/2Y6Nne8RvaA.jpg",
-        "title": "Kungs vs Cookin\u2019 on 3 Burners - This Girl (Official Music Video)",
+        "title": "Kungs vs Cookin’ on 3 Burners - This Girl (Official Music Video)",
         "album": "",
         "artists": [
             "KungsVEVO"
@@ -53179,7 +53192,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/As_4JTmHuW4/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/As_4JTmHuW4.jpg",
         "title": "Without You",
-        "album": "AV\u012aCI",
+        "album": "AVĪCI",
         "artists": [
             "Avicii",
             "Sandro Cavazza"
@@ -53633,7 +53646,7 @@
         "src": "/database/songs/rvXm2TNLfnQ.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/rvXm2TNLfnQ/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/rvXm2TNLfnQ.jpg",
-        "title": "Undertale Remixed \u25b8 Spider Dance \u25b8 Holder Remix",
+        "title": "Undertale Remixed ▸ Spider Dance ▸ Holder Remix",
         "album": "",
         "artists": [
             "GameChops"
@@ -53959,7 +53972,7 @@
         "src": "/database/songs/LlhmoIqRXMo.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/LlhmoIqRXMo/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/LlhmoIqRXMo.jpg",
-        "title": "Target Audience vs Target Groups [What\u2019s The Critical Difference?]",
+        "title": "Target Audience vs Target Groups [What’s The Critical Difference?]",
         "album": "",
         "artists": [
             "Brand Master Academy"
@@ -53985,7 +53998,7 @@
         "src": "/database/songs/fo936CsKGI0.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/fo936CsKGI0/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/fo936CsKGI0.jpg",
-        "title": "Ethical Issues In Marketing Communications 2020 | Dove, Pepsi, Kellogg's Cereals | \ud83c\udf54\ud83c\udf5f\ud83c\udf55\ud83e\udd63\ud83e\udd25",
+        "title": "Ethical Issues In Marketing Communications 2020 | Dove, Pepsi, Kellogg's Cereals | 🍔🍟🍕🥣🤥",
         "album": "",
         "artists": [
             "Solve It Like A Marketer"
@@ -54011,7 +54024,7 @@
         "src": "/database/songs/Hc83GcMKW_8.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/Hc83GcMKW_8/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/Hc83GcMKW_8.jpg",
-        "title": "How Online Data Is the New Oil | Niall Ferguson\u2019s Networld | PBS",
+        "title": "How Online Data Is the New Oil | Niall Ferguson’s Networld | PBS",
         "album": "",
         "artists": [
             "PBS"
@@ -54966,8 +54979,8 @@
         "src": "/database/songs/LQ6UwPMCwco.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/LQ6UwPMCwco/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/LQ6UwPMCwco.jpg",
-        "title": "El Perd\u00f3n",
-        "album": "El Perd\u00f3n",
+        "title": "El Perdón",
+        "album": "El Perdón",
         "artists": [
             "Nicky Jam"
         ],
@@ -55045,8 +55058,8 @@
         "src": "/database/songs/PrVp2tT5rW4.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/PrVp2tT5rW4/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/PrVp2tT5rW4.jpg",
-        "title": "El Perd\u00f3n (Forgiveness)",
-        "album": "F\u00e9nix",
+        "title": "El Perdón (Forgiveness)",
+        "album": "Fénix",
         "artists": [
             "Nicky Jam",
             "Enrique Iglesias"
@@ -55342,7 +55355,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/JPluW_mZ3mo/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/JPluW_mZ3mo.jpg",
         "title": "X",
-        "album": "\u00cdntimo",
+        "album": "Íntimo",
         "artists": [
             "Nicky Jam",
             "J Balvin"
@@ -55368,7 +55381,7 @@
         "src": "/database/songs/7piZi6E8o9A.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/7piZi6E8o9A/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/7piZi6E8o9A.jpg",
-        "title": "Hips Don't Lie (feat. Wyclef Jean) (En Espa\u00f1ol)",
+        "title": "Hips Don't Lie (feat. Wyclef Jean) (En Español)",
         "album": "Oral Fixation, Vol. 2",
         "artists": [
             "Shakira",
@@ -55530,7 +55543,7 @@
         "title": "ALL GIRLS ARE THE SAME (SPED UP)",
         "album": "ALL GIRLS ARE THE SAME",
         "artists": [
-            "R\u00d8NIN"
+            "RØNIN"
         ],
         "releaseDate": 1588291200,
         "ytVideoId": "1exbIj6h_yA"
@@ -55649,7 +55662,7 @@
         "title": "ALL GIRLS ARE THE SAME",
         "album": "ALL GIRLS ARE THE SAME",
         "artists": [
-            "R\u00d8NIN"
+            "RØNIN"
         ],
         "releaseDate": 1588204800,
         "ytVideoId": "5y1pUIDGGz0"
@@ -55712,8 +55725,8 @@
         "src": "/database/songs/-inNxvqPtMA.webm",
         "thumbnailUrl": "https://i.ytimg.com/vi/-inNxvqPtMA/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/-inNxvqPtMA.jpg",
-        "title": "Cupid \u2013 Twin Ver. (Slowed Down Version)",
-        "album": "Cupid \u2013 Twin Ver. (Slowed Down Version)",
+        "title": "Cupid – Twin Ver. (Slowed Down Version)",
+        "album": "Cupid – Twin Ver. (Slowed Down Version)",
         "artists": [
             "FIFTY FIFTY"
         ],
@@ -55826,7 +55839,7 @@
         "title": "Tokyo (Slowed)",
         "album": "Tokyo",
         "artists": [
-            "Leat\u2019eq"
+            "Leat’eq"
         ],
         "releaseDate": 1711324800,
         "ytVideoId": "NcEHqy1MpLo"
@@ -56012,7 +56025,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/2svLsNQ0hTY/maxresdefault.jpg",
         "thumbnail": "/database/thumbnails/2svLsNQ0hTY.jpg",
         "title": "CAN'T STOP THE FEELING! (from DreamWorks Animation's \"TROLLS\")",
-        "album": "Fin de A\u00f1o Exitos",
+        "album": "Fin de Año Exitos",
         "artists": [
             "Justin Timberlake"
         ],

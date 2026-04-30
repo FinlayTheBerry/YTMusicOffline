@@ -96,6 +96,7 @@
     let PlayerWatchOriginalElement = null;
     let PlayerLoopElement = null;
     let SearchBarElement = null;
+    let FavoriteButton = null;
     let ElementRefrencesNull = true;
     const SetElementRefrences = () => {
         PlayerThumbnailElement = document.querySelector(".player_thumbnail");
@@ -120,7 +121,22 @@
         SearchBarElement.addEventListener("focus", () => {
             SearchBarElement.select();
         });
+        FavoriteButton = document.querySelector(".player_favorite");
         ElementRefrencesNull = false;
+
+        const FavoriteButtonStartCharging = () => { FavoriteButton.classList.add("charging") };
+        const FavoriteButtonStopCharging = () => { FavoriteButton.classList.remove("charging") };
+
+        FavoriteButton.addEventListener("mousedown", FavoriteButtonStartCharging);
+        FavoriteButton.addEventListener("mouseup", FavoriteButtonStopCharging);
+        FavoriteButton.addEventListener("mouseleave", FavoriteButtonStopCharging);
+        FavoriteButton.addEventListener("transitionend", (e) => {
+          const currentFavoriteButtonChargePercentage = getComputedStyle(FavoriteButton).getPropertyValue("--favorite_button_charge_percentage").trim();
+          if (e.propertyName === "--favorite_button_charge_percentage" && currentFavoriteButtonChargePercentage === "100%") {
+            Player.Favorite();
+            FavoriteButtonStopCharging();
+          }
+        });
 
         Gui.RefreshPlayer();
     };

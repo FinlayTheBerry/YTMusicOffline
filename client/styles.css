@@ -189,3 +189,38 @@ body {
 .player_link:hover {
     color: cornflowerblue;
 }
+
+@property --favorite_button_charge_percentage {
+  syntax: '<percentage>';
+  inherits: true;
+  initial-value: 0%;
+}
+
+.player_favorite {
+  width: 200px; height: 50px;
+  border-radius: 8px;
+  border: 2px solid #55eb63;
+  cursor: pointer;
+  position: relative;
+  
+  --favorite_button_charge_percentage: 0%;
+  transition: --favorite_button_charge_percentage 0.25s linear;
+  
+  background-image: linear-gradient(to right, #55eb63 var(--favorite_button_charge_percentage), transparent var(--favorite_button_charge_percentage));
+}
+
+.player_favorite.charging {
+  --favorite_button_charge_percentage: 100%;
+  transition: --favorite_button_charge_percentage 0.75s linear;
+}
+
+.player_favorite_text {
+  width: 100%; line-height: 46px;
+  text-align: center; font-size: 24px; font-weight: 900;
+  z-index: 2;
+  background-image: linear-gradient(to right, #2b2626 var(--favorite_button_charge_percentage), #55eb63 var(--favorite_button_charge_percentage));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  pointer-events: none;
+}
