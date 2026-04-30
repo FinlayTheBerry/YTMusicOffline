@@ -185,9 +185,6 @@
         const scrollElementHeight = Math.max((Dataset.length * elementHeight) + overscrollHeight, containerHeight);
         document.documentElement.style.setProperty("--vslib-scroll-element-height", `${scrollElementHeight}px`);
         const targetElementCount = (containerHeight / elementHeight) + 1;
-        if (OldStartIndex == -1) {
-            ContainerElement.scrollTop = 0;
-        }
         const startIndex = Math.floor(ContainerElement.scrollTop / elementHeight);
         const startIndexChanged = startIndex != OldStartIndex;
         const elementCountChanged = targetElementCount != VirtualElements.length;
