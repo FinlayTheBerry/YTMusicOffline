@@ -116,9 +116,18 @@
 
         Player.NowPlaying = index;
         Gui.RefreshPlayer();
+
+        if ("mediaSession" in navigator) {
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: Player.Database[Player.NowPlaying].title,
+                artist: Player.Database[Player.NowPlaying].artists[0],
+                album: Player.Database[Player.NowPlaying].album,
+                artwork: [ { src: Player.Database[Player.NowPlaying].thumbnail } ]
+            });
+        }
     };
 
-    Player.Search = (query) => {
+Player.Search = (query) => {
         query = query.toLowerCase();
 
         let searchStartIndex = 0;
