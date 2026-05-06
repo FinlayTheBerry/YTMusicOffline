@@ -10,4 +10,4 @@ if [ ! -d "venv" ]; then
 fi
 
 source venv/bin/activate
-python server.py
+exec python server.py

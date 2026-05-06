@@ -56,13 +56,13 @@
                     textHtml += ", and others";
                     break;
             }
-            const releaseDateObj = new Date(song.releaseDate * 1000);
-            const releaseDay = ("0" + releaseDateObj.getUTCDate().toString()).slice(-2);
-            const releaseMonth = ("0" + (releaseDateObj.getUTCMonth() + 1).toString()).slice(-2);
-            const releaseYear = ("000" + releaseDateObj.getUTCFullYear().toString()).slice(-4);
-            const releaseDateStr = releaseMonth + "/" + releaseDay + "/" + releaseYear;
-            text += " released on " + releaseDateStr;
-            textHtml += " released on " + highlightStart + releaseDateStr + highlightEnd;
+            // const releaseDateObj = new Date(song.releaseDate * 1000);
+            // const releaseDay = ("0" + releaseDateObj.getUTCDate().toString()).slice(-2);
+            // const releaseMonth = ("0" + (releaseDateObj.getUTCMonth() + 1).toString()).slice(-2);
+            // const releaseYear = ("000" + releaseDateObj.getUTCFullYear().toString()).slice(-4);
+            // const releaseDateStr = releaseMonth + "/" + releaseDay + "/" + releaseYear;
+            // text += " released on " + releaseDateStr;
+            // textHtml += " released on " + highlightStart + releaseDateStr + highlightEnd;
             return { text: text, textHtml: textHtml };
         });
     };
