@@ -11,6 +11,62 @@
     let AudioElement = null;
     let ElementRefrencesNull = true;
 
+    const RegenRuntimeData = () => {
+        const highlightStart = "<span class=\"element_highlight\">";
+        const highlightEnd = "</span>";
+
+        Player.RuntimeData = Player.Database.map(song => {
+            let text = song.title;
+            let textHtml = highlightStart + song.title + highlightEnd;
+            if (song.album != undefined && song.album != null && song.album != "") {
+                text += " from " + song.album;
+                textHtml += " from " + highlightStart + song.album + highlightEnd;
+            }
+            switch (song.artists.length) {
+                case 0:
+                    text += " by unknown artist";
+                    textHtml += " by unknown artist";
+                    break;
+                case 1:
+                    text += " by " + song.artists[0];
+                    textHtml += " by " + highlightStart + song.artists[0] + highlightEnd;
+                    break;
+                case 2:
+                    text += " by " + song.artists[0];
+                    text += ", and " + song.artists[1];
+                    textHtml += " by " + highlightStart + song.artists[0] + highlightEnd;
+                    textHtml += ", and " + highlightStart + song.artists[1] + highlightEnd;
+                    break;
+                case 3:
+                    text += " by " + song.artists[0];
+                    text += ", " + song.artists[1];
+                    text += ", and " + song.artists[2];
+                    textHtml += " by " + highlightStart + song.artists[0] + highlightEnd;
+                    textHtml += ", " + highlightStart + song.artists[1] + highlightEnd;
+                    textHtml += ", and " + highlightStart + song.artists[2] + highlightEnd;
+                    break;
+                default:
+                    text += " by " + song.artists[0];
+                    text += ", " + song.artists[1];
+                    text += ", " + song.artists[2];
+                    text += ", and others";
+                    textHtml += " by " + highlightStart + song.artists[0] + highlightEnd;
+                    textHtml += ", " + highlightStart + song.artists[1] + highlightEnd;
+                    textHtml += ", " + highlightStart + song.artists[2] + highlightEnd;
+                    textHtml += ", and others";
+                    break;
+            }
+            const releaseDateObj = new Date(song.releaseDate * 1000);
+            const releaseDay = ("0" + releaseDateObj.getUTCDate().toString()).slice(-2);
+            const releaseMonth = ("0" + (releaseDateObj.getUTCMonth() + 1).toString()).slice(-2);
+            const releaseYear = ("000" + releaseDateObj.getUTCFullYear().toString()).slice(-4);
+            const releaseDateStr = releaseMonth + "/" + releaseDay + "/" + releaseYear;
+            text += " released on " + releaseDateStr;
+            textHtml += " released on " + highlightStart + releaseDateStr + highlightEnd;
+            return { text: text, textHtml: textHtml };
+        });
+    };
+
     const LoadDatabase = () => {
         fetch("/database/database.json").then((result) => {
             result.json().then((result) => {
@@ -19,59 +75,7 @@
                 VSLib.SetDataset(Player.Database);
                 ThumbLib.SetDataset(Player.Database.map(song => song.thumbnail));
 
-                const highlightStart = "<span class=\"element_highlight\">";
-                const highlightEnd = "</span>";
-
-                Player.RuntimeData = Player.Database.map(song => {
-                    let text = song.title;
-                    let textHtml = highlightStart + song.title + highlightEnd;
-                    if (song.album != undefined && song.album != null && song.album != "") {
-                        text += " from " + song.album;
-                        textHtml += " from " + highlightStart + song.album + highlightEnd;
-                    }
-                    switch (song.artists.length) {
-                        case 0:
-                            text += " by unknown artist";
-                            textHtml += " by unknown artist";
-                            break;
-                        case 1:
-                            text += " by " + song.artists[0];
-                            textHtml += " by " + highlightStart + song.artists[0] + highlightEnd;
-                            break;
-                        case 2:
-                            text += " by " + song.artists[0];
-                            text += ", and " + song.artists[1];
-                            textHtml += " by " + highlightStart + song.artists[0] + highlightEnd;
-                            textHtml += ", and " + highlightStart + song.artists[1] + highlightEnd;
-                            break;
-                        case 3:
-                            text += " by " + song.artists[0];
-                            text += ", " + song.artists[1];
-                            text += ", and " + song.artists[2];
-                            textHtml += " by " + highlightStart + song.artists[0] + highlightEnd;
-                            textHtml += ", " + highlightStart + song.artists[1] + highlightEnd;
-                            textHtml += ", and " + highlightStart + song.artists[2] + highlightEnd;
-                            break;
-                        default:
-                            text += " by " + song.artists[0];
-                            text += ", " + song.artists[1];
-                            text += ", " + song.artists[2];
-                            text += ", and others";
-                            textHtml += " by " + highlightStart + song.artists[0] + highlightEnd;
-                            textHtml += ", " + highlightStart + song.artists[1] + highlightEnd;
-                            textHtml += ", " + highlightStart + song.artists[2] + highlightEnd;
-                            textHtml += ", and others";
-                            break;
-                    }
-                    const releaseDateObj = new Date(song.releaseDate * 1000);
-                    const releaseDay = ("0" + releaseDateObj.getUTCDate().toString()).slice(-2);
-                    const releaseMonth = ("0" + (releaseDateObj.getUTCMonth() + 1).toString()).slice(-2);
-                    const releaseYear = ("000" + releaseDateObj.getUTCFullYear().toString()).slice(-4);
-                    const releaseDateStr = releaseMonth + "/" + releaseDay + "/" + releaseYear;
-                    text += " released on " + releaseDateStr;
-                    textHtml += " released on " + highlightStart + releaseDateStr + highlightEnd;
-                    return { text: text, textHtml: textHtml };
-                });
+                RegenRuntimeData();
 
                 console.timeEnd("PageLoad");
             });
@@ -104,30 +108,40 @@
         SetElementRefrences();
     }
 
+    const RandomRange = (min, max) => {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min);
+    };
+
     Player.PlaySong = (index) => {
         AudioElement.pause();
         AudioElement.currentTime = 0;
-        if (index == null) {
+        Player.NowPlaying = index;
+
+        if (Player.NowPlaying == null) {
             AudioElement.src = "";
         } else {
-            AudioElement.src = Player.Database[index].src;
+            AudioElement.src = Player.Database[Player.NowPlaying].src;
             AudioElement.play();
         }
-
-        Player.NowPlaying = index;
         Gui.RefreshPlayer();
 
         if ("mediaSession" in navigator) {
-            navigator.mediaSession.metadata = new MediaMetadata({
-                title: Player.Database[Player.NowPlaying].title,
-                artist: Player.Database[Player.NowPlaying].artists[0],
-                album: Player.Database[Player.NowPlaying].album,
-                artwork: [ { src: Player.Database[Player.NowPlaying].thumbnail } ]
-            });
+            if (Player.NowPlaying == null) {
+                navigator.mediaSession.metadata = null;
+            } else {
+                navigator.mediaSession.metadata = new MediaMetadata({
+                    title: Player.Database[Player.NowPlaying].title,
+                    artist: Player.Database[Player.NowPlaying].artists[0],
+                    album: Player.Database[Player.NowPlaying].album,
+                    artwork: [{ src: Player.Database[Player.NowPlaying].thumbnail }]
+                });
+            }
         }
     };
 
-Player.Search = (query) => {
+    Player.Search = (query) => {
         query = query.toLowerCase();
 
         let searchStartIndex = 0;
@@ -177,6 +191,17 @@ Player.Search = (query) => {
 
         SaveDatabase();
     };
+
+    Player.Next = () => {
+        if (Player.NowPlaying == null) {
+            return;
+        }
+
+        Player.PlaySong(RandomRange(0, Player.Database.length));
+    };
+    navigator.mediaSession.setActionHandler("nexttrack", () => {
+        Player.Next();
+    });
 
     globalThis.Player = Player;
 })();

@@ -55,12 +55,12 @@
             </div>
             <div class="player_layer_middle player_flex_layer">
                 <p class="player_loop player_link" onclick="Player.ToggleLoop()">Loop❌</p>
-                <p class="player_stop player_link" onclick="Player.PlaySong(null)">Stop</p>
+                <p class="player_stop player_link" onclick="Player.Next()">Next</p>
                 <p class="player_watch_original player_link">Watch Original</p>
                 <div class="player_favorite player_link"><div class="player_favorite_text">Favorite</div></div>
             </div>
             <div class="player_layer_bottom player_flex_layer">
-                <audio class="player_audio" fetchpriority="high" controls></audio>
+                <audio class="player_audio" fetchpriority="high" onended="Player.Next()" controls></audio>
             </div>
         </div>
     </div>

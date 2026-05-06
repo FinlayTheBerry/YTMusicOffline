@@ -97,6 +97,7 @@
     let PlayerLoopElement = null;
     let SearchBarElement = null;
     let FavoriteButton = null;
+    let FavoriteButtonText = null;
     let ElementRefrencesNull = true;
     const SetElementRefrences = () => {
         PlayerThumbnailElement = document.querySelector(".player_thumbnail");
@@ -122,11 +123,12 @@
             SearchBarElement.select();
         });
         FavoriteButton = document.querySelector(".player_favorite");
+        FavoriteButtonText = document.querySelector(".player_favorite_text");
         ElementRefrencesNull = false;
 
+        const FavoriteButtonOriginalText = FavoriteButtonText.textContent;
         const FavoriteButtonStartCharging = () => { FavoriteButton.classList.add("charging") };
         const FavoriteButtonStopCharging = () => { FavoriteButton.classList.remove("charging") };
-
         FavoriteButton.addEventListener("pointerdown", FavoriteButtonStartCharging);
         FavoriteButton.addEventListener("pointerup", FavoriteButtonStopCharging);
         FavoriteButton.addEventListener("pointerleave", FavoriteButtonStopCharging);
@@ -134,8 +136,10 @@
         FavoriteButton.addEventListener("transitionend", (e) => {
           const currentFavoriteButtonChargePercentage = getComputedStyle(FavoriteButton).getPropertyValue("--favorite_button_charge_percentage").trim();
           if (e.propertyName === "--favorite_button_charge_percentage" && currentFavoriteButtonChargePercentage === "100%") {
-            Player.Favorite();
+            Player.Favorite();            
             FavoriteButtonStopCharging();
+            FavoriteButtonText.textContent = "Done";
+            setTimeout(() => { FavoriteButtonText.textContent = FavoriteButtonOriginalText; }, 1000);
           }
         });
 
