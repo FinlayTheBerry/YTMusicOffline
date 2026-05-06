@@ -111,17 +111,24 @@
     const RandomRange = (min, max) => {
         const range = max - min;
         if (range <= 0) return min;
-    
+
         let mask = 1;
-        let temp = range - 1;
-        while (temp >>= 1) {
+        let bitCount = 1;
+        for (let i = range - 1; i >>= 1; i > 0) {
             mask = (mask << 1) | 1;
+            bitCount++;
         }
 
-        const array = new Uint8Array(1);
+        const byteCount = Math.ceil(bitCount / 8);
+        const array = new Uint8Array(byteCount);
+
         while (true) {
             window.crypto.getRandomValues(array);
-            const result = array[0] & mask;
+            let result = 0;
+            for (let i = 0; i < byteCount; i++) {
+                result = (result << 8) | array[i];
+            }
+            result = result & mask;
             if (result < range) {
                 return result + min;
             }
@@ -207,10 +214,6 @@
     };
 
     Player.Next = () => {
-        if (Player.NowPlaying == null) {
-            return;
-        }
-
         Player.PlaySong(RandomRange(0, Player.Database.length));
     };
     navigator.mediaSession.setActionHandler("nexttrack", () => {
