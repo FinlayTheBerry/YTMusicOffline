@@ -551,7 +551,7 @@ def Module3():
 
 
 def main():
-    # Module1()
+    Module1()
     Module2()
     Module3()
     print("All tasks completed successfully")
