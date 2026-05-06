@@ -109,10 +109,24 @@
     }
 
     const RandomRange = (min, max) => {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min) + min);
-    };
+        const range = max - min;
+        if (range <= 0) return min;
+    
+        let mask = 1;
+        let temp = range - 1;
+        while (temp >>= 1) {
+            mask = (mask << 1) | 1;
+        }
+
+        const array = new Uint8Array(1);
+        while (true) {
+            window.crypto.getRandomValues(array);
+            const result = array[0] & mask;
+            if (result < range) {
+                return result + min;
+            }
+        }
+    }
 
     Player.PlaySong = (index) => {
         AudioElement.pause();
