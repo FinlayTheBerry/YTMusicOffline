@@ -23,7 +23,7 @@
             userdata.containerElement.style.visibility = "hidden";
         } else {
             userdata.containerElement.style.visibility = "visible";
-            userdata.textElement.innerHTML = Player.RuntimeData[index].textHtml;
+            userdata.textElement.innerHTML = value.RuntimeData.textHtml;
         }
 
         return userdata;
@@ -41,7 +41,11 @@
     });
 
     Gui.OnElementClicked = (element) => {
-        Player.PlaySong(Userdata.get(element.parentElement).index);
+        if (Player.ShowingQueue) {
+            Player.PlaySong(Userdata.get(element.parentElement).value);
+        } else {
+            Player.QueueAdd(Userdata.get(element.parentElement).value, true);
+        }
     };
 
     let PortraitMode = undefined;
@@ -63,7 +67,11 @@
     window.addEventListener("resize", OnWindowResize);
     OnWindowResize();
 
-    Gui.OnSearchButtonClicked = () => {
+    Gui.OnSearchClearButton = () => {
+        SearchBarElement.value = "";
+        Player.Search("");
+    };
+    Gui.OnSearchSubmitButton = () => {
         Player.Search(SearchBarElement.value);
     };
 
@@ -72,15 +80,21 @@
             PlayerTextElement.innerHTML = "Nothing is playing...";
             PlayerThumbnailElement.style.visibility = "hidden";
         } else {
-            PlayerTextElement.innerHTML = Player.RuntimeData[Player.NowPlaying].textHtml;
-            PlayerThumbnailElement.src = Player.Database[Player.NowPlaying].thumbnail;
+            PlayerTextElement.innerHTML = Player.NowPlaying.RuntimeData.textHtml;
+            PlayerThumbnailElement.src = Player.NowPlaying.thumbnail;
             PlayerThumbnailElement.style.visibility = "visible";
         }
 
-        if (Player.Loop) {
-            PlayerLoopElement.textContent = "Loop✅";
+        if (Player.GetLoop()) {
+            PlayerLoopElement.textContent = "🔁";
         } else {
-            PlayerLoopElement.textContent = "Loop❌";
+            PlayerLoopElement.textContent = "🔄";
+        }
+
+        if (Player.ShowingQueue) {
+            PlayerShowQueueElement.textContent = "Show All";
+        } else {
+            PlayerShowQueueElement.textContent = "Show Queue";
         }
     };
 
@@ -93,8 +107,8 @@
 
     let PlayerThumbnailElement = null;
     let PlayerTextElement = null;
-    let PlayerWatchOriginalElement = null;
     let PlayerLoopElement = null;
+    let PlayerShowQueueElement = null;
     let SearchBarElement = null;
     let FavoriteButton = null;
     let FavoriteButtonText = null;
@@ -102,18 +116,12 @@
     const SetElementRefrences = () => {
         PlayerThumbnailElement = document.querySelector(".player_thumbnail");
         PlayerTextElement = document.querySelector(".player_text");
-        PlayerWatchOriginalElement = document.querySelector(".player_watch_original");
-        PlayerWatchOriginalElement.addEventListener("click", (event) => {
-            event.preventDefault();
-            if (Player.NowPlaying != null) {
-                window.open(Player.Database[Player.NowPlaying].srcUrl, "_blank");
-            }
-        });
         PlayerLoopElement = document.querySelector(".player_loop");
+        PlayerShowQueueElement = document.querySelector(".player_show_queue");
         SearchBarElement = document.querySelector(".search_bar");
         SearchBarElement.addEventListener("keydown", (event) => {
             if (event.key == "Enter") {
-                Gui.OnSearchButtonClicked();
+                Gui.OnSearchSubmitButton();
                 SearchBarElement.blur();
             } else if (event.key == "Escape") {
                 SearchBarElement.blur();
@@ -136,7 +144,9 @@
         FavoriteButton.addEventListener("transitionend", (e) => {
           const currentFavoriteButtonChargePercentage = getComputedStyle(FavoriteButton).getPropertyValue("--favorite_button_charge_percentage").trim();
           if (e.propertyName === "--favorite_button_charge_percentage" && currentFavoriteButtonChargePercentage === "100%") {
-            Player.Favorite();            
+            if (Player.NowPlaying != null) {
+                Player.Favorite(Player.NowPlaying);           
+            }
             FavoriteButtonStopCharging();
             FavoriteButtonText.textContent = "Done";
             setTimeout(() => { FavoriteButtonText.textContent = FavoriteButtonOriginalText; }, 1000);
