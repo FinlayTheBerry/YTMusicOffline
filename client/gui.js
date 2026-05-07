@@ -153,7 +153,7 @@
           const currentPlayerFavoriteButtonChargePercentage = getComputedStyle(PlayerFavoriteButton).getPropertyValue("--favorite_button_charge_percentage").trim();
           if (e.propertyName === "--favorite_button_charge_percentage" && currentPlayerFavoriteButtonChargePercentage === "100%") {
             if ("vibrate" in navigator) {
-                navigator.vibrate(100);
+                navigator.vibrate(150);
             }
             if (Player.NowPlaying != null) {
                 Player.Favorite(Player.NowPlaying);           
