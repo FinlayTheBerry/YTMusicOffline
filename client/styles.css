@@ -146,6 +146,10 @@ body {
   justify-content: flex-start;
 }
 
+.player_text {
+  user-select: none;
+}
+
 .player_thumbnail {
   height: 100%;
   width: auto;

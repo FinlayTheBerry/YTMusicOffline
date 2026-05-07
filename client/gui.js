@@ -148,14 +148,14 @@
         PlayerFavoriteButton.addEventListener("transitionend", (e) => {
           const currentPlayerFavoriteButtonChargePercentage = getComputedStyle(PlayerFavoriteButton).getPropertyValue("--favorite_button_charge_percentage").trim();
           if (e.propertyName === "--favorite_button_charge_percentage" && currentPlayerFavoriteButtonChargePercentage === "100%") {
+            if ("vibrate" in navigator) {
+                navigator.vibrate(200);
+            }
             if (Player.NowPlaying != null) {
                 Player.Favorite(Player.NowPlaying);           
             }
             PlayerFavoriteButtonStopCharging();
             PlayerFavoriteButtonText.textContent = "Done!";
-            if ("vibrate" in navigator) {
-                navigator.vibrate(300);
-            }
             setTimeout(() => { PlayerFavoriteButtonText.textContent = PlayerFavoriteButtonOriginalText; }, 1000);
           }
         });
