@@ -169,7 +169,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap: 30px;
+  gap: 15px;
 }
 
 .player_layer_middle {
