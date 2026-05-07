@@ -166,3 +166,54 @@
 
     globalThis.Gui = Gui;
 })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Select all containers
+const containers = document.querySelectorAll('.element_container');
+
+containers.forEach(container => {
+    // Each container needs its own local state
+    let startX = 0;
+    let currentX = 0;
+    let totalOffset = 0;
+
+    container.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        container.style.transition = 'none';
+    }, { passive: true });
+
+    container.addEventListener('touchmove', (e) => {
+        const touchX = e.touches[0].clientX;
+        const deltaX = touchX - startX;
+        
+        // Calculate position based on THIS element's previous offset
+        currentX = totalOffset + deltaX;
+
+        // Apply translation only to the element being touched
+        container.style.transform = `translateX(${currentX}px)`;
+    });
+
+    container.addEventListener('touchend', () => {
+        // Save the final position for THIS specific element
+        totalOffset = currentX;
+        container.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    });
+});

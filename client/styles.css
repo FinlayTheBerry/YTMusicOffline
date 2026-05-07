@@ -98,6 +98,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  will-change: transform;
 }
 
 .vslib_scroll {
