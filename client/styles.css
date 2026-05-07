@@ -113,6 +113,8 @@ body {
   aspect-ratio: 1 / 1;
   object-fit: cover;
   user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: none;
 }
 
 .element_text_container {
@@ -129,6 +131,8 @@ body {
 .element_text {
   width: 100%;
   user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: none;
 }
 
 .element_highlight {
@@ -148,6 +152,8 @@ body {
 
 .player_text {
   user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: none;
 }
 
 .player_thumbnail {
@@ -156,6 +162,8 @@ body {
   aspect-ratio: 1 / 1;
   object-fit: cover;
   user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: none;
 }
 
 .player_flex_container {
@@ -214,6 +222,8 @@ body {
 .player_button_text {
   color: var(--text-color);
   user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: none;
 }
 
 .player_button_text:active {
