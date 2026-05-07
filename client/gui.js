@@ -53,7 +53,7 @@
         if (window.innerHeight > window.innerWidth) {
             if (PortraitMode !== true) {
                 document.documentElement.style.setProperty("--search-container-height", "75px");
-                document.documentElement.style.setProperty("--player-container-height", "350px");
+                document.documentElement.style.setProperty("--player-container-height", "250px");
                 PortraitMode = true;
             }
         } else {
