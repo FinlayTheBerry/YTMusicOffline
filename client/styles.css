@@ -73,7 +73,7 @@ body {
 }
 
 .search_button:active,
-.search_button:hover {
+.search_button:active {
   color: var(--text-color);
   border-top: var(--border-size) solid var(--text-color);
   border-bottom: var(--border-size) solid var(--text-color);
@@ -200,7 +200,7 @@ body {
   contain: strict;
 }
 
-.player_button:hover {
+.player_button:active {
   border: 2px solid cornflowerblue;
 }
 
@@ -209,7 +209,7 @@ body {
   user-select: none;
 }
 
-.player_button_text:hover {
+.player_button_text:active {
   color: cornflowerblue;
 }
 
@@ -239,6 +239,6 @@ body {
   background-image: linear-gradient(to right, var(--background-color) var(--favorite_button_charge_percentage), var(--text-color) var(--favorite_button_charge_percentage));
 }
 
-.player_favorite_button:hover .player_favorite_button_text {
+.player_favorite_button:active .player_favorite_button_text {
   background-image: linear-gradient(to right, var(--background-color) var(--favorite_button_charge_percentage), cornflowerblue var(--favorite_button_charge_percentage));
 }
