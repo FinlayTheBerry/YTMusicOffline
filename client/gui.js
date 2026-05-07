@@ -46,7 +46,11 @@
 
     Gui.OnElementClicked = (element, queue) => {
         if (queue) {
-            Player.QueueAdd(Userdata.get(element.parentElement).value, true);
+            if (Player.ShowingQueue) {
+                Player.QueueRemove(Userdata.get(element.parentElement).value);
+            } else {
+                Player.QueueAdd(Userdata.get(element.parentElement).value, true);
+            }
         } else {
             Player.PlaySong(Userdata.get(element.parentElement).value);
         }
