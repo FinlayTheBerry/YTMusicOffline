@@ -55,6 +55,8 @@
                         text += " from " + song.album;
                         textHtml += " from " + highlightStart + song.album + highlightEnd;
                     }
+                    text += "\n";
+                    textHtml += "<br/>"
                     switch (song.artists.length) {
                         case 0:
                             text += " by unknown artist";
