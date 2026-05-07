@@ -168,5 +168,9 @@
         SetElementRefrences();
     }
 
+    document.body.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+    });
+
     globalThis.Gui = Gui;
 })();
