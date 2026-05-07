@@ -3,7 +3,7 @@
 (() => {
     const Gui = {};
 
-    VSLib.SetElementsPerScreen(9);
+    VSLib.SetElementsPerScreen(12);
 
     let Userdata = new Map();
     VSLib.SetRebindCallback((element, index, value, userdata) => {
@@ -59,7 +59,7 @@
         } else {
             if (PortraitMode !== false) {
                 document.documentElement.style.setProperty("--search-container-height", "50px");
-                document.documentElement.style.setProperty("--player-container-height", "215px");
+                document.documentElement.style.setProperty("--player-container-height", "150px");
                 PortraitMode = false;
             }
         }
