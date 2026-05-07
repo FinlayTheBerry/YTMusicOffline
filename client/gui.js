@@ -3,7 +3,7 @@
 (() => {
     const Gui = {};
 
-    VSLib.SetElementsPerScreen(10);
+    VSLib.SetElementsPerScreen(9);
 
     let Userdata = new Map();
     VSLib.SetRebindCallback((element, index, value, userdata) => {
@@ -53,13 +53,13 @@
         if (window.innerHeight > window.innerWidth) {
             if (PortraitMode !== true) {
                 document.documentElement.style.setProperty("--search-container-height", "75px");
-                document.documentElement.style.setProperty("--player-container-height", "250px");
+                document.documentElement.style.setProperty("--player-container-height", "350px");
                 PortraitMode = true;
             }
         } else {
             if (PortraitMode !== false) {
                 document.documentElement.style.setProperty("--search-container-height", "50px");
-                document.documentElement.style.setProperty("--player-container-height", "150px");
+                document.documentElement.style.setProperty("--player-container-height", "215px");
                 PortraitMode = false;
             }
         }
