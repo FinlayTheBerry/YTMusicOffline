@@ -4,6 +4,7 @@
     const Gui = {};
 
     VSLib.SetElementsPerScreen(12);
+    VSLib.SetOverscrollHeightInElements(11);
 
     let Userdata = new Map();
     VSLib.SetRebindCallback((element, index, value, userdata) => {
@@ -52,6 +53,7 @@
                 Player.QueueAdd(Userdata.get(element.parentElement).value, true);
             }
         } else {
+            Player.QueueInsert(Userdata.get(element.parentElement).value);
             Player.PlaySong(Userdata.get(element.parentElement).value);
         }
     };

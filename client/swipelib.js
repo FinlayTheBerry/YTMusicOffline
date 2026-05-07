@@ -26,13 +26,11 @@
             const deltaX = e.clientX - startX;
             const deltaY = e.clientY - startY;
             if (state == 1) {
-                if ((Math.abs(deltaY) > deadzone || Math.abs(deltaX) > deadzone)) {
-                    if (Math.abs(deltaY) > Math.abs(deltaX)) {
-                        cancel(e);
-                    } else {
-                        state = 2;
-                    }
-                }            
+                if (deltaY > deadzone || deltaY < -deadzone || deltaX < -deadzone) {
+                    cancel(e);
+                } else if (deltaX > deadzone) {
+                    state = 2;
+                }
             }
             if (state == 2) {
                 if (deltaX > threshold_max) {
@@ -43,7 +41,8 @@
                     onSwipe();
                     cancel(e);
                 } else {
-                    element.style.transform = `translate(${deltaX}px, 0px)`;
+                    const clamped = Math.min(Math.max(deltaX, 0), threshold_max);
+                    element.style.transform = `translate(${clamped}px, 0px)`;
                 }
             }
         };

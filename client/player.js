@@ -191,6 +191,18 @@
         Player.Queue.splice(index, 1);
         UpdateView();
     };
+    Player.QueueInsert = (song) => {
+        const index = Player.Queue.indexOf(song);
+        if (index != -1) {
+            Player.Queue.splice(index, 1);
+        }
+        let insert = Player.Queue.length;
+        if (Player.NowPlaying != null) {
+            insert = Player.Queue.indexOf(Player.NowPlaying) + 1;
+        }
+        Player.Queue.splice(insert, 0, song);
+        UpdateView();
+    };
 
     Player.ToggleShowQueue = () => {
         Player.ShowingQueue = !Player.ShowingQueue;
