@@ -86,15 +86,15 @@
         }
 
         if (Player.GetLoop()) {
-            PlayerLoopElement.textContent = "🔁";
+            PlayerLoopButtonTextElement.textContent = "🔁";
         } else {
-            PlayerLoopElement.textContent = "🔄";
+            PlayerLoopButtonTextElement.textContent = "🔄";
         }
 
         if (Player.ShowingQueue) {
-            PlayerShowQueueElement.textContent = "Show All";
+            PlayerShowQueueButtonTextElement.textContent = "Show All";
         } else {
-            PlayerShowQueueElement.textContent = "Show Queue";
+            PlayerShowQueueButtonTextElement.textContent = "Show Queue";
         }
     };
 
@@ -107,17 +107,17 @@
 
     let PlayerThumbnailElement = null;
     let PlayerTextElement = null;
-    let PlayerLoopElement = null;
-    let PlayerShowQueueElement = null;
+    let PlayerLoopButtonTextElement = null;
+    let PlayerShowQueueButtonTextElement = null;
     let SearchBarElement = null;
-    let FavoriteButton = null;
-    let FavoriteButtonText = null;
+    let PlayerFavoriteButton = null;
+    let PlayerFavoriteButtonText = null;
     let ElementRefrencesNull = true;
     const SetElementRefrences = () => {
         PlayerThumbnailElement = document.querySelector(".player_thumbnail");
         PlayerTextElement = document.querySelector(".player_text");
-        PlayerLoopElement = document.querySelector(".player_loop");
-        PlayerShowQueueElement = document.querySelector(".player_show_queue");
+        PlayerLoopButtonTextElement = document.querySelector(".player_loop_button_text");
+        PlayerShowQueueButtonTextElement = document.querySelector(".player_show_queue_button_text");
         SearchBarElement = document.querySelector(".search_bar");
         SearchBarElement.addEventListener("keydown", (event) => {
             if (event.key == "Enter") {
@@ -130,26 +130,29 @@
         SearchBarElement.addEventListener("focus", () => {
             SearchBarElement.select();
         });
-        FavoriteButton = document.querySelector(".player_favorite");
-        FavoriteButtonText = document.querySelector(".player_favorite_text");
+        PlayerFavoriteButton = document.querySelector(".player_favorite_button");
+        PlayerFavoriteButtonText = document.querySelector(".player_favorite_button_text");
         ElementRefrencesNull = false;
 
-        const FavoriteButtonOriginalText = FavoriteButtonText.textContent;
-        const FavoriteButtonStartCharging = () => { FavoriteButton.classList.add("charging") };
-        const FavoriteButtonStopCharging = () => { FavoriteButton.classList.remove("charging") };
-        FavoriteButton.addEventListener("pointerdown", FavoriteButtonStartCharging);
-        FavoriteButton.addEventListener("pointerup", FavoriteButtonStopCharging);
-        FavoriteButton.addEventListener("pointerleave", FavoriteButtonStopCharging);
-        FavoriteButton.addEventListener("pointercancel", FavoriteButtonStopCharging);
-        FavoriteButton.addEventListener("transitionend", (e) => {
-          const currentFavoriteButtonChargePercentage = getComputedStyle(FavoriteButton).getPropertyValue("--favorite_button_charge_percentage").trim();
-          if (e.propertyName === "--favorite_button_charge_percentage" && currentFavoriteButtonChargePercentage === "100%") {
+        const PlayerFavoriteButtonOriginalText = PlayerFavoriteButtonText.textContent;
+        const PlayerFavoriteButtonStartCharging = () => { PlayerFavoriteButton.classList.add("charging") };
+        const PlayerFavoriteButtonStopCharging = () => { PlayerFavoriteButton.classList.remove("charging") };
+        PlayerFavoriteButton.addEventListener("pointerdown", PlayerFavoriteButtonStartCharging);
+        PlayerFavoriteButton.addEventListener("pointerup", PlayerFavoriteButtonStopCharging);
+        PlayerFavoriteButton.addEventListener("pointerleave", PlayerFavoriteButtonStopCharging);
+        PlayerFavoriteButton.addEventListener("pointercancel", PlayerFavoriteButtonStopCharging);
+        PlayerFavoriteButton.addEventListener("transitionend", (e) => {
+          const currentPlayerFavoriteButtonChargePercentage = getComputedStyle(PlayerFavoriteButton).getPropertyValue("--favorite_button_charge_percentage").trim();
+          if (e.propertyName === "--favorite_button_charge_percentage" && currentPlayerFavoriteButtonChargePercentage === "100%") {
             if (Player.NowPlaying != null) {
                 Player.Favorite(Player.NowPlaying);           
             }
-            FavoriteButtonStopCharging();
-            FavoriteButtonText.textContent = "Done";
-            setTimeout(() => { FavoriteButtonText.textContent = FavoriteButtonOriginalText; }, 1000);
+            PlayerFavoriteButtonStopCharging();
+            PlayerFavoriteButtonText.textContent = "Done!";
+            if ("vibrate" in navigator) {
+                navigator.vibrate(200);
+            }
+            setTimeout(() => { PlayerFavoriteButtonText.textContent = PlayerFavoriteButtonOriginalText; }, 1000);
           }
         });
 
