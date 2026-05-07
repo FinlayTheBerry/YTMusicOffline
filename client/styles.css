@@ -99,6 +99,8 @@ body {
   align-items: center;
   justify-content: flex-start;
   will-change: transform;
+  touch-action: pan-y;
+  position: relative;
 }
 
 .vslib_scroll {

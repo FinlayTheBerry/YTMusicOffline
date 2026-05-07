@@ -14,6 +14,7 @@
     <!-- JS Scripts are low priority and run after DOM load -->
     <script src="/vslib/vslib.js" defer></script>
     <script src="/thumblib/thumblib.js" defer></script>
+    <script src="/swipelib.js" defer></script>
     <script src="/player.js" defer></script>
     <script src="/gui.js" defer></script>
 
@@ -37,7 +38,7 @@
         <div class="vslib_container vslib_global">
             <div class="vslib_scroll vslib_global">
                 <div class="vslib_element_template vslib_global">
-                    <div class="element_container" onclick="Gui.OnElementClicked(this)">
+                    <div class="element_container">
                         <img class="element_thumbnail" draggable="false">
                         <div class="element_text_container">
                             <p class="element_text"></p>
