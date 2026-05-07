@@ -34,7 +34,7 @@
         for (let element of elements) {
             imgElements.push(Userdata.get(element).thumbnailElement);
             if (!element.firstElementChild.dataset.swipeapplied) {
-                SwipeLib.OnSwipe(element.firstElementChild, () => { Gui.OnElementClicked(element.firstElementChild, true); }, () => { Gui.OnElementClicked(element.firstElementChild, true); }, () => { Gui.OnElementClicked(element.firstElementChild, false); });
+                SwipeLib.OnSwipe(element.firstElementChild, () => { Gui.OnElementClicked(element.firstElementChild, true); }, () => { Gui.OnElementClicked(element.firstElementChild, false); });
                 element.firstElementChild.dataset.swipeapplied = true;
             }
         }
