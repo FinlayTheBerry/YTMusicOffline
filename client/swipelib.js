@@ -38,7 +38,7 @@
                 if (deltaX > threshold_max) {
                     element.style.transform = `translate(${threshold_max}px, 0px)`;
                     if ("vibrate" in navigator) {
-                        navigator.vibrate(200);
+                        navigator.vibrate(100);
                     }
                     onSwipe();
                     cancel(e);
