@@ -8,7 +8,7 @@
         let startY = 0;
         let startX = 0;
         const deadzone = 15;
-        const threshold_max =150;
+        const threshold_max = 225;
 
         const start = (e) => {
             e.stopPropagation();
@@ -37,6 +37,9 @@
             if (state == 2) {
                 if (deltaX > threshold_max) {
                     element.style.transform = `translate(${threshold_max}px, 0px)`;
+                    if ("vibrate" in navigator) {
+                        navigator.vibrate(300);
+                    }
                     onSwipe();
                     cancel(e);
                 } else {

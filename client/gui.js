@@ -154,7 +154,7 @@
             PlayerFavoriteButtonStopCharging();
             PlayerFavoriteButtonText.textContent = "Done!";
             if ("vibrate" in navigator) {
-                navigator.vibrate(200);
+                navigator.vibrate(300);
             }
             setTimeout(() => { PlayerFavoriteButtonText.textContent = PlayerFavoriteButtonOriginalText; }, 1000);
           }
