@@ -176,5 +176,9 @@
         e.preventDefault();
     });
 
+    document.body.addEventListener("dragstart", (e) => {
+        e.preventDefault();
+    });
+
     globalThis.Gui = Gui;
 })();
