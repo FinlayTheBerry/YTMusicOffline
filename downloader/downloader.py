@@ -242,44 +242,8 @@ def IsVideoUnavailable(video):
 def TraceVideo(videoId):
     musicUrl = f"https://music.youtube.com/watch?v={videoId}"
     marker = "ytcfg.set("
-    # headers = { "User-Agent": UserAgent }
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:150.0) Gecko/20100101 Firefox/150.0',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.9',
-        'Upgrade-Insecure-Requests': '1',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'none',
-        'Connection': 'keep-alive',
-    }
-    cookies = {
-        '__Secure-ROLLOUT_TOKEN': 'CLyzobDd2cKF8gEQoYj0vrSrkwMYy4uHhNGRlAM%3D',
-        'VISITOR_INFO1_LIVE': 'WAN-HW2iRqQ',
-        'VISITOR_PRIVACY_METADATA': 'CgJVUxIEGgAgbg%3D%3D',
-        'PREF': 'f6=40000080&f7=100&tz=America.Los_Angeles&repeat=NONE&f5=30000&autoplay=true&volume=100',
-        '__Secure-1PSIDTS': 'sidts-CjQBhkeRdyCRLwJh8ziN1TVsqh7Y8pUbkmuqHfj8CT2mbJiS4HzEug7S8BmZticMMxdfoN2BEAA',
-        '__Secure-3PSIDTS': 'sidts-CjQBhkeRdyCRLwJh8ziN1TVsqh7Y8pUbkmuqHfj8CT2mbJiS4HzEug7S8BmZticMMxdfoN2BEAA',
-        'HSID': 'A2JerDTJw0pbTqXqt',
-        'SSID': 'AAXOuFk5rbBoiN_b5',
-        'APISID': 'jDrlYCPlFK618jMk/AXbBHi_wxjhosAcp0',
-        'SAPISID': 'WXRFw_v-rqDWwSb1/AGsRNSgph2SPLeFqW',
-        '__Secure-1PAPISID': 'WXRFw_v-rqDWwSb1/AGsRNSgph2SPLeFqW',
-        '__Secure-3PAPISID': 'WXRFw_v-rqDWwSb1/AGsRNSgph2SPLeFqW',
-        'SID': 'g.a0009QhWV6IsoqLTB1r5me4EANH78VXsDrd4NGy1oRNq0pS8KkAGpTOL8BXaM1tya7OaI0xFRgACgYKAbYSARESFQHGX2MivN-1dB2Mvx5BJBtLWDZSDxoVAUF8yKroOUxKI4UpKrtFLtZWn1nk0076',
-        '__Secure-1PSID': 'g.a0009QhWV6IsoqLTB1r5me4EANH78VXsDrd4NGy1oRNq0pS8KkAGcsZVthYcjYg9DInKdAgqcgACgYKAZkSARESFQHGX2MiXkBrEQskhsqkYOVYcWgSFhoVAUF8yKq2A_0Nbo5XaYwD9KHuHiyo0076',
-        '__Secure-3PSID': 'g.a0009QhWV6IsoqLTB1r5me4EANH78VXsDrd4NGy1oRNq0pS8KkAGT_gec-DXUBoDfNtpdIvduwACgYKAVUSARESFQHGX2MiNg84LfTcrOiWqFpvvA4H-hoVAUF8yKrT2gnlnWMS22vuty1bCm8S0076',
-        'LOGIN_INFO': 'AFmmF2swRQIgGL_bFCYzUQiG1ai13odpceoVhPXIzloekDCZgrYor6UCIQD5RAA5pZ1Gi87YKuPFG47Rkc8wpHXzoKzxjnQVWUxwUA:QUQ3MjNmenJWZlpZc2w2UW9DYndEZFpHWEIxanAtSnJNM2NJc3NsNmtnb0RTMDB5c3ZfUzY0UU9XNFZKbG9oZmFvSHVnbmk3M1MtdTlCT2gySkdnaTVWRE5icGIwOHhyckNzWFJHa1ZmSXk0dmk3QVBmM3NHTGlYdzFITW5PZndwR21ac0VmY0R4S2NzQ240Tk1VSVJRRF9ES0x0X1NTQktB',
-        'SIDCC': 'AKEyXzVsY_SruDCM9KphqDj4wKIjS2lCAIk3aizcpWuIWNgAs0DbLYz7CpmE4wddGEaHDyms-g',
-        '__Secure-1PSIDCC': 'AKEyXzU5huG8wdkQPOfOZcXWTXubnfFv5SrZC2zO_MB8_ubU0HoWeAp79VFdGje8_0F0v_L32N0',
-        '__Secure-3PSIDCC': 'AKEyXzURaLs0hkiECHtVNnwZ9r6oA6lJqQKyNmCUifldWQqhq35KPKqZCDHP3eFjm4iYO8vhrbY',
-        '__Secure-BUCKET': 'CMUH',
-        '__Secure-YNID': '18.YT=iulC1nKg7GCMS4oxfzk_gxlYRObwTvdwIsuFsfG322DYwlmPIWjBRoawgq6XX5sNhn3sSdqelFLC3TQMvjsLFrCvlimUSqUSuY0joOgTD6egP8HQrK1AmJUh6fqwAJsjksjUx08DmPgrwUKSc915x_OVcPoQSTy30-5aruWUJtg8QD1rbt5Sg1OPN1tbsKHNQXasgAA3b47oW-LXTxgKoQBhf5XvioLsR5wMcb6xUgrVzd0tPm-GEk2Mh-rl1KaZdE5sb-x5dqSBRpaeBB-xu3ar_Z0UNNQxSmvOeJEAzReIuf9-r_OHPBG6koejKSJXBEf86TON7Xiomy0zQzvZlA',
-        'YSC': 'wW9njxbeIVc',
-        'wide': '0',
-        'CONSISTENCY': 'AH5K9rZupymvuk-WQz2zWutEnQYP8oZw-a_jdXfCz2wGpeij6LGUDAhv8eqX0SGWpXh1U_TcmB_DwoK2ZuK-e5tp50L54YVsicMYZkEePqqLZpNoNXOM4_afRtZ9-scPb05q29QE2owEXvrCwlhxhka9BJAhf3piAR6U4NxSlTT1el6_B1IotEaszBUSNXhT-960sj1q0omJaKjWKB1mGO2oHSdU8A',
-    }
-    response = requests.get(musicUrl, headers=headers, cookies=cookies)
+    headers = { "User-Agent": UserAgent }
+    response = requests.get(musicUrl, headers=headers)
     response.raise_for_status()
     response_text = response.text
     startIndex = 0
