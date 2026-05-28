@@ -452,6 +452,7 @@ def DownloadAudioStream(song, audioStreamsDir, tempDir):
         "sleep_interval": SegmentDownloadMinDelay,
         "max_sleep_interval": SegmentDownloadMaxDelay,
         "ratelimit": SongDownloadRateLimit,
+        "remote_components": [ "ejs:github" ],
     }
     targetUrls = [ song["srcUrl"] ]
     
@@ -496,6 +497,7 @@ def Module3():
             songsInNeedOfAudioStreams.append(song)
         elif not song["src"] in existingFiles:
             PrintWarning(f"Audio stream for song {song["ytVideoId"]} is said to be at {song["src"]} but has been deleted.")
+            songsInNeedOfAudioStreams.append(song)
         else:
             existingFiles.remove(song["src"])
 
@@ -515,8 +517,8 @@ def Module3():
 
 
 def main():
-    Module1()
-    Module2()
+    # Module1()
+    # Module2()
     Module3()
     print("All tasks completed successfully")
     sys.exit(0)

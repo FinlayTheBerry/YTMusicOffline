@@ -204,6 +204,14 @@
         UpdateView();
     };
 
+    Player.ShuffleSearch = () => {
+        const DatabaseViewCopy = [...Player.DatabaseView];
+        while (DatabaseViewCopy.length > 0) {
+            const song = DatabaseViewCopy.splice(RandomRange(0, DatabaseViewCopy.length), 1)[0];
+            Player.QueueAdd(song, true);
+        }
+    };
+
     Player.ToggleShowQueue = () => {
         Player.ShowingQueue = !Player.ShowingQueue;
         UpdateView();
