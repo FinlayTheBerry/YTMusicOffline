@@ -34,6 +34,9 @@ import urllib.parse
 import time
 from datetime import datetime, timezone
 import random
+import shutil
+import math
+import re
 # Import pip dependencies
 import googleapiclient
 import googleapiclient.discovery
@@ -89,29 +92,42 @@ def PathToClientUrl(filePath):
     if not "..\\" in os.path.relpath(filePath, clientDir):
         return "/" + os.path.relpath(filePath, clientDir).replace("\\", "/")
     raise Exception(f"{filePath} is not within the client or database folders and therefore is innaccesable to the client.")
-def LoadSongDatabase():
-    databaseDir = os.path.realpath("database")
-    os.makedirs(databaseDir, exist_ok=True)
-    databasePath = os.path.join(databaseDir, "database.json")
-    if not os.path.exists(databasePath):
-        return []
-    else:
-        return json.loads(ReadFile(databasePath))
-def SaveSongDatabase(songDatabase):
-    databaseDir = os.path.realpath("database")
-    os.makedirs(databaseDir, exist_ok=True)
-    databasePath = os.path.join(databaseDir, "database.json")
-    WriteFile(databasePath, json.dumps(songDatabase, indent=4, ensure_ascii=False))
-os.chdir(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+def DeserializeJson(jsonStr):
+    return json.loads(jsonStr)
+def SerializeJson(jsonObj, compact=False):
+    return json.dumps(jsonObj, indent=(0 if compact else 4), ensure_ascii=False)
+def VisibleLength(value):
+    ansi_regex = re.compile(r"\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])")
+    printable_value = ansi_regex.sub("", value)
+    return len(printable_value)  
+def PrintGrid(values, padding=1):
+    term_width = shutil.get_terminal_size().columns
+    item_length = max([ VisibleLength(value) for value in values ]) + padding
+    columns = math.floor(term_width / item_length)
+    num_in_row = 0
+    line_count = 0
+    for i in range(len(values)):
+        print(values[i], end="")
+        num_in_row += 1
+        if i < len(values) - 1 and num_in_row < columns:
+            print(" " * (item_length - VisibleLength(values[i])), end="")
+        else:
+            print()
+            line_count += 1
+            num_in_row = 0
+os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 
 
 # Module 1 - Add New Songs To The Database
 def AuthApi():
-    userSecretsPath = os.path.realpath("downloader/user_secrets.json")
-    clientSecretsPath = os.path.realpath("downloader/client_secrets.json")
+    clientSecretsPath = os.path.realpath("./client_secrets.json")
+    if not os.path.exists(clientSecretsPath):
+        raise Exception("./client_secrets.json does not exist next to ytmusic-dl.py. See README.md for Google Cloud Platform setup.")
+
     credentials = None
 
+    userSecretsPath = os.path.realpath("./user_secrets.json")
     if os.path.exists(userSecretsPath):
         credentials = Credentials.from_authorized_user_file(userSecretsPath, [ "https://www.googleapis.com/auth/youtube.readonly" ])
         if credentials.expired:
@@ -120,48 +136,76 @@ def AuthApi():
             credentials = None
 
     if credentials == None:
-        os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
         flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(clientSecretsPath, [ "https://www.googleapis.com/auth/youtube.readonly" ])
         credentials = flow.run_local_server(port=0)
 
     WriteFile(userSecretsPath, credentials.to_json())
 
     return googleapiclient.discovery.build("youtube", "v3", credentials=credentials)
-def EnumMyPlaylists(youtubeApi, includeLikes=False, includeLikedMusic=False):
+def EnumMyPlaylists(youtubeApi, includeLikes=False, includeLikedMusic=False, includeWatchLater=False):
     output = []
     if includeLikes:
-        output.append("LL")
+        output.append({ "id": "LL", "title": "Liked videos" })
     if includeLikedMusic:
-        output.append("LM")
+        output.append({ "id": "LM", "title": "Liked Music" })
+    if includeWatchLater:
+        output.append({ "id": "WL", "title": "Watch later" })
 
-    request = youtubeApi.playlists().list(
-        part="id",
-        mine=True,
-        maxResults=50
-    )
-    response = request.execute()
-    for item in response["items"]:
-        output.append(item["id"])
-    if DictionaryHas(response, "nextPageToken"):
-        nextPageToken = response["nextPageToken"]
-    else:
-        nextPageToken = None
-
-    while nextPageToken != None:
+    nextPageToken = None
+    while True:
         request = youtubeApi.playlists().list(
-            part="id",
+            part="id,snippet",
             mine=True,
             maxResults=50,
             pageToken=nextPageToken
         )
         response = request.execute()
         for item in response["items"]:
-            output.append(item["id"])
+            output.append({ "id": item["id"], "title": item["snippet"]["title"] } )
         if DictionaryHas(response, "nextPageToken"):
             nextPageToken = response["nextPageToken"]
         else:
-            nextPageToken = None
+            break
     return output
+def SelectPlaylists(playlists):
+    selectedPlaylistsPath = os.path.realpath("./selected_playlists.json")
+    selectedPlaylists = DeserializeJson(ReadFile(selectedPlaylistsPath, defaultContents="{\"default\":false,\"state\":{}}"))
+
+    for i in range(len(playlists)):
+        if not playlists[i]["id"] in selectedPlaylists["state"]:
+            selectedPlaylists["state"][playlists[i]["id"]] = selectedPlaylists["default"]
+    
+    while True:
+        playlistsFormatted = []
+        for i in range(len(playlists)):
+            if selectedPlaylists["state"][playlists[i]["id"]]:
+                playlistsFormatted.append(f"\033[32m{i}) {playlists[i]["title"]}\033[0m")
+            else:
+                playlistsFormatted.append(f"{i}) {playlists[i]["title"]}")
+        PrintGrid(playlistsFormatted, padding=1)
+
+        choice = input("playlist number = toggle, all = select all, none = select none, done = download selected: ")
+        
+        if choice == "done":
+            WriteFile(selectedPlaylistsPath, SerializeJson(selectedPlaylists))
+            output = []
+            for i in range(len(playlists)):
+                if selectedPlaylists["state"][playlists[i]["id"]]:
+                    output.append(playlists[i]["id"])
+            return output
+        elif choice == "all":
+            for i in range(len(playlists)):
+                selectedPlaylists["state"][playlists[i]["id"]] = True
+            selectedPlaylists["default"] = True
+        elif choice == "none":
+            for i in range(len(playlists)):
+                selectedPlaylists["state"][playlists[i]["id"]] = False
+            selectedPlaylists["default"] = False
+        else:
+            try:
+                selectedPlaylists["state"][playlists[int(choice)]["id"]] = not selectedPlaylists["state"][playlists[int(choice)]["id"]]
+            except:
+                print("Invalid choice")
 def EnumPlaylistContents(youtubeApi, playlistId):
     output = []
     request = youtubeApi.playlistItems().list(
@@ -176,7 +220,7 @@ def EnumPlaylistContents(youtubeApi, playlistId):
         nextPageToken = response["nextPageToken"]
     else:
         nextPageToken = None
-    
+
     while nextPageToken != None:
         request = youtubeApi.playlistItems().list(
             part="snippet",
@@ -192,18 +236,17 @@ def EnumPlaylistContents(youtubeApi, playlistId):
         else:
             nextPageToken = None
     return output
-def EnumMyVideos(youtubeApi, includeLikes=False, includeLikedMusic=False):
-    myPlaylistIds = EnumMyPlaylists(youtubeApi, includeLikes, includeLikedMusic)
-
-    myVideoIds = []
+def EnumPlaylistsContents(youtubeApi, playlistIds):
+    videoIds = []
     progress = 0
-    for myPlaylistId in myPlaylistIds:
-        for myVideoId in EnumPlaylistContents(youtubeApi, myPlaylistId):
-            if not myVideoId in myVideoIds:
-                myVideoIds.append(myVideoId)
+    for playlistId in playlistIds:
+        for videoId in EnumPlaylistContents(youtubeApi, playlistId):
+            if not videoId in videoIds:
+                videoIds.append(videoId)
         progress += 1
-        print(f"Progress: {progress} of {len(myPlaylistIds)}...")
-    return myVideoIds
+        print(f"Progress: {progress} of {len(playlistIds)}...")
+    return videoIds
+
 def GetVideoInfo(youtubeApi, infoNeededVideoIds, videoInfoDatabase):
     progress = 0
     while progress < len(infoNeededVideoIds):
@@ -220,6 +263,7 @@ def GetVideoInfo(youtubeApi, infoNeededVideoIds, videoInfoDatabase):
             nextVideoIds.remove(videoId)
         for videoId in nextVideoIds:
             PrintWarning(f"Unable to get video info for video Id {videoId}.")
+            videoInfoDatabase[videoId] = None
         progress += 50
         if progress > len(infoNeededVideoIds):
             progress = len(infoNeededVideoIds)
@@ -356,17 +400,24 @@ def AddNewVideosToSongDatabase(videoInfoDatabase, songDatabase):
     for ytVideoId in videoInfoDatabase:
         if not ytVideoId in ytVideoIdsAlreadyConverted:
             songDatabase.insert(0, ConvertVideoToSong(ytVideoId, videoInfoDatabase[ytVideoId]))
+
 def Module1():
-    print("Authenticating with YouTube Api...")
     youtubeApi = AuthApi()
 
-    print("Fetching playlist contents...")
-    infoNeededVideoIds = EnumMyVideos(youtubeApi, includeLikes=False, includeLikedMusic=True)
+    myPlaylists = EnumMyPlaylists(youtubeApi, False, True, False)
 
-    videoInfoDatabase = {}
+    selectedPlaylists = SelectPlaylists(myPlaylists)
+
+    print("Fetching playlist contents...")
+    infoNeededVideoIds = EnumPlaylistsContents(youtubeApi, selectedPlaylists)
+
+    videoInfoDatabase = DeserializeJson(ReadFile("./video_info.json", defaultContents="{}"))
     while len(infoNeededVideoIds) > 0:
+        infoNeededVideoIds = [videoId for videoId in infoNeededVideoIds if videoId not in videoInfoDatabase]
+
         print("Fetching video info for all videos currently without info...")
         GetVideoInfo(youtubeApi, infoNeededVideoIds, videoInfoDatabase)
+        WriteFile("./video_info.json", SerializeJson(videoInfoDatabase))
 
         print("Tracing unavailable videos to see if they were redirected...")
         TraceUnavailableVideos(infoNeededVideoIds, videoInfoDatabase)
@@ -517,8 +568,8 @@ def Module3():
 
 
 def main():
-    # Module1()
-    # Module2()
+    Module1()
+    Module2()
     Module3()
     print("All tasks completed successfully")
     sys.exit(0)
