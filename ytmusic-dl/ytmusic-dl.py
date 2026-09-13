@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/env python3
 
 
 
@@ -167,43 +167,39 @@ def EnumMyPlaylists(youtubeApi, includeLikes=False, includeLikedMusic=False, inc
         else:
             break
     return output
-def SelectPlaylists(playlists):
-    selectedPlaylistsPath = os.path.realpath("./selected_playlists.json")
-    selectedPlaylists = DeserializeJson(ReadFile(selectedPlaylistsPath, defaultContents="{\"default\":false,\"state\":{}}"))
-
-    for i in range(len(playlists)):
-        if not playlists[i]["id"] in selectedPlaylists["state"]:
-            selectedPlaylists["state"][playlists[i]["id"]] = selectedPlaylists["default"]
+def SelectPlaylists(allPlaylists, config):
+    for i in range(len(allPlaylists)):
+        if not allPlaylists[i]["id"] in config["playlistSelectState"]:
+            config["playlistSelectState"][allPlaylists[i]["id"]] = config["playlistSelectState"]
     
     while True:
         playlistsFormatted = []
-        for i in range(len(playlists)):
-            if selectedPlaylists["state"][playlists[i]["id"]]:
-                playlistsFormatted.append(f"\033[32m{i}) {playlists[i]["title"]}\033[0m")
+        for i in range(len(allPlaylists)):
+            if config["playlistSelectState"][allPlaylists[i]["id"]]:
+                playlistsFormatted.append(f"\033[32m{i}) {allPlaylists[i]["title"]}\033[0m")
             else:
-                playlistsFormatted.append(f"{i}) {playlists[i]["title"]}")
+                playlistsFormatted.append(f"{i}) {allPlaylists[i]["title"]}")
         PrintGrid(playlistsFormatted, padding=1)
 
         choice = input("playlist number = toggle, all = select all, none = select none, done = download selected: ")
         
         if choice == "done":
-            WriteFile(selectedPlaylistsPath, SerializeJson(selectedPlaylists))
             output = []
-            for i in range(len(playlists)):
-                if selectedPlaylists["state"][playlists[i]["id"]]:
-                    output.append(playlists[i]["id"])
+            for i in range(len(allPlaylists)):
+                if config["playlistSelectState"][allPlaylists[i]["id"]]:
+                    output.append(allPlaylists[i]["id"])
             return output
         elif choice == "all":
-            for i in range(len(playlists)):
-                selectedPlaylists["state"][playlists[i]["id"]] = True
-            selectedPlaylists["default"] = True
+            for i in range(len(allPlaylists)):
+                config["playlistSelectState"][allPlaylists[i]["id"]] = True
+            config["playlistSelectDefault"] = True
         elif choice == "none":
-            for i in range(len(playlists)):
-                selectedPlaylists["state"][playlists[i]["id"]] = False
-            selectedPlaylists["default"] = False
+            for i in range(len(allPlaylists)):
+                config["playlistSelectState"][allPlaylists[i]["id"]] = False
+            config["playlistSelectDefault"] = False
         else:
             try:
-                selectedPlaylists["state"][playlists[int(choice)]["id"]] = not selectedPlaylists["state"][playlists[int(choice)]["id"]]
+                config["playlistSelectState"][allPlaylists[int(choice)]["id"]] = not config["playlistSelectState"][allPlaylists[int(choice)]["id"]]
             except:
                 print("Invalid choice")
 def EnumPlaylistContents(youtubeApi, playlistId):
@@ -246,8 +242,7 @@ def EnumPlaylistsContents(youtubeApi, playlistIds):
         progress += 1
         print(f"Progress: {progress} of {len(playlistIds)}...")
     return videoIds
-
-def GetVideoInfo(youtubeApi, infoNeededVideoIds, videoInfoDatabase):
+def GetVideoInfo(youtubeApi, infoNeededVideoIds, cache):
     progress = 0
     while progress < len(infoNeededVideoIds):
         nextVideoIds = infoNeededVideoIds[progress:progress + 50]
@@ -259,27 +254,28 @@ def GetVideoInfo(youtubeApi, infoNeededVideoIds, videoInfoDatabase):
         response = request.execute()
         for video in response["items"]:
             videoId = video["id"]
-            videoInfoDatabase[videoId] = video
+            cache["videoInfoDB"][videoId] = video
             nextVideoIds.remove(videoId)
         for videoId in nextVideoIds:
-            PrintWarning(f"Unable to get video info for video Id {videoId}.")
-            videoInfoDatabase[videoId] = None
+            PrintWarning(f"Unable to get video info for video Id {videoId} (it's a ghost).")
+            if not videoId in cache["ghostVideoIds"]:
+                cache["ghostVideoIds"].append(videoId)
         progress += 50
         if progress > len(infoNeededVideoIds):
             progress = len(infoNeededVideoIds)
         print(f"Progress: {progress} of {len(infoNeededVideoIds)}...")
     infoNeededVideoIds.clear()
-def IsVideoUnavailable(video):
-    if DictionaryHas(video, "status.privacyStatus"):
-        privacyStatus = video["status"]["privacyStatus"]
+def IsVideoUnavailable(videoInfo):
+    if DictionaryHas(videoInfo, "status.privacyStatus"):
+        privacyStatus = videoInfo["status"]["privacyStatus"]
         if privacyStatus != "public" and privacyStatus != "unlisted":
             return True
-    if DictionaryHas(video, "contentDetails.regionRestriction.allowed"):
-        allowedCountries = video["contentDetails"]["regionRestriction"]["allowed"]
+    if DictionaryHas(videoInfo, "contentDetails.regionRestriction.allowed"):
+        allowedCountries = videoInfo["contentDetails"]["regionRestriction"]["allowed"]
         if allowedCountries != None and not "US" in allowedCountries:
             return True
-    if DictionaryHas(video, "contentDetails.regionRestriction.blocked"):
-        blockedCountries = video["contentDetails"]["regionRestriction"]["blocked"]
+    if DictionaryHas(videoInfo, "contentDetails.regionRestriction.blocked"):
+        blockedCountries = videoInfo["contentDetails"]["regionRestriction"]["blocked"]
         if blockedCountries != None and "US" in blockedCountries:
             return True
     return False
@@ -318,13 +314,7 @@ def TraceVideo(videoId):
             return None
         return tracedVideoId
     return None
-def TraceUnavailableVideos(infoNeededVideoIds, videoInfoDatabase):
-    traceNeededVideoIds = set()
-    for videoId in list(videoInfoDatabase.keys()):
-        if IsVideoUnavailable(videoInfoDatabase[videoId]):
-            traceNeededVideoIds.add(videoId)
-            del videoInfoDatabase[videoId]
-
+def TraceUnavailableVideos(traceNeededVideoIds, cache):
     progress = 0
     for videoId in traceNeededVideoIds:
         if progress != 0:
@@ -332,14 +322,18 @@ def TraceUnavailableVideos(infoNeededVideoIds, videoInfoDatabase):
         tracedVideoId = TraceVideo(videoId)
         if tracedVideoId == None:
             PrintWarning(f"Unable to trace unavailable video with video Id {videoId}.")
-        elif not tracedVideoId in videoInfoDatabase and not tracedVideoId in traceNeededVideoIds:
-            infoNeededVideoIds.append(tracedVideoId)
+            if not videoId in cache["unavailibleVideoIds"]:
+                cache["unavailibleVideoIds"].append(videoId)
+        else:
+            cache["videoRelocationDB"][videoId] = tracedVideoId
+            if not tracedVideoId in cache["videoInfoDB"] and not tracedVideoId in cache["ghostVideoIds"] and not tracedVideoId in cache["infoNeededVideoIds"]:
+                cache["infoNeededVideoIds"].append(tracedVideoId)
         progress += 1
         print(f"Progress: {progress} of {len(traceNeededVideoIds)}...")
-def GetBestThumbnail(video):
+def GetBestThumbnailUrl(videoInfo):
     bestThumbnailSize = 0
     bestThumbnailUrl = None
-    for thumbnail in video["snippet"]["thumbnails"].values():
+    for thumbnail in videoInfo["snippet"]["thumbnails"].values():
         if thumbnail == None:
             continue
         if thumbnail["width"] * thumbnail["height"] > bestThumbnailSize:
@@ -349,13 +343,13 @@ def GetBestThumbnail(video):
 def ConvertVideoToSong(videoId, videoInfo):
     srcUrl = f"https://www.youtube.com/watch?v={videoId}"
     src = None
-    thumbnailUrl = GetBestThumbnail(videoInfo)
+    thumbnailUrl = GetBestThumbnailUrl(videoInfo)
     thumbnail = None
     title = None
     album = None
     artists = None
     releaseDate = None
-    ytVideoId = videoId
+    songId = "yt." + videoId
 
     description = videoInfo["snippet"]["description"]
     descriptionLines = [line.strip() for line in description.replace("\r\n", "\n").split("\n") if len(line) > 0]
@@ -386,11 +380,12 @@ def ConvertVideoToSong(videoId, videoInfo):
         rawReleaseDate = videoInfo["snippet"]["publishedAt"]
         releaseDate = int(datetime.strptime(rawReleaseDate, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc).timestamp())
 
-    return { "srcUrl": srcUrl, "src": src, "thumbnailUrl": thumbnailUrl, "thumbnail": thumbnail, "title": title, "album": album, "artists": artists, "releaseDate": releaseDate, "ytVideoId": ytVideoId }
+    return { "srcUrl": srcUrl, "src": src, "thumbnailUrl": thumbnailUrl, "thumbnail": thumbnail, "title": title, "album": album, "artists": artists, "releaseDate": releaseDate, "songId": songId }
 def AddNewVideosToSongDatabase(videoInfoDatabase, songDatabase):
     ytVideoIdsAlreadyConverted = set()
     for song in songDatabase:
-        ytVideoIdsAlreadyConverted.add(song["ytVideoId"])
+        if song["songId"].startswith("yt."):
+            ytVideoIdsAlreadyConverted.add(song["songId"][3:])
     
     for ytVideoId in ytVideoIdsAlreadyConverted:
         if not ytVideoId in videoInfoDatabase:
@@ -400,36 +395,58 @@ def AddNewVideosToSongDatabase(videoInfoDatabase, songDatabase):
     for ytVideoId in videoInfoDatabase:
         if not ytVideoId in ytVideoIdsAlreadyConverted:
             songDatabase.insert(0, ConvertVideoToSong(ytVideoId, videoInfoDatabase[ytVideoId]))
-
 def Module1():
-    youtubeApi = AuthApi()
+    youtubeApi = AuthApi() # Creates user_secrets.json and requires client_secrets.json
+
+    defaultConfig = { "playlistSelectState": {}, "playlistSelectDefault": True }
+    config = DeserializeJson(ReadFile("./config.json", defaultContents=SerializeJson(defaultConfig, compact=True)))
+    defaultCache = { "infoNeededVideoIds": [], "videoInfoDB": {}, "ghostVideoIds": [], "videoRelocationDB": {}, "unavailibleVideoIds": [] }
+    cache = DeserializeJson(ReadFile("./cache.json", defaultContents=SerializeJson(defaultCache, compact=True)))
 
     myPlaylists = EnumMyPlaylists(youtubeApi, False, True, False)
-
-    selectedPlaylists = SelectPlaylists(myPlaylists)
+    selectedPlaylists = SelectPlaylists(myPlaylists, config)
+    WriteFile("./config.json", SerializeJson(config, compact=True))
 
     print("Fetching playlist contents...")
-    infoNeededVideoIds = EnumPlaylistsContents(youtubeApi, selectedPlaylists)
+    cache["infoNeededVideoIds"] = EnumPlaylistsContents(youtubeApi, selectedPlaylists)
+    WriteFile("./cache.json", SerializeJson(cache, compact=True))
 
-    videoInfoDatabase = DeserializeJson(ReadFile("./video_info.json", defaultContents="{}"))
-    while len(infoNeededVideoIds) > 0:
-        infoNeededVideoIds = [videoId for videoId in infoNeededVideoIds if videoId not in videoInfoDatabase]
+    while True:
+        didSomething = False
 
+        # Filter out video Ids which already have info
+        cache["infoNeededVideoIds"] = [videoId for videoId in cache["infoNeededVideoIds"] if (videoId not in cache["videoInfoDB"] and videoId not in cache["ghostVideoIds"])]
+        WriteFile("./cache.json", SerializeJson(cache, compact=True))
+
+        # Fetch video info for needed video Ids
         print("Fetching video info for all videos currently without info...")
-        GetVideoInfo(youtubeApi, infoNeededVideoIds, videoInfoDatabase)
-        WriteFile("./video_info.json", SerializeJson(videoInfoDatabase))
+        if len(cache["infoNeededVideoIds"]) > 0:
+            GetVideoInfo(youtubeApi, cache["infoNeededVideoIds"], cache)
+            WriteFile("./cache.json", SerializeJson(cache, compact=True))
+            didSomething = True
 
+        # Build list of videos which need to be traced
+        traceNeededVideoIds = [ videoId for videoId in list(cache["videoInfoDB"].keys()) if IsVideoUnavailable(cache["videoInfoDB"][videoId]) and not videoId in cache["videoRelocationDB"] and not videoId in cache["unavailibleVideoIds"] ]
+
+        # Trace unavailible video Ids
         print("Tracing unavailable videos to see if they were redirected...")
-        TraceUnavailableVideos(infoNeededVideoIds, videoInfoDatabase)
+        if len(traceNeededVideoIds) > 0:
+            TraceUnavailableVideos(traceNeededVideoIds, cache)
+            WriteFile("./cache.json", SerializeJson(cache, compact=True))
+            didSomething = True
+
+        # If we didn't do anything this round then exit loop
+        if not didSomething:
+            break
 
     print("Loading database...")
-    songDatabase = LoadSongDatabase()
+    songDatabase = DeserializeJson(ReadFile("./database/database.json"))
 
     print("Extracting song info from video info...")
-    AddNewVideosToSongDatabase(videoInfoDatabase, songDatabase)
+    AddNewVideosToSongDatabase(cache["videoInfoDB"], songDatabase)
 
     print("Saving database...")
-    SaveSongDatabase(songDatabase)
+    WriteFile("./database/database.json", SerializeJson(songDatabase, compact=True))
 
 
 
@@ -441,14 +458,14 @@ def DownloadThumbnail(song, thumbnailsDir):
     thumbnailUrl = song["thumbnailUrl"]
     thumbnailUrlPath = urllib.parse.urlparse(thumbnailUrl).path
     thumbnailFileExt = os.path.splitext(os.path.basename(thumbnailUrlPath))[1]
-    thumbnailFilePath = os.path.join(thumbnailsDir, song["ytVideoId"] + thumbnailFileExt)
+    thumbnailFilePath = os.path.join(thumbnailsDir, song["songId"] + thumbnailFileExt)
     request = urllib.request.Request(thumbnailUrl, headers={ "User-Agent": UserAgent })
     with urllib.request.urlopen(request) as responseFile: response = responseFile.read()
     with open(thumbnailFilePath, "wb") as thumbnailFile: thumbnailFile.write(response)
     song["thumbnail"] = PathToClientUrl(thumbnailFilePath)
 def Module2():
     print("Loading database...")
-    songDatabase = LoadSongDatabase()
+    songDatabase = DeserializeJson(ReadFile("./database/database.json"))
 
     print("Downloading thumbnails for songs without a thumbnail...")
     thumbnailsDir = os.path.realpath("database/thumbnails")
@@ -464,7 +481,7 @@ def Module2():
         if song["thumbnail"] == None:
             songsInNeedOfThumbnails.append(song)
         elif not song["thumbnail"] in existingFiles:
-            PrintWarning(f"Thumbnail for song {song["ytVideoId"]} is said to be at {song["thumbnail"]} but has been deleted.")
+            PrintWarning(f"Thumbnail for song {song["songId"]} is said to be at {song["thumbnail"]} but has been deleted.")
         else:
             existingFiles.remove(song["thumbnail"])
 
@@ -475,7 +492,7 @@ def Module2():
     for song in songsInNeedOfThumbnails:
         DownloadThumbnail(song, thumbnailsDir)
         RandomSleep(ThumbnailDownloadMinDelay, ThumbnailDownloadMaxDelay)
-        SaveSongDatabase(songDatabase)
+        WriteFile("./database/database.json", SerializeJson(songDatabase, compact=True))
         progress += 1
         print(f"Progress: {progress} of {len(songsInNeedOfThumbnails)}...")
 
@@ -489,7 +506,7 @@ def Module2():
 def DownloadAudioStream(song, audioStreamsDir, tempDir):
     ytdlpOptions = {
         "format": "bestaudio",
-        "outtmpl": os.path.join(tempDir, f"{song["ytVideoId"]}.%(ext)s"),
+        "outtmpl": os.path.join(tempDir, f"{song["songId"]}.%(ext)s"),
         "nooverwrites": True,
         "force_overwrites": False,
         "continuedl": False,
@@ -529,7 +546,7 @@ def DownloadAudioStream(song, audioStreamsDir, tempDir):
     song["src"] = PathToClientUrl(perminantPath)
 def Module3():
     print("Loading database...")
-    songDatabase = LoadSongDatabase()
+    songDatabase = DeserializeJson(ReadFile("./database/database.json"))
 
     print("Downloading audio stream for songs without an audio stream...")
     audioStreamsDir = os.path.realpath("database/songs")
@@ -547,7 +564,7 @@ def Module3():
         if song["src"] == None:
             songsInNeedOfAudioStreams.append(song)
         elif not song["src"] in existingFiles:
-            PrintWarning(f"Audio stream for song {song["ytVideoId"]} is said to be at {song["src"]} but has been deleted.")
+            PrintWarning(f"Audio stream for song {song["songId"]} is said to be at {song["src"]} but has been deleted.")
             songsInNeedOfAudioStreams.append(song)
         else:
             existingFiles.remove(song["src"])
@@ -559,7 +576,7 @@ def Module3():
     for song in songsInNeedOfAudioStreams:
         DownloadAudioStream(song, audioStreamsDir, tempDir)
         RandomSleep(AudioStreamDownloadMinDelay, AudioStreamDownloadMaxDelay)
-        SaveSongDatabase(songDatabase)
+        WriteFile("./database/database.json", SerializeJson(songDatabase, compact=True))
         progress += 1
         print(f"Progress: {progress} of {len(songsInNeedOfAudioStreams)}...")
 
@@ -568,7 +585,7 @@ def Module3():
 
 
 def main():
-    Module1()
+    # Module1()
     Module2()
     Module3()
     print("All tasks completed successfully")

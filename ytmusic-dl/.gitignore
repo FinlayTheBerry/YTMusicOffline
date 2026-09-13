@@ -2,4 +2,5 @@
 /user_secrets.json
 /venv/
 /database/
-/selected_playlists.json
+/config.json
+/cache.json
