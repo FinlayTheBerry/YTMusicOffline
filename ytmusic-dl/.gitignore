@@ -2,5 +2,6 @@
 /user_secrets.json
 /venv/
 /database/
+/database_finlay/
 /config.json
 /cache.json

@@ -167,15 +167,15 @@ def EnumMyPlaylists(youtubeApi, includeLikes=False, includeLikedMusic=False, inc
         else:
             break
     return output
-def SelectPlaylists(allPlaylists, config):
+def SelectPlaylists(allPlaylists, playlistSelection):
     for i in range(len(allPlaylists)):
-        if not allPlaylists[i]["id"] in config["playlistSelectState"]:
-            config["playlistSelectState"][allPlaylists[i]["id"]] = config["playlistSelectState"]
+        if not allPlaylists[i]["id"] in playlistSelection["state"]:
+            playlistSelection["state"][allPlaylists[i]["id"]] = playlistSelection["state"]
     
     while True:
         playlistsFormatted = []
         for i in range(len(allPlaylists)):
-            if config["playlistSelectState"][allPlaylists[i]["id"]]:
+            if playlistSelection["state"][allPlaylists[i]["id"]]:
                 playlistsFormatted.append(f"\033[32m{i}) {allPlaylists[i]["title"]}\033[0m")
             else:
                 playlistsFormatted.append(f"{i}) {allPlaylists[i]["title"]}")
@@ -184,22 +184,22 @@ def SelectPlaylists(allPlaylists, config):
         choice = input("playlist number = toggle, all = select all, none = select none, done = download selected: ")
         
         if choice == "done":
-            output = []
+            playlistSelection["selected"] = []
             for i in range(len(allPlaylists)):
-                if config["playlistSelectState"][allPlaylists[i]["id"]]:
-                    output.append(allPlaylists[i]["id"])
-            return output
+                if playlistSelection["state"][allPlaylists[i]["id"]]:
+                    playlistSelection["selected"].append(allPlaylists[i]["id"])
+            return
         elif choice == "all":
             for i in range(len(allPlaylists)):
-                config["playlistSelectState"][allPlaylists[i]["id"]] = True
-            config["playlistSelectDefault"] = True
+                playlistSelection["state"][allPlaylists[i]["id"]] = True
+            playlistSelection["default"] = True
         elif choice == "none":
             for i in range(len(allPlaylists)):
-                config["playlistSelectState"][allPlaylists[i]["id"]] = False
-            config["playlistSelectDefault"] = False
+                playlistSelection["state"][allPlaylists[i]["id"]] = False
+            playlistSelection["default"] = False
         else:
             try:
-                config["playlistSelectState"][allPlaylists[int(choice)]["id"]] = not config["playlistSelectState"][allPlaylists[int(choice)]["id"]]
+                playlistSelection["state"][allPlaylists[int(choice)]["id"]] = not playlistSelection["state"][allPlaylists[int(choice)]["id"]]
             except:
                 print("Invalid choice")
 def EnumPlaylistContents(youtubeApi, playlistId):
@@ -242,7 +242,7 @@ def EnumPlaylistsContents(youtubeApi, playlistIds):
         progress += 1
         print(f"Progress: {progress} of {len(playlistIds)}...")
     return videoIds
-def GetVideoInfo(youtubeApi, infoNeededVideoIds, cache):
+def GetVideoInfo(youtubeApi, infoNeededVideoIds, videoInfoDB):
     progress = 0
     while progress < len(infoNeededVideoIds):
         nextVideoIds = infoNeededVideoIds[progress:progress + 50]
@@ -254,17 +254,15 @@ def GetVideoInfo(youtubeApi, infoNeededVideoIds, cache):
         response = request.execute()
         for video in response["items"]:
             videoId = video["id"]
-            cache["videoInfoDB"][videoId] = video
+            videoInfoDB[videoId] = video
             nextVideoIds.remove(videoId)
         for videoId in nextVideoIds:
             PrintWarning(f"Unable to get video info for video Id {videoId} (it's a ghost).")
-            if not videoId in cache["ghostVideoIds"]:
-                cache["ghostVideoIds"].append(videoId)
+            videoInfoDB[videoId] = None
         progress += 50
         if progress > len(infoNeededVideoIds):
             progress = len(infoNeededVideoIds)
         print(f"Progress: {progress} of {len(infoNeededVideoIds)}...")
-    infoNeededVideoIds.clear()
 def IsVideoUnavailable(videoInfo):
     if DictionaryHas(videoInfo, "status.privacyStatus"):
         privacyStatus = videoInfo["status"]["privacyStatus"]
@@ -314,7 +312,7 @@ def TraceVideo(videoId):
             return None
         return tracedVideoId
     return None
-def TraceUnavailableVideos(traceNeededVideoIds, cache):
+def TraceUnavailableVideos(traceNeededVideoIds, relocationDB):
     progress = 0
     for videoId in traceNeededVideoIds:
         if progress != 0:
@@ -322,12 +320,9 @@ def TraceUnavailableVideos(traceNeededVideoIds, cache):
         tracedVideoId = TraceVideo(videoId)
         if tracedVideoId == None:
             PrintWarning(f"Unable to trace unavailable video with video Id {videoId}.")
-            if not videoId in cache["unavailibleVideoIds"]:
-                cache["unavailibleVideoIds"].append(videoId)
+            relocationDB[videoId] = None
         else:
-            cache["videoRelocationDB"][videoId] = tracedVideoId
-            if not tracedVideoId in cache["videoInfoDB"] and not tracedVideoId in cache["ghostVideoIds"] and not tracedVideoId in cache["infoNeededVideoIds"]:
-                cache["infoNeededVideoIds"].append(tracedVideoId)
+            relocationDB[videoId] = tracedVideoId
         progress += 1
         print(f"Progress: {progress} of {len(traceNeededVideoIds)}...")
 def GetBestThumbnailUrl(videoInfo):
@@ -381,71 +376,70 @@ def ConvertVideoToSong(videoId, videoInfo):
         releaseDate = int(datetime.strptime(rawReleaseDate, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc).timestamp())
 
     return { "srcUrl": srcUrl, "src": src, "thumbnailUrl": thumbnailUrl, "thumbnail": thumbnail, "title": title, "album": album, "artists": artists, "releaseDate": releaseDate, "songId": songId }
-def AddNewVideosToSongDatabase(videoInfoDatabase, songDatabase):
+def AddNewVideosToSongDatabase(videoInfoDB, relocationDB, songDatabase):
     ytVideoIdsAlreadyConverted = set()
     for song in songDatabase:
         if song["songId"].startswith("yt."):
             ytVideoIdsAlreadyConverted.add(song["songId"][3:])
-    
-    for ytVideoId in ytVideoIdsAlreadyConverted:
-        if not ytVideoId in videoInfoDatabase:
-            PrintWarning(f"Song exists in song database with Id {ytVideoId} but that song isn't in your likes or any playlist.")
-    
+
     # New songs must be added in reverse order.
-    for ytVideoId in videoInfoDatabase:
-        if not ytVideoId in ytVideoIdsAlreadyConverted:
-            songDatabase.insert(0, ConvertVideoToSong(ytVideoId, videoInfoDatabase[ytVideoId]))
+    for ytVideoId in videoInfoDB:
+        if ytVideoId not in ytVideoIdsAlreadyConverted and ytVideoId not in relocationDB and videoInfoDB[ytVideoId] is not None:
+            songDatabase.insert(0, ConvertVideoToSong(ytVideoId, videoInfoDB[ytVideoId]))
 def Module1():
-    youtubeApi = AuthApi() # Creates user_secrets.json and requires client_secrets.json
+    youtubeApi = AuthApi()
 
-    defaultConfig = { "playlistSelectState": {}, "playlistSelectDefault": True }
-    config = DeserializeJson(ReadFile("./config.json", defaultContents=SerializeJson(defaultConfig, compact=True)))
-    defaultCache = { "infoNeededVideoIds": [], "videoInfoDB": {}, "ghostVideoIds": [], "videoRelocationDB": {}, "unavailibleVideoIds": [] }
-    cache = DeserializeJson(ReadFile("./cache.json", defaultContents=SerializeJson(defaultCache, compact=True)))
+    defaultPlaylistSelection = { "state": {}, "default": True, "selected": [] }
+    playlistSelection = DeserializeJson(ReadFile("./playlist_selection.json", defaultContents=SerializeJson(defaultPlaylistSelection, compact=True)))
+    if False: # Select Playlists
+        SelectPlaylists(EnumMyPlaylists(youtubeApi, False, True, False), playlistSelection)
+        WriteFile("./playlist_selection.json", SerializeJson(playlistSelection, compact=True))
 
-    myPlaylists = EnumMyPlaylists(youtubeApi, False, True, False)
-    selectedPlaylists = SelectPlaylists(myPlaylists, config)
-    WriteFile("./config.json", SerializeJson(config, compact=True))
+    defaultRequestedVideos = []
+    requestedVideos = DeserializeJson(ReadFile("./requested_videos.json", defaultContents=SerializeJson(defaultRequestedVideos, compact=True)))
+    if False: # Fetch Playlist Contents
+        print("Fetching playlist contents...")
+        requestedVideos = list(set(requestedVideos + EnumPlaylistsContents(youtubeApi, playlistSelection["selected"])))
+        WriteFile("./requested_videos.json", SerializeJson(requestedVideos, compact=True))
 
-    print("Fetching playlist contents...")
-    cache["infoNeededVideoIds"] = EnumPlaylistsContents(youtubeApi, selectedPlaylists)
-    WriteFile("./cache.json", SerializeJson(cache, compact=True))
-
-    while True:
+    defaultVideoInfoDB = {}
+    videoInfoDB = DeserializeJson(ReadFile("./video_info_db.json", defaultContents=SerializeJson(defaultVideoInfoDB, compact=True)))
+    defaultRelocationDB = {}
+    relocationDB = DeserializeJson(ReadFile("./relocation_db.json", defaultContents=SerializeJson(defaultRelocationDB, compact=True)))
+    while True: # Get Video Info and Trace Relocations
         didSomething = False
 
         # Filter out video Ids which already have info
-        cache["infoNeededVideoIds"] = [videoId for videoId in cache["infoNeededVideoIds"] if (videoId not in cache["videoInfoDB"] and videoId not in cache["ghostVideoIds"])]
-        WriteFile("./cache.json", SerializeJson(cache, compact=True))
+        infoNeededVideoIds = [ videoId for videoId in requestedVideos if videoId not in videoInfoDB ]
+        infoNeededVideoIds.extend([ videoId for videoId in relocationDB.values() if videoId is not None and videoId not in videoInfoDB and videoId not in infoNeededVideoIds ])
 
         # Fetch video info for needed video Ids
         print("Fetching video info for all videos currently without info...")
-        if len(cache["infoNeededVideoIds"]) > 0:
-            GetVideoInfo(youtubeApi, cache["infoNeededVideoIds"], cache)
-            WriteFile("./cache.json", SerializeJson(cache, compact=True))
+        if len(infoNeededVideoIds) > 0:
+            GetVideoInfo(youtubeApi, infoNeededVideoIds, videoInfoDB)
+            WriteFile("./video_info_db.json", SerializeJson(videoInfoDB, compact=True))
             didSomething = True
 
         # Build list of videos which need to be traced
-        traceNeededVideoIds = [ videoId for videoId in list(cache["videoInfoDB"].keys()) if IsVideoUnavailable(cache["videoInfoDB"][videoId]) and not videoId in cache["videoRelocationDB"] and not videoId in cache["unavailibleVideoIds"] ]
+        traceNeededVideoIds = [ videoId for videoId in list(videoInfoDB.keys()) if IsVideoUnavailable(videoInfoDB[videoId]) and videoId not in relocationDB ]
 
         # Trace unavailible video Ids
         print("Tracing unavailable videos to see if they were redirected...")
         if len(traceNeededVideoIds) > 0:
-            TraceUnavailableVideos(traceNeededVideoIds, cache)
-            WriteFile("./cache.json", SerializeJson(cache, compact=True))
+            TraceUnavailableVideos(traceNeededVideoIds, relocationDB)
+            WriteFile("./relocation_db.json", SerializeJson(relocationDB, compact=True))
             didSomething = True
 
         # If we didn't do anything this round then exit loop
         if not didSomething:
             break
 
-    print("Loading database...")
-    songDatabase = DeserializeJson(ReadFile("./database/database.json"))
-
+    if not os.path.exists("./database"):
+        os.mkdir("./database")
+    defaultSongDatabase = []
+    songDatabase = DeserializeJson(ReadFile("./database/database.json", defaultContents=SerializeJson(defaultSongDatabase, compact=True)))
     print("Extracting song info from video info...")
-    AddNewVideosToSongDatabase(cache["videoInfoDB"], songDatabase)
-
-    print("Saving database...")
+    AddNewVideosToSongDatabase(videoInfoDB, relocationDB, songDatabase)
     WriteFile("./database/database.json", SerializeJson(songDatabase, compact=True))
 
 
@@ -534,9 +528,14 @@ def DownloadAudioStream(song, audioStreamsDir, tempDir):
 
     if retryWithCookies:
         PrintWarning(f"Downloading {song["srcUrl"]} failed. Retrying with cookies.")
-        ytdlpOptions["cookiesfrombrowser"] = ("firefox",)
+        ytdlpOptions["cookiesfrombrowser"] = ("safari",)
         with yt_dlp.YoutubeDL(ytdlpOptions) as ytdlp:
-            ytdlp.download(targetUrls)
+            try:
+                ytdlp.download(targetUrls)
+            except Exception as ex:
+                PrintError(repr(ex))
+                PrintError(f"FATAL Could not download video {song['srcUrl']}")
+                return
 
     fileNamesInTemp = os.listdir(tempDir)
     if len(fileNamesInTemp) != 1:
@@ -585,7 +584,7 @@ def Module3():
 
 
 def main():
-    # Module1()
+    Module1()
     Module2()
     Module3()
     print("All tasks completed successfully")
