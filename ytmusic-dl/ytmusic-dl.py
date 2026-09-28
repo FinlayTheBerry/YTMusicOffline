@@ -27,6 +27,7 @@ SegmentDownloadMaxDelay = 5.0
 
 # Import builtins (part of python)
 import json
+import subprocess
 import sys
 import os
 import urllib.request
@@ -115,11 +116,25 @@ def PrintGrid(values, padding=1):
             print()
             line_count += 1
             num_in_row = 0
+def RunCommand(command, echo=False, capture=False, input=None, check=True, env=None):
+    if echo and capture:
+        raise Exception("Command cannot be run with both echo and capture.")
+    result = subprocess.run(command, stdout=(None if echo else subprocess.PIPE), stderr=(None if echo else subprocess.STDOUT), input=input, env=env, check=False, shell=True, text=True)
+    if check and result.returncode != 0:
+        print(result.stdout)
+        raise Exception(f"Sub-process returned non-zero exit code.\nExitCode: {result.returncode}\nCmdLine: {command}")
+    if capture and not check:
+        return result.stdout.strip(), result.returncode
+    elif capture:
+        return result.stdout.strip()
+    elif not check:
+        return result.returncode
+    else:
+        return
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 
 
-# Module 1 - Add New Songs To The Database
 def AuthApi():
     clientSecretsPath = os.path.realpath("./client_secrets.json")
     if not os.path.exists(clientSecretsPath):
@@ -170,7 +185,7 @@ def EnumMyPlaylists(youtubeApi, includeLikes=False, includeLikedMusic=False, inc
 def SelectPlaylists(allPlaylists, playlistSelection):
     for i in range(len(allPlaylists)):
         if not allPlaylists[i]["id"] in playlistSelection["state"]:
-            playlistSelection["state"][allPlaylists[i]["id"]] = playlistSelection["state"]
+            playlistSelection["state"][allPlaylists[i]["id"]] = playlistSelection["default"]
     
     while True:
         playlistsFormatted = []
@@ -386,118 +401,25 @@ def AddNewVideosToSongDatabase(videoInfoDB, relocationDB, songDatabase):
     for ytVideoId in videoInfoDB:
         if ytVideoId not in ytVideoIdsAlreadyConverted and ytVideoId not in relocationDB and videoInfoDB[ytVideoId] is not None:
             songDatabase.insert(0, ConvertVideoToSong(ytVideoId, videoInfoDB[ytVideoId]))
-def Module1():
-    youtubeApi = AuthApi()
-
-    defaultPlaylistSelection = { "state": {}, "default": True, "selected": [] }
-    playlistSelection = DeserializeJson(ReadFile("./playlist_selection.json", defaultContents=SerializeJson(defaultPlaylistSelection, compact=True)))
-    if False: # Select Playlists
-        SelectPlaylists(EnumMyPlaylists(youtubeApi, False, True, False), playlistSelection)
-        WriteFile("./playlist_selection.json", SerializeJson(playlistSelection, compact=True))
-
-    defaultRequestedVideos = []
-    requestedVideos = DeserializeJson(ReadFile("./requested_videos.json", defaultContents=SerializeJson(defaultRequestedVideos, compact=True)))
-    if False: # Fetch Playlist Contents
-        print("Fetching playlist contents...")
-        requestedVideos = list(set(requestedVideos + EnumPlaylistsContents(youtubeApi, playlistSelection["selected"])))
-        WriteFile("./requested_videos.json", SerializeJson(requestedVideos, compact=True))
-
-    defaultVideoInfoDB = {}
-    videoInfoDB = DeserializeJson(ReadFile("./video_info_db.json", defaultContents=SerializeJson(defaultVideoInfoDB, compact=True)))
-    defaultRelocationDB = {}
-    relocationDB = DeserializeJson(ReadFile("./relocation_db.json", defaultContents=SerializeJson(defaultRelocationDB, compact=True)))
-    while True: # Get Video Info and Trace Relocations
-        didSomething = False
-
-        # Filter out video Ids which already have info
-        infoNeededVideoIds = [ videoId for videoId in requestedVideos if videoId not in videoInfoDB ]
-        infoNeededVideoIds.extend([ videoId for videoId in relocationDB.values() if videoId is not None and videoId not in videoInfoDB and videoId not in infoNeededVideoIds ])
-
-        # Fetch video info for needed video Ids
-        print("Fetching video info for all videos currently without info...")
-        if len(infoNeededVideoIds) > 0:
-            GetVideoInfo(youtubeApi, infoNeededVideoIds, videoInfoDB)
-            WriteFile("./video_info_db.json", SerializeJson(videoInfoDB, compact=True))
-            didSomething = True
-
-        # Build list of videos which need to be traced
-        traceNeededVideoIds = [ videoId for videoId in list(videoInfoDB.keys()) if IsVideoUnavailable(videoInfoDB[videoId]) and videoId not in relocationDB ]
-
-        # Trace unavailible video Ids
-        print("Tracing unavailable videos to see if they were redirected...")
-        if len(traceNeededVideoIds) > 0:
-            TraceUnavailableVideos(traceNeededVideoIds, relocationDB)
-            WriteFile("./relocation_db.json", SerializeJson(relocationDB, compact=True))
-            didSomething = True
-
-        # If we didn't do anything this round then exit loop
-        if not didSomething:
-            break
-
-    if not os.path.exists("./database"):
-        os.mkdir("./database")
-    defaultSongDatabase = []
-    songDatabase = DeserializeJson(ReadFile("./database/database.json", defaultContents=SerializeJson(defaultSongDatabase, compact=True)))
-    print("Extracting song info from video info...")
-    AddNewVideosToSongDatabase(videoInfoDB, relocationDB, songDatabase)
-    WriteFile("./database/database.json", SerializeJson(songDatabase, compact=True))
-
-
-
-# Module 2 - Download Each Song's Thumbnail
-# Downloads the thumbnail for any song in the Database which does not already have a thumbnail in database/thumbnails.
-# Regardless of weather a thumbnail is needed it updates song.thumbnail to reflect the client url of the thumbnail.
-# Does not depend on previous steps and runs independently.
 def DownloadThumbnail(song, thumbnailsDir):
     thumbnailUrl = song["thumbnailUrl"]
     thumbnailUrlPath = urllib.parse.urlparse(thumbnailUrl).path
     thumbnailFileExt = os.path.splitext(os.path.basename(thumbnailUrlPath))[1]
     thumbnailFilePath = os.path.join(thumbnailsDir, song["songId"] + thumbnailFileExt)
     request = urllib.request.Request(thumbnailUrl, headers={ "User-Agent": UserAgent })
-    with urllib.request.urlopen(request) as responseFile: response = responseFile.read()
-    with open(thumbnailFilePath, "wb") as thumbnailFile: thumbnailFile.write(response)
-    song["thumbnail"] = PathToClientUrl(thumbnailFilePath)
-def Module2():
-    print("Loading database...")
-    songDatabase = DeserializeJson(ReadFile("./database/database.json"))
-
-    print("Downloading thumbnails for songs without a thumbnail...")
-    thumbnailsDir = os.path.realpath("database/thumbnails")
-    os.makedirs(thumbnailsDir, exist_ok=True)
-
-    existingFiles = set()
-    for fileName in os.listdir(thumbnailsDir):
-        filePath = os.path.join(thumbnailsDir, fileName)
-        existingFiles.add(PathToClientUrl(filePath))
-
-    songsInNeedOfThumbnails = []
-    for song in songDatabase:
-        if song["thumbnail"] == None:
-            songsInNeedOfThumbnails.append(song)
-        elif not song["thumbnail"] in existingFiles:
-            PrintWarning(f"Thumbnail for song {song["songId"]} is said to be at {song["thumbnail"]} but has been deleted.")
+    try:
+        with urllib.request.urlopen(request) as responseFile: response = responseFile.read()
+        with open(thumbnailFilePath, "wb") as thumbnailFile: thumbnailFile.write(response)
+        song["thumbnail"] = PathToClientUrl(thumbnailFilePath)
+    except urllib.error.HTTPError as ex:
+        if ex.code == 404:
+            PrintError(f"404 Failed to download thumbnail: {thumbnailUrl}")
         else:
-            existingFiles.remove(song["thumbnail"])
-
-    for filePath in existingFiles:
-        PrintWarning(f"Thumbnail exists at {filePath} but is claimed by no song.")
-    
-    progress = 0
-    for song in songsInNeedOfThumbnails:
-        DownloadThumbnail(song, thumbnailsDir)
-        RandomSleep(ThumbnailDownloadMinDelay, ThumbnailDownloadMaxDelay)
-        WriteFile("./database/database.json", SerializeJson(songDatabase, compact=True))
-        progress += 1
-        print(f"Progress: {progress} of {len(songsInNeedOfThumbnails)}...")
-
-
-
-# Module 3 - Download Each Song's Audio Stream
-# Downloads the audio stream for any song in the Database which does not already have an audio stream in database/songs.
-# Regardless of weather an audio stream is needed it updates song.src to reflect the client url of the audio stream.
-# Does not depend on previous steps and runs independently.
-# If an audio stream can't be downloaded normally tries again with cookies enabled.
+            raise
 def DownloadAudioStream(song, audioStreamsDir, tempDir):
+    NeverUseCookies = False
+    AlwaysUseCookies = False
+
     ytdlpOptions = {
         "format": "bestaudio",
         "outtmpl": os.path.join(tempDir, f"{song["songId"]}.%(ext)s"),
@@ -519,16 +441,22 @@ def DownloadAudioStream(song, audioStreamsDir, tempDir):
     targetUrls = [ song["srcUrl"] ]
     
     retryWithCookies = False
-    with yt_dlp.YoutubeDL(ytdlpOptions) as ytdlp:
-        try:
-            ytdlp.download(targetUrls)
-        except Exception as ex:
-            PrintError(repr(ex))
-            retryWithCookies = True
+    if AlwaysUseCookies:
+        retryWithCookies = True
+    else:
+        with yt_dlp.YoutubeDL(ytdlpOptions) as ytdlp:
+            try:
+                ytdlp.download(targetUrls)
+            except Exception as ex:
+                PrintError(repr(ex))
+                if NeverUseCookies:
+                    return
+                else:
+                    PrintWarning(f"Downloading {song["srcUrl"]} failed. Retrying with cookies.")
+                    retryWithCookies = True
 
     if retryWithCookies:
-        PrintWarning(f"Downloading {song["srcUrl"]} failed. Retrying with cookies.")
-        ytdlpOptions["cookiesfrombrowser"] = ("safari",)
+        ytdlpOptions["cookiesfrombrowser"] = ("firefox",)
         with yt_dlp.YoutubeDL(ytdlpOptions) as ytdlp:
             try:
                 ytdlp.download(targetUrls)
@@ -543,50 +471,133 @@ def DownloadAudioStream(song, audioStreamsDir, tempDir):
     perminantPath = os.path.join(audioStreamsDir, fileNamesInTemp[0])
     os.rename(os.path.join(tempDir, fileNamesInTemp[0]), perminantPath)
     song["src"] = PathToClientUrl(perminantPath)
-def Module3():
-    print("Loading database...")
-    songDatabase = DeserializeJson(ReadFile("./database/database.json"))
 
-    print("Downloading audio stream for songs without an audio stream...")
-    audioStreamsDir = os.path.realpath("database/songs")
-    os.makedirs(audioStreamsDir, exist_ok=True)
-    tempDir = os.path.realpath("database/temp")
-    os.makedirs(tempDir, exist_ok=True)
 
-    existingFiles = set()
-    for fileName in os.listdir(audioStreamsDir):
-        filePath = os.path.join(audioStreamsDir, fileName)
-        existingFiles.add(PathToClientUrl(filePath))
 
-    songsInNeedOfAudioStreams = []
-    for song in songDatabase:
-        if song["src"] == None:
-            songsInNeedOfAudioStreams.append(song)
-        elif not song["src"] in existingFiles:
-            PrintWarning(f"Audio stream for song {song["songId"]} is said to be at {song["src"]} but has been deleted.")
-            songsInNeedOfAudioStreams.append(song)
-        else:
-            existingFiles.remove(song["src"])
 
-    for filePath in existingFiles:
-        PrintWarning(f"Audio stream exists at {filePath} but is claimed by no song.")
-    
-    progress = 0
-    for song in songsInNeedOfAudioStreams:
-        DownloadAudioStream(song, audioStreamsDir, tempDir)
-        RandomSleep(AudioStreamDownloadMinDelay, AudioStreamDownloadMaxDelay)
+def Main():
+    if not os.path.exists("./database"):
+        os.mkdir("./database")
+    defaultSongDatabase = []
+    songDatabase = DeserializeJson(ReadFile("./database/database.json", defaultContents=SerializeJson(defaultSongDatabase, compact=True)))
+
+    if True: # Add new songs to database from YouTube API or leave untouched
+        youtubeApi = AuthApi()
+
+        defaultPlaylistSelection = { "state": {}, "default": True, "selected": [] }
+        playlistSelection = DeserializeJson(ReadFile("./playlist_selection.json", defaultContents=SerializeJson(defaultPlaylistSelection, compact=True)))
+        if True: # Get latest playlists and customize selection or use previous list
+            SelectPlaylists(EnumMyPlaylists(youtubeApi, False, True, False), playlistSelection)
+            WriteFile("./playlist_selection.json", SerializeJson(playlistSelection, compact=True))
+
+        defaultRequestedVideos = []
+        requestedVideos = DeserializeJson(ReadFile("./requested_videos.json", defaultContents=SerializeJson(defaultRequestedVideos, compact=True)))
+        if True: # Fetch playlist contents or use previous list of needed videos
+            print("Fetching playlist contents...")
+            requestedVideos = list(set(requestedVideos + EnumPlaylistsContents(youtubeApi, playlistSelection["selected"])))
+            WriteFile("./requested_videos.json", SerializeJson(requestedVideos, compact=True))
+
+        defaultVideoInfoDB = {}
+        videoInfoDB = DeserializeJson(ReadFile("./video_info_db.json", defaultContents=SerializeJson(defaultVideoInfoDB, compact=True)))
+        defaultRelocationDB = {}
+        relocationDB = DeserializeJson(ReadFile("./relocation_db.json", defaultContents=SerializeJson(defaultRelocationDB, compact=True)))
+        while True: # Get video info and trace relocations
+            didSomething = False
+
+            # Filter out video Ids which already have info
+            infoNeededVideoIds = [ videoId for videoId in requestedVideos if videoId not in videoInfoDB ]
+            infoNeededVideoIds.extend([ videoId for videoId in relocationDB.values() if videoId is not None and videoId not in videoInfoDB and videoId not in infoNeededVideoIds ])
+
+            # Fetch video info for needed video Ids
+            print("Fetching video info for all videos currently without info...")
+            if len(infoNeededVideoIds) > 0:
+                GetVideoInfo(youtubeApi, infoNeededVideoIds, videoInfoDB)
+                WriteFile("./video_info_db.json", SerializeJson(videoInfoDB, compact=True))
+                didSomething = True
+
+            # Build list of videos which need to be traced
+            traceNeededVideoIds = [ videoId for videoId in list(videoInfoDB.keys()) if IsVideoUnavailable(videoInfoDB[videoId]) and videoId not in relocationDB ]
+
+            # Trace unavailible video Ids
+            print("Tracing unavailable videos to see if they were redirected...")
+            if len(traceNeededVideoIds) > 0:
+                TraceUnavailableVideos(traceNeededVideoIds, relocationDB)
+                WriteFile("./relocation_db.json", SerializeJson(relocationDB, compact=True))
+                didSomething = True
+
+            # If we didn't do anything this round then exit loop
+            if not didSomething:
+                break
+
+        print("Extracting song info from video info...")
+        AddNewVideosToSongDatabase(videoInfoDB, relocationDB, songDatabase)
         WriteFile("./database/database.json", SerializeJson(songDatabase, compact=True))
-        progress += 1
-        print(f"Progress: {progress} of {len(songsInNeedOfAudioStreams)}...")
 
-    os.rmdir(tempDir)
+    if True: # Download thumbnails for songs without one
+        print("Downloading thumbnails for songs without a thumbnail...")
+        thumbnailsDir = os.path.realpath("database/thumbnails")
+        os.makedirs(thumbnailsDir, exist_ok=True)
 
+        existingFiles = set()
+        for fileName in os.listdir(thumbnailsDir):
+            filePath = os.path.join(thumbnailsDir, fileName)
+            existingFiles.add(PathToClientUrl(filePath))
 
+        songsInNeedOfThumbnails = []
+        for song in songDatabase:
+            if song["thumbnail"] == None:
+                songsInNeedOfThumbnails.append(song)
+            elif not song["thumbnail"] in existingFiles:
+                PrintWarning(f"Thumbnail for song {song["songId"]} is said to be at {song["thumbnail"]} but has been deleted.")
+            else:
+                existingFiles.remove(song["thumbnail"])
 
-def main():
-    Module1()
-    Module2()
-    Module3()
+        for filePath in existingFiles:
+            PrintWarning(f"Thumbnail exists at {filePath} but is claimed by no song.")
+
+        progress = 0
+        for song in songsInNeedOfThumbnails:
+            DownloadThumbnail(song, thumbnailsDir)
+            RandomSleep(ThumbnailDownloadMinDelay, ThumbnailDownloadMaxDelay)
+            WriteFile("./database/database.json", SerializeJson(songDatabase, compact=True))
+            progress += 1
+            print(f"Progress: {progress} of {len(songsInNeedOfThumbnails)}...")
+
+    if True: # Download original audio streams for songs without one
+        print("Downloading audio stream for songs without an audio stream...")
+        audioStreamsDir = os.path.realpath("database/songs")
+        os.makedirs(audioStreamsDir, exist_ok=True)
+        tempDir = os.path.realpath("database/temp")
+        os.makedirs(tempDir, exist_ok=True)
+
+        existingFiles = set()
+        for fileName in os.listdir(audioStreamsDir):
+            filePath = os.path.join(audioStreamsDir, fileName)
+            existingFiles.add(PathToClientUrl(filePath))
+
+        songsInNeedOfAudioStreams = []
+        for song in songDatabase:
+            if song["src"] == None:
+                songsInNeedOfAudioStreams.append(song)
+            elif not song["src"] in existingFiles:
+                PrintWarning(f"Audio stream for song {song["songId"]} is said to be at {song["src"]} but has been deleted.")
+                songsInNeedOfAudioStreams.append(song)
+            else:
+                existingFiles.remove(song["src"])
+
+        for filePath in existingFiles:
+            PrintWarning(f"Audio stream exists at {filePath} but is claimed by no song.")
+
+        progress = 0
+        for song in songsInNeedOfAudioStreams:
+            DownloadAudioStream(song, audioStreamsDir, tempDir)
+            RandomSleep(AudioStreamDownloadMinDelay, AudioStreamDownloadMaxDelay)
+            WriteFile("./database/database.json", SerializeJson(songDatabase, compact=True))
+            progress += 1
+            print(f"Progress: {progress} of {len(songsInNeedOfAudioStreams)}...")
+
+        os.rmdir(tempDir)
+
     print("All tasks completed successfully")
     sys.exit(0)
-main()
+Main()
