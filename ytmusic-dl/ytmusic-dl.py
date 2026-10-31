@@ -12,7 +12,7 @@
 # User Settings
 # To get the latest user agent from your browser run the following in the developer console:
 # console.log(navigator.userAgent);
-UserAgent = "Mozilla/5.0 (X11; Linux x86_64; rv:150.0) Gecko/20100101 Firefox/150.0"
+UserAgent = "Mozilla/5.0 (X11; Linux x86_64; rv:159.0) Gecko/20100101 Firefox/159.0"
 TraceMinDelay = 0.5
 TraceMaxDelay = 1.0
 ThumbnailDownloadMinDelay = 0.0
@@ -175,46 +175,46 @@ def EnumMyPlaylists(youtubeApi, includeLikes=False, includeLikedMusic=False, inc
             pageToken=nextPageToken
         )
         response = request.execute()
-        for item in response["items"]:
-            output.append({ "id": item["id"], "title": item["snippet"]["title"] } )
+        for item in response['items']:
+            output.append({ "id": item['id'], "title": item['snippet']['title'] } )
         if DictionaryHas(response, "nextPageToken"):
-            nextPageToken = response["nextPageToken"]
+            nextPageToken = response['nextPageToken']
         else:
             break
     return output
 def SelectPlaylists(allPlaylists, playlistSelection):
     for i in range(len(allPlaylists)):
-        if not allPlaylists[i]["id"] in playlistSelection["state"]:
-            playlistSelection["state"][allPlaylists[i]["id"]] = playlistSelection["default"]
+        if not allPlaylists[i]['id'] in playlistSelection['state']:
+            playlistSelection['state'][allPlaylists[i]['id']] = playlistSelection['default']
     
     while True:
         playlistsFormatted = []
         for i in range(len(allPlaylists)):
-            if playlistSelection["state"][allPlaylists[i]["id"]]:
-                playlistsFormatted.append(f"\033[32m{i}) {allPlaylists[i]["title"]}\033[0m")
+            if playlistSelection['state'][allPlaylists[i]['id']]:
+                playlistsFormatted.append(f"\033[32m{i}) {allPlaylists[i]['title']}\033[0m")
             else:
-                playlistsFormatted.append(f"{i}) {allPlaylists[i]["title"]}")
+                playlistsFormatted.append(f"{i}) {allPlaylists[i]['title']}")
         PrintGrid(playlistsFormatted, padding=1)
 
         choice = input("playlist number = toggle, all = select all, none = select none, done = download selected: ")
         
         if choice == "done":
-            playlistSelection["selected"] = []
+            playlistSelection['selected'] = []
             for i in range(len(allPlaylists)):
-                if playlistSelection["state"][allPlaylists[i]["id"]]:
-                    playlistSelection["selected"].append(allPlaylists[i]["id"])
+                if playlistSelection['state'][allPlaylists[i]['id']]:
+                    playlistSelection['selected'].append(allPlaylists[i]['id'])
             return
         elif choice == "all":
             for i in range(len(allPlaylists)):
-                playlistSelection["state"][allPlaylists[i]["id"]] = True
-            playlistSelection["default"] = True
+                playlistSelection['state'][allPlaylists[i]['id']] = True
+            playlistSelection['default'] = True
         elif choice == "none":
             for i in range(len(allPlaylists)):
-                playlistSelection["state"][allPlaylists[i]["id"]] = False
-            playlistSelection["default"] = False
+                playlistSelection['state'][allPlaylists[i]['id']] = False
+            playlistSelection['default'] = False
         else:
             try:
-                playlistSelection["state"][allPlaylists[int(choice)]["id"]] = not playlistSelection["state"][allPlaylists[int(choice)]["id"]]
+                playlistSelection['state'][allPlaylists[int(choice)]['id']] = not playlistSelection['state'][allPlaylists[int(choice)]['id']]
             except:
                 print("Invalid choice")
 def EnumPlaylistContents(youtubeApi, playlistId):
@@ -225,10 +225,10 @@ def EnumPlaylistContents(youtubeApi, playlistId):
         maxResults=50
     )
     response = request.execute()
-    for item in response["items"]:
-        output.append(item["snippet"]["resourceId"]["videoId"])
+    for item in response['items']:
+        output.append(item['snippet']['resourceId']['videoId'])
     if DictionaryHas(response, "nextPageToken"):
-        nextPageToken = response["nextPageToken"]
+        nextPageToken = response['nextPageToken']
     else:
         nextPageToken = None
 
@@ -240,10 +240,10 @@ def EnumPlaylistContents(youtubeApi, playlistId):
             pageToken=nextPageToken
         )
         response = request.execute()
-        for item in response["items"]:
-            output.append(item["snippet"]["resourceId"]["videoId"])
+        for item in response['items']:
+            output.append(item['snippet']['resourceId']['videoId'])
         if DictionaryHas(response, "nextPageToken"):
-            nextPageToken = response["nextPageToken"]
+            nextPageToken = response['nextPageToken']
         else:
             nextPageToken = None
     return output
@@ -267,8 +267,8 @@ def GetVideoInfo(youtubeApi, infoNeededVideoIds, videoInfoDB):
             maxResults=50
         )
         response = request.execute()
-        for video in response["items"]:
-            videoId = video["id"]
+        for video in response['items']:
+            videoId = video['id']
             videoInfoDB[videoId] = video
             nextVideoIds.remove(videoId)
         for videoId in nextVideoIds:
@@ -280,15 +280,15 @@ def GetVideoInfo(youtubeApi, infoNeededVideoIds, videoInfoDB):
         print(f"Progress: {progress} of {len(infoNeededVideoIds)}...")
 def IsVideoUnavailable(videoInfo):
     if DictionaryHas(videoInfo, "status.privacyStatus"):
-        privacyStatus = videoInfo["status"]["privacyStatus"]
+        privacyStatus = videoInfo['status']['privacyStatus']
         if privacyStatus != "public" and privacyStatus != "unlisted":
             return True
     if DictionaryHas(videoInfo, "contentDetails.regionRestriction.allowed"):
-        allowedCountries = videoInfo["contentDetails"]["regionRestriction"]["allowed"]
+        allowedCountries = videoInfo['contentDetails']['regionRestriction']['allowed']
         if allowedCountries != None and not "US" in allowedCountries:
             return True
     if DictionaryHas(videoInfo, "contentDetails.regionRestriction.blocked"):
-        blockedCountries = videoInfo["contentDetails"]["regionRestriction"]["blocked"]
+        blockedCountries = videoInfo['contentDetails']['regionRestriction']['blocked']
         if blockedCountries != None and "US" in blockedCountries:
             return True
     return False
@@ -319,10 +319,10 @@ def TraceVideo(videoId):
         ytcfg = json.loads(ytcfgJson)
         if not DictionaryHas(ytcfg, "INITIAL_ENDPOINT"):
             continue
-        initialEndpoint = json.loads(ytcfg["INITIAL_ENDPOINT"])
+        initialEndpoint = json.loads(ytcfg['INITIAL_ENDPOINT'])
         if not DictionaryHas(initialEndpoint, "watchEndpoint.videoId"):
             continue
-        tracedVideoId = initialEndpoint["watchEndpoint"]["videoId"]
+        tracedVideoId = initialEndpoint['watchEndpoint']['videoId']
         if tracedVideoId == videoId:
             return None
         return tracedVideoId
@@ -343,15 +343,16 @@ def TraceUnavailableVideos(traceNeededVideoIds, relocationDB):
 def GetBestThumbnailUrl(videoInfo):
     bestThumbnailSize = 0
     bestThumbnailUrl = None
-    for thumbnail in videoInfo["snippet"]["thumbnails"].values():
+    for thumbnail in videoInfo['snippet']['thumbnails'].values():
         if thumbnail == None:
             continue
-        if thumbnail["width"] * thumbnail["height"] > bestThumbnailSize:
-            bestThumbnailSize = thumbnail["width"] * thumbnail["height"]
-            bestThumbnailUrl = thumbnail["url"]
+        if thumbnail['width'] * thumbnail['height'] > bestThumbnailSize:
+            bestThumbnailSize = thumbnail['width'] * thumbnail['height']
+            bestThumbnailUrl = thumbnail['url']
     return bestThumbnailUrl
 def ConvertVideoToSong(videoId, videoInfo):
     srcUrl = f"https://www.youtube.com/watch?v={videoId}"
+    og_src = None
     src = None
     thumbnailUrl = GetBestThumbnailUrl(videoInfo)
     thumbnail = None
@@ -361,7 +362,7 @@ def ConvertVideoToSong(videoId, videoInfo):
     releaseDate = None
     songId = "yt." + videoId
 
-    description = videoInfo["snippet"]["description"]
+    description = videoInfo['snippet']['description']
     descriptionLines = [line.strip() for line in description.replace("\r\n", "\n").split("\n") if len(line) > 0]
     if len(descriptionLines) > 0 and descriptionLines[-1] == "Auto-generated by YouTube.":
         if descriptionLines[0].startswith("Provided to YouTube by "):
@@ -380,49 +381,56 @@ def ConvertVideoToSong(videoId, videoInfo):
                 break
 
     if title == None:
-        title = videoInfo["snippet"]["title"]
+        title = videoInfo['snippet']['title']
     if album == None:
         album = ""
     if artists == None:
-        artistRaw = videoInfo["snippet"]["channelTitle"]
+        artistRaw = videoInfo['snippet']['channelTitle']
         artists = [ artistRaw[0:-len(" - Topic")] if artistRaw.endswith(" - Topic") else artistRaw ]
     if releaseDate == None:
-        rawReleaseDate = videoInfo["snippet"]["publishedAt"]
+        rawReleaseDate = videoInfo['snippet']['publishedAt']
         releaseDate = int(datetime.strptime(rawReleaseDate, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc).timestamp())
 
-    return { "srcUrl": srcUrl, "src": src, "thumbnailUrl": thumbnailUrl, "thumbnail": thumbnail, "title": title, "album": album, "artists": artists, "releaseDate": releaseDate, "songId": songId }
+    return { "srcUrl": srcUrl, "og_src": og_src, "src": src, "thumbnailUrl": thumbnailUrl, "thumbnail": thumbnail, "title": title, "album": album, "artists": artists, "releaseDate": releaseDate, "songId": songId }
 def AddNewVideosToSongDatabase(videoInfoDB, relocationDB, songDatabase):
     ytVideoIdsAlreadyConverted = set()
     for song in songDatabase:
-        if song["songId"].startswith("yt."):
-            ytVideoIdsAlreadyConverted.add(song["songId"][3:])
+        if song['songId'].startswith("yt."):
+            ytVideoIdsAlreadyConverted.add(song['songId'][3:])
 
     # New songs must be added in reverse order.
     for ytVideoId in videoInfoDB:
         if ytVideoId not in ytVideoIdsAlreadyConverted and ytVideoId not in relocationDB and videoInfoDB[ytVideoId] is not None:
             songDatabase.insert(0, ConvertVideoToSong(ytVideoId, videoInfoDB[ytVideoId]))
-def DownloadThumbnail(song, thumbnailsDir):
-    thumbnailUrl = song["thumbnailUrl"]
+def DownloadThumbnail(song, tempDir, thumbnailsDir):
+    thumbnailUrl = song['thumbnailUrl']
     thumbnailUrlPath = urllib.parse.urlparse(thumbnailUrl).path
     thumbnailFileExt = os.path.splitext(os.path.basename(thumbnailUrlPath))[1]
-    thumbnailFilePath = os.path.join(thumbnailsDir, song["songId"] + thumbnailFileExt)
-    request = urllib.request.Request(thumbnailUrl, headers={ "User-Agent": UserAgent })
+    thumbnailTempPath = os.path.join(tempDir, song['songId'] + ".thumb.temp" + thumbnailFileExt)
+    thumbnailFilePath = os.path.join(thumbnailsDir, song['songId'] + thumbnailFileExt)
+    request = urllib.request.Request(thumbnailUrl)
     try:
-        with urllib.request.urlopen(request) as responseFile: response = responseFile.read()
-        with open(thumbnailFilePath, "wb") as thumbnailFile: thumbnailFile.write(response)
-        song["thumbnail"] = PathToClientUrl(thumbnailFilePath)
+        with urllib.request.urlopen(request) as responseStream:
+            with open(thumbnailTempPath, "wb") as thumbnailFile:
+                thumbnailFile.write(responseStream.read())
     except urllib.error.HTTPError as ex:
         if ex.code == 404:
             PrintError(f"404 Failed to download thumbnail: {thumbnailUrl}")
+            return
         else:
             raise
-def DownloadAudioStream(song, audioStreamsDir, tempDir):
+    os.rename(thumbnailTempPath, thumbnailFilePath)
+    song['thumbnail'] = PathToClientUrl(thumbnailFilePath)
+def DownloadOgAudioStream(song, tempDir, ogAudioStreamsDir):
     NeverUseCookies = False
     AlwaysUseCookies = False
 
+    streamPathNoExt = os.path.join(ogAudioStreamsDir, f"{song['songId']}")
+    streamTempPathNoExt = os.path.join(tempDir, f"{song['songId']}.stream.temp")
+
     ytdlpOptions = {
         "format": "bestaudio",
-        "outtmpl": os.path.join(tempDir, f"{song["songId"]}.%(ext)s"),
+        "outtmpl": os.path.join(tempDir, f"{streamTempPathNoExt}.%(ext)s"),
         "nooverwrites": True,
         "force_overwrites": False,
         "continuedl": False,
@@ -438,7 +446,7 @@ def DownloadAudioStream(song, audioStreamsDir, tempDir):
         "ratelimit": SongDownloadRateLimit,
         "remote_components": [ "ejs:github" ],
     }
-    targetUrls = [ song["srcUrl"] ]
+    targetUrls = [ song['srcUrl'] ]
     
     retryWithCookies = False
     if AlwaysUseCookies:
@@ -452,11 +460,11 @@ def DownloadAudioStream(song, audioStreamsDir, tempDir):
                 if NeverUseCookies:
                     return
                 else:
-                    PrintWarning(f"Downloading {song["srcUrl"]} failed. Retrying with cookies.")
+                    PrintWarning(f"Downloading {song['srcUrl']} failed. Retrying with cookies.")
                     retryWithCookies = True
 
     if retryWithCookies:
-        ytdlpOptions["cookiesfrombrowser"] = ("firefox",)
+        ytdlpOptions['cookiesfrombrowser'] = ("firefox",)
         with yt_dlp.YoutubeDL(ytdlpOptions) as ytdlp:
             try:
                 ytdlp.download(targetUrls)
@@ -465,15 +473,29 @@ def DownloadAudioStream(song, audioStreamsDir, tempDir):
                 PrintError(f"FATAL Could not download video {song['srcUrl']}")
                 return
 
-    fileNamesInTemp = os.listdir(tempDir)
-    if len(fileNamesInTemp) != 1:
-        raise Exception("Incorrect number of files in tempDir.")
-    perminantPath = os.path.join(audioStreamsDir, fileNamesInTemp[0])
-    os.rename(os.path.join(tempDir, fileNamesInTemp[0]), perminantPath)
-    song["src"] = PathToClientUrl(perminantPath)
-
-
-
+    tempFiles = [ os.path.join(tempDir, tempFileName) for tempFileName in os.listdir(tempDir) ]
+    streamTempPath = None
+    for tempFile in tempFiles:
+        if os.path.splitext(tempFile)[0] == os.path.join(tempDir, f"{song['songId']}.stream.temp"):
+            if streamTempPath == None:
+                streamTempPath = tempFile
+            else:
+                raise Exception("Multiple matching temp files found.")
+    if streamTempPath == None:
+        raise Exception("No matching temp file found.")
+    streamPath = streamPathNoExt + os.path.splitext(tempFile)[1]
+    os.rename(streamTempPath, streamPath)
+    song['og_src'] = PathToClientUrl(streamPath)
+def ConvertAudioStream(song, tempDir, ogAudioStreamsDir, audioStreamsDir):
+    ogStreamPath = os.path.join(ogAudioStreamsDir, os.path.basename(song['og_src']))
+    streamTempPath = os.path.join(tempDir, song['songId'] + ".convert.temp.m4a")
+    streamPath = os.path.join(audioStreamsDir, song['songId'] + ".m4a")
+    if not os.path.exists(ogStreamPath):
+        PrintError(f"FATAL OG stream does not exist at {ogStreamPath}")
+        return
+    RunCommand(f"ffmpeg -i \"{ogStreamPath}\" -c:a aac -ac 2 -y -nostdin \"{streamTempPath}\"", echo=True)
+    os.rename(streamTempPath, streamPath)
+    song['src'] = PathToClientUrl(streamPath)
 
 def Main():
     if not os.path.exists("./database"):
@@ -494,7 +516,7 @@ def Main():
         requestedVideos = DeserializeJson(ReadFile("./requested_videos.json", defaultContents=SerializeJson(defaultRequestedVideos, compact=True)))
         if True: # Fetch playlist contents or use previous list of needed videos
             print("Fetching playlist contents...")
-            requestedVideos = list(set(requestedVideos + EnumPlaylistsContents(youtubeApi, playlistSelection["selected"])))
+            requestedVideos = list(set(requestedVideos + EnumPlaylistsContents(youtubeApi, playlistSelection['selected'])))
             WriteFile("./requested_videos.json", SerializeJson(requestedVideos, compact=True))
 
         defaultVideoInfoDB = {}
@@ -537,6 +559,8 @@ def Main():
         print("Downloading thumbnails for songs without a thumbnail...")
         thumbnailsDir = os.path.realpath("database/thumbnails")
         os.makedirs(thumbnailsDir, exist_ok=True)
+        tempDir = os.path.realpath("database/temp")
+        os.makedirs(tempDir, exist_ok=True)
 
         existingFiles = set()
         for fileName in os.listdir(thumbnailsDir):
@@ -545,26 +569,65 @@ def Main():
 
         songsInNeedOfThumbnails = []
         for song in songDatabase:
-            if song["thumbnail"] == None:
+            if song['thumbnail'] == None:
                 songsInNeedOfThumbnails.append(song)
-            elif not song["thumbnail"] in existingFiles:
-                PrintWarning(f"Thumbnail for song {song["songId"]} is said to be at {song["thumbnail"]} but has been deleted.")
+            elif not song['thumbnail'] in existingFiles:
+                PrintWarning(f"Thumbnail for song {song['songId']} is said to be at {song['thumbnail']} but has been deleted.")
             else:
-                existingFiles.remove(song["thumbnail"])
+                existingFiles.remove(song['thumbnail'])
 
         for filePath in existingFiles:
             PrintWarning(f"Thumbnail exists at {filePath} but is claimed by no song.")
 
         progress = 0
         for song in songsInNeedOfThumbnails:
-            DownloadThumbnail(song, thumbnailsDir)
-            RandomSleep(ThumbnailDownloadMinDelay, ThumbnailDownloadMaxDelay)
+            DownloadThumbnail(song, tempDir, thumbnailsDir)
             WriteFile("./database/database.json", SerializeJson(songDatabase, compact=True))
             progress += 1
             print(f"Progress: {progress} of {len(songsInNeedOfThumbnails)}...")
+            RandomSleep(ThumbnailDownloadMinDelay, ThumbnailDownloadMaxDelay)
+
+        os.rmdir(tempDir)
 
     if True: # Download original audio streams for songs without one
         print("Downloading audio stream for songs without an audio stream...")
+        ogAudioStreamsDir = os.path.realpath("database/og_songs")
+        os.makedirs(ogAudioStreamsDir, exist_ok=True)
+        tempDir = os.path.realpath("database/temp")
+        os.makedirs(tempDir, exist_ok=True)
+
+        existingFiles = set()
+        for fileName in os.listdir(ogAudioStreamsDir):
+            filePath = os.path.join(ogAudioStreamsDir, fileName)
+            existingFiles.add(PathToClientUrl(filePath))
+
+        songsInNeedOfOgAudioStreams = []
+        for song in songDatabase:
+            if song['og_src'] == None:
+                songsInNeedOfOgAudioStreams.append(song)
+            elif not song['og_src'] in existingFiles:
+                PrintWarning(f"OG audio stream for song {song['songId']} is said to be at {song['og_src']} but has been deleted.")
+                songsInNeedOfOgAudioStreams.append(song)
+            else:
+                existingFiles.remove(song['og_src'])
+
+        for filePath in existingFiles:
+            PrintWarning(f"OG audio stream exists at {filePath} but is claimed by no song.")
+
+        progress = 0
+        for song in songsInNeedOfOgAudioStreams:
+            DownloadOgAudioStream(song, tempDir, ogAudioStreamsDir)
+            WriteFile("./database/database.json", SerializeJson(songDatabase, compact=True))
+            progress += 1
+            print(f"Progress: {progress} of {len(songsInNeedOfOgAudioStreams)}...")
+            RandomSleep(AudioStreamDownloadMinDelay, AudioStreamDownloadMaxDelay)
+
+        os.rmdir(tempDir)
+
+    if True: # Convert original audio streams to universal codec
+        print("Encoding audio streams into univerisal codec...")
+        ogAudioStreamsDir = os.path.realpath("database/og_songs")
+        os.makedirs(ogAudioStreamsDir, exist_ok=True)
         audioStreamsDir = os.path.realpath("database/songs")
         os.makedirs(audioStreamsDir, exist_ok=True)
         tempDir = os.path.realpath("database/temp")
@@ -577,21 +640,20 @@ def Main():
 
         songsInNeedOfAudioStreams = []
         for song in songDatabase:
-            if song["src"] == None:
+            if song['src'] == None:
                 songsInNeedOfAudioStreams.append(song)
-            elif not song["src"] in existingFiles:
-                PrintWarning(f"Audio stream for song {song["songId"]} is said to be at {song["src"]} but has been deleted.")
+            elif not song['src'] in existingFiles:
+                PrintWarning(f"Audio stream for song {song['songId']} is said to be at {song['src']} but has been deleted.")
                 songsInNeedOfAudioStreams.append(song)
             else:
-                existingFiles.remove(song["src"])
+                existingFiles.remove(song['src'])
 
         for filePath in existingFiles:
             PrintWarning(f"Audio stream exists at {filePath} but is claimed by no song.")
 
         progress = 0
         for song in songsInNeedOfAudioStreams:
-            DownloadAudioStream(song, audioStreamsDir, tempDir)
-            RandomSleep(AudioStreamDownloadMinDelay, AudioStreamDownloadMaxDelay)
+            ConvertAudioStream(song, tempDir, ogAudioStreamsDir, audioStreamsDir)
             WriteFile("./database/database.json", SerializeJson(songDatabase, compact=True))
             progress += 1
             print(f"Progress: {progress} of {len(songsInNeedOfAudioStreams)}...")

@@ -1,7 +1,8 @@
-/client_secrets.json
-/user_secrets.json
-/venv/
 /database/
-/database_finlay/
-/config.json
-/cache.json
+/env/
+/client_secrets.json
+/playlist_selection.json
+/relocation_db.json
+/requested_videos.json
+/user_secrets.json
+/video_info_db.json
