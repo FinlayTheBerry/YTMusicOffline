@@ -1,1 +1,8 @@
 /database/
+/env/
+/client_secrets.json
+/playlist_selection.json
+/relocation_db.json
+/requested_videos.json
+/user_secrets.json
+/video_info_db.json
